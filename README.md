@@ -2,7 +2,7 @@
 
 To.get is an application created by team See Shore of the CDM to facilitate group buying on campus and to tackle plastic waste reduction.
 
-## Tech Stack
+## Technical Overview
 - Spring Boot server
 - React.js client
 - MUI components
