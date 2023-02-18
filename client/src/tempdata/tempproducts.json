@@ -1,0 +1,42 @@
+[
+  {
+    "id": "001", 
+    "name": "Product 1",
+    "slug": "one"
+  },
+  {
+    "id": "002", 
+    "name": "Product 2",
+    "slug": "two"
+  },
+  {
+    "id": "003", 
+    "name": "Product 3",
+    "slug": "three"
+  },
+  {
+    "id": "004", 
+    "name": "Product 4",
+    "slug": "four"
+  },
+  {
+    "id": "005", 
+    "name": "Product 5",
+    "slug": "five"
+  },
+  {
+    "id": "006", 
+    "name": "Product 6",
+    "slug": "six"
+  },
+  {
+    "id": "007", 
+    "name": "Product 7",
+    "slug": "seven"
+  },
+  {
+    "id": "008", 
+    "name": "Product 8",
+    "slug": "eight"
+  }
+]

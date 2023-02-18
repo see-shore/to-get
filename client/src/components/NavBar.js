@@ -9,6 +9,9 @@ const StyledNavBar = styled.header`
   align-items: center;
   height: 8vh;
   padding: 0 4em;
+  position: fixed;
+  width: 100%;
+  top: 0;
 `;
 
 const StyledNavLink = styled.div`
@@ -17,11 +20,6 @@ const StyledNavLink = styled.div`
   font-weight: 500;
   letter-spacing: 1px;
   gap: 1.5em;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
 `;
 
 const StyledLogo = styled.img`
@@ -35,7 +33,9 @@ function NavBar() {
         <StyledLogo src={'/logo192.png'} />
       </Link>
       <StyledNavLink>
-        <StyledLink to='/contact'>Contact</StyledLink>
+        <Link to='/contact' className='linkStyle'>
+          Contact
+        </Link>
       </StyledNavLink>
     </StyledNavBar>
   );
