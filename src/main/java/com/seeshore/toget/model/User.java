@@ -3,11 +3,11 @@ package com.seeshore.toget.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
@@ -19,6 +19,10 @@ public class User {
 
     @Column(name = "email")
     private String email;
+
+    public Long getId() {
+        return id;
+    }
 
     public String getFirstName() {
         return firstName;
