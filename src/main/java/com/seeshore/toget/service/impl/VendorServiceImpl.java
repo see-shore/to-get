@@ -29,4 +29,9 @@ public class VendorServiceImpl implements IVendorService {
     public Vendor saveVendor(Vendor vendor) {
         return vendorRepository.saveAndFlush(vendor);
     }
+
+    @Override
+    public void deleteVendorById(Long vendorId) {
+        vendorRepository.deleteById(vendorId);
+    }
 }

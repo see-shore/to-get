@@ -10,4 +10,5 @@ public interface IVendorService {
     public List<Vendor> findAllVendors();
     public Optional<Vendor> findVendorById(Long vendorId);
     public Vendor saveVendor(Vendor vendor);
+    public void deleteVendorById(Long vendorId);
 }

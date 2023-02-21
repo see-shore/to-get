@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
@@ -38,6 +36,19 @@ public class VendorController {
         try {
             Vendor savedVendor = vendorService.saveVendor(vendor);
             return new ResponseEntity<>(savedVendor, HttpStatus.OK);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error", e);
+        }
+    }
+
+    // Delete a vendor
+    @DeleteMapping("/vendor")
+    public ResponseEntity<String> deleteVendor(@RequestParam Long vendorId) {
+        try {
+            vendorService.deleteVendorById(vendorId);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("Successfully deleted vendor with ID: " + vendorId);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error", e);
