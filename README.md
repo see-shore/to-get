@@ -33,6 +33,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL5Dialect
     show-sql: true
 ```
 Ask the project admins for credentials to the AWS RDS database and replace the password placeholder above.

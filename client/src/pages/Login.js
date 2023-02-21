@@ -1,8 +1,7 @@
+import AuthBasePage from '../components/AuthBasePage';
+
 function Login() {
-  return (
-    <div>
-      <a className='tempPageSign'>Temp Login Page</a>
-    </div>
-  );
+  return <AuthBasePage type='login' />;
 }
+
 export default Login;
