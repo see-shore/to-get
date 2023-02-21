@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VendorServiceImpl implements IVendorService {
@@ -17,6 +18,11 @@ public class VendorServiceImpl implements IVendorService {
     @Override
     public List<Vendor> findAllVendors() {
         return vendorRepository.findAll();
+    }
+
+    @Override
+    public Optional<Vendor> findVendorById(Long vendorId) {
+        return vendorRepository.findById(vendorId);
     }
 
     @Override

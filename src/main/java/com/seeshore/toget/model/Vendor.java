@@ -2,6 +2,9 @@ package com.seeshore.toget.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "vendors")
 public class Vendor {
@@ -19,6 +22,9 @@ public class Vendor {
 
     @Column(name = "website")
     private String website;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendor")
+    private List<Item> items = new ArrayList<>();
 
     public Long getId() {
         return id;

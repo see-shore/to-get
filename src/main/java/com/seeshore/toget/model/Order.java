@@ -16,11 +16,11 @@ public class Order {
     @Column(name = "order_date")
     private Date orderDate;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id", nullable = false, updatable = false, insertable = true)
     private Item item;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false, updatable = false, insertable = true)
     private User user;
 
