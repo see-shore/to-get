@@ -2,12 +2,13 @@ package com.seeshore.toget.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +24,7 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
     private List<Order> orders = new ArrayList<>();
 
     public User() {
@@ -43,5 +44,9 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 }

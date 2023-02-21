@@ -47,7 +47,7 @@ public class ItemController {
         }
     }
 
-    // Fetch all of a vendor's items
+    // Fetch all items of one vendor
     @GetMapping("/item")
     public ResponseEntity<List<Item>> findItemsByVendor(@RequestParam Long vendorId) {
         try {

@@ -1,13 +1,13 @@
 package com.seeshore.toget.model;
 
-import com.seeshore.toget.model.request.RequestOrder;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,11 +20,11 @@ public class Order {
     @Column(name = "quantity")
     private int quantity;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "item_id", nullable = false, updatable = false, insertable = true)
     private Item item;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false, updatable = false, insertable = true)
     private User user;
 

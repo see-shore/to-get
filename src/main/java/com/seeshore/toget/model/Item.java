@@ -3,15 +3,14 @@ package com.seeshore.toget.model;
 import com.seeshore.toget.model.request.RequestItem;
 import jakarta.persistence.*;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "items")
-public class Item {
+public class Item implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,7 +33,7 @@ public class Item {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
     private List<Order> orders = new ArrayList<>();
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "vendor_id", nullable = false, updatable = false, insertable = true)
     private Vendor vendor;
 
