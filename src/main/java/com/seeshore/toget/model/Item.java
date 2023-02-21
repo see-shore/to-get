@@ -42,10 +42,7 @@ public class Item {
         try {
             this.name = requestItem.getName();
             this.price = requestItem.getPrice();
-
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-            this.addedDate = dateFormat.parse(requestItem.getAddedDate());
-
+            this.addedDate = new Date();
             this.available = requestItem.getAvailable();
             this.vendor = vendor;
         } catch (Exception e) {
@@ -54,7 +51,6 @@ public class Item {
     }
 
     public Item() {
-
     }
 
     public Long getId() {

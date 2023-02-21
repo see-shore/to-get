@@ -38,7 +38,7 @@ public class OrderController {
                         "Provided item or user ID is unknown");
             }
 
-            Order order = new Order(requestOrder, item.get(), user.get());
+            Order order = new Order(requestOrder.getQuantity(), item.get(), user.get());
             Order savedOrder = orderService.saveOrder(order);
             return new ResponseEntity<>(savedOrder, HttpStatus.OK);
         } catch (Exception e) {

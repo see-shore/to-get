@@ -27,7 +27,6 @@ public class Vendor {
     private List<Item> items = new ArrayList<>();
 
     public Vendor() {
-
     }
 
     public Long getId() {

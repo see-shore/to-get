@@ -3,7 +3,6 @@ package com.seeshore.toget.model.request;
 public class RequestItem {
     private String name;
     private int price;
-    private String addedDate;
     private int available;
     private Long vendorId;
 
@@ -13,10 +12,6 @@ public class RequestItem {
 
     public int getPrice() {
         return price;
-    }
-
-    public String getAddedDate() {
-        return addedDate;
     }
 
     public int getAvailable() {

@@ -1,13 +1,10 @@
 package com.seeshore.toget.model.request;
 
 public class RequestOrder {
-    private String orderDate;
+
     private Long itemId;
     private Long userId;
-
-    public String getOrderDate() {
-        return orderDate;
-    }
+    private int quantity;
 
     public Long getItemId() {
         return itemId;
@@ -15,5 +12,9 @@ public class RequestOrder {
 
     public Long getUserId() {
         return userId;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }

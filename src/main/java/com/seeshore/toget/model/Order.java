@@ -3,8 +3,6 @@ package com.seeshore.toget.model;
 import com.seeshore.toget.model.request.RequestOrder;
 import jakarta.persistence.*;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -19,6 +17,9 @@ public class Order {
     @Column(name = "order_date")
     private Date orderDate;
 
+    @Column(name = "quantity")
+    private int quantity;
+
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id", nullable = false, updatable = false, insertable = true)
     private Item item;
@@ -27,19 +28,18 @@ public class Order {
     @JoinColumn(name = "user_id", nullable = false, updatable = false, insertable = true)
     private User user;
 
-    public Order(RequestOrder requestOrder, Item item, User user) {
+    public Order(int quantity, Item item, User user) {
         try {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-            this.orderDate = dateFormat.parse(requestOrder.getOrderDate());
+            this.orderDate = new Date();
             this.item = item;
             this.user = user;
+            this.quantity = quantity;
         } catch (Exception e) {
             throw new RuntimeException("One or more request body fields could not be parsed");
         }
     }
 
     public Order() {
-
     }
 
     public Long getId() {
@@ -56,5 +56,9 @@ public class Order {
 
     public User getUser() {
         return user;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }
