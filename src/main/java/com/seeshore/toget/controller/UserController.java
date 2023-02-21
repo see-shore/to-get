@@ -20,6 +20,7 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    // Fetch all users
     @GetMapping("/user/all")
     public ResponseEntity<List<User>> getAllUsers() {
         try {
@@ -31,6 +32,7 @@ public class UserController {
         }
     }
 
+    // Create a new user
     @PostMapping("/user/new")
     public ResponseEntity<User> saveUser(@RequestBody User user) {
         try {

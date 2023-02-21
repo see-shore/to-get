@@ -20,6 +20,7 @@ public class VendorController {
     @Autowired
     private IVendorService vendorService;
 
+    // Fetch all vendors
     @GetMapping("/vendor/all")
     public ResponseEntity<List<Vendor>> getAllVendors() {
         try {
@@ -31,6 +32,7 @@ public class VendorController {
         }
     }
 
+    // Create a new vendor
     @PostMapping("/vendor/new")
     public ResponseEntity<Vendor> saveVendor(@RequestBody Vendor vendor) {
         try {

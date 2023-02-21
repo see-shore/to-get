@@ -27,6 +27,7 @@ public class OrderController {
     @Autowired
     private IItemService itemService;
 
+    // Create a new order
     @PostMapping("/order/new")
     public ResponseEntity<Order> saveOrder(@RequestBody RequestOrder requestOrder) {
         try {
