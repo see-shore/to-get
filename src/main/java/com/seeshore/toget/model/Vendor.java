@@ -44,4 +44,8 @@ public class Vendor {
     public String getWebsite() {
         return website;
     }
+
+    public List<Item> getItems() {
+        return items;
+    }
 }
