@@ -10,4 +10,5 @@ public interface IUserService {
     public Optional<User> findUserById(Long userId);
     public List<User> findAllUsers();
     public User saveUser(User user);
+    public void deleteUserById(Long userId);
 }

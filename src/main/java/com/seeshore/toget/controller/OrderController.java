@@ -3,7 +3,6 @@ package com.seeshore.toget.controller;
 import com.seeshore.toget.model.Item;
 import com.seeshore.toget.model.Order;
 import com.seeshore.toget.model.User;
-import com.seeshore.toget.model.Vendor;
 import com.seeshore.toget.model.request.RequestOrder;
 import com.seeshore.toget.model.response.ResponseOrder;
 import com.seeshore.toget.service.IItemService;

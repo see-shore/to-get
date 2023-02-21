@@ -29,4 +29,9 @@ public class UserServiceImpl implements IUserService {
     public User saveUser(User user) {
         return userRepository.saveAndFlush(user);
     }
+
+    @Override
+    public void deleteUserById(Long userId) {
+        userRepository.deleteById(userId);
+    }
 }

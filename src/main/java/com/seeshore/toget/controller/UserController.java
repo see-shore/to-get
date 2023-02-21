@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
@@ -38,6 +36,19 @@ public class UserController {
         try {
             User savedUser = userService.saveUser(user);
             return new ResponseEntity<>(savedUser, HttpStatus.OK);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error", e);
+        }
+    }
+
+    // Delete a user
+    @DeleteMapping("/user")
+    public ResponseEntity<String> deleteUser(@RequestParam Long userId) {
+        try {
+            userService.deleteUserById(userId);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("Successfully deleted user with ID: " + userId);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error", e);
