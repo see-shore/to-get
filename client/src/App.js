@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
+import CreateAccount from './pages/CreateAccount';
 import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetail';
 import OrderConfirmation from './pages/OrderConfirmation';
@@ -19,6 +20,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/create-account' element={<CreateAccount />} />
         <Route path='/products' element={<Products />} />
         <Route path='/products/:slug' element={<ProductDetails />} />
         <Route path='/confirm-order' element={<OrderConfirmation />} />
