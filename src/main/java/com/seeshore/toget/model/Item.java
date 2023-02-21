@@ -53,6 +53,10 @@ public class Item {
         }
     }
 
+    public Item() {
+
+    }
+
     public Long getId() {
         return id;
     }

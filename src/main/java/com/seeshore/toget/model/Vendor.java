@@ -26,6 +26,10 @@ public class Vendor {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendor")
     private List<Item> items = new ArrayList<>();
 
+    public Vendor() {
+
+    }
+
     public Long getId() {
         return id;
     }

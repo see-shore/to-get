@@ -26,6 +26,10 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Order> orders = new ArrayList<>();
 
+    public User() {
+
+    }
+
     public Long getId() {
         return id;
     }
