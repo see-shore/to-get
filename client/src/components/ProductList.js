@@ -53,7 +53,6 @@ function ProductList({ products = [] }) {
   const [currItem, setCurrItem] = useState({});
 
   const handleOpen = (item) => {
-    console.log('item', item);
     setOpen(true);
     setCurrItem(item);
   };

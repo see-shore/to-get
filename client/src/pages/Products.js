@@ -14,9 +14,13 @@ function Products() {
     axios({
       method: 'get',
       url: `http://localhost:8080/item?vendorId=${currVendor}`,
-    }).then((res) => {
-      setProducts(res.data);
-    });
+    })
+      .then((res) => {
+        setProducts(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
