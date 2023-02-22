@@ -22,4 +22,8 @@ public class ItemServiceImpl implements IItemService {
     public Item saveItem(Item item) {
         return itemRepository.saveAndFlush(item);
     }
+    @Override
+    public void deleteItemById(Long itemId) {
+        itemRepository.deleteById(itemId);
+    }
 }

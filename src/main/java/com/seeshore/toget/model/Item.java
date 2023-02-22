@@ -1,5 +1,7 @@
 package com.seeshore.toget.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.seeshore.toget.model.request.RequestItem;
 import jakarta.persistence.*;
 
@@ -31,10 +33,12 @@ public class Item implements Serializable {
     private int available;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
+    @JsonManagedReference
     private List<Order> orders = new ArrayList<>();
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "vendor_id", nullable = false, updatable = false, insertable = true)
+    @JsonBackReference
     private Vendor vendor;
 
     public Item(RequestItem requestItem, Vendor vendor) {
@@ -70,5 +74,19 @@ public class Item implements Serializable {
 
     public int getAvailable() {
         return available;
+    }
+
+    public void dismissOrder(Order order) {
+        this.orders.remove(order);
+    }
+
+    public void dismissOrders() {
+        this.orders.forEach(order -> order.dismissItem());
+        this.orders.clear();
+    }
+
+    public void dismissVendor() {
+        this.vendor.dismissItem(this);
+        this.vendor = null;
     }
 }
