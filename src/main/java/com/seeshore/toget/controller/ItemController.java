@@ -1,6 +1,8 @@
 package com.seeshore.toget.controller;
 
 import com.seeshore.toget.model.Item;
+import com.seeshore.toget.model.Order;
+import com.seeshore.toget.model.User;
 import com.seeshore.toget.model.Vendor;
 import com.seeshore.toget.model.request.RequestItem;
 import com.seeshore.toget.service.IItemService;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,6 +69,18 @@ public class ItemController {
         }
     }
 
+    @GetMapping("/item/all")
+    public ResponseEntity<List<Item>> getAllItems() {
+        try {
+            List<Item> items = new ArrayList<>(itemService.findAllItems());
+            return new ResponseEntity<>(items, HttpStatus.OK);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error", e);
+        }
+    }
+
+
     @DeleteMapping("/item")
     public ResponseEntity<String> deleteItemById(@RequestParam Long itemId) {
         try {
@@ -77,14 +92,17 @@ public class ItemController {
             }
 
             Item fetchedItem = item.get();
+            for (Order order : fetchedItem.getOrders()) {
+                order.dismissItem();
+            }
             fetchedItem.dismissOrders();
             fetchedItem.dismissVendor();
 
-            itemService.deleteItemById(itemId);
+            itemService.deleteItem(fetchedItem);
             return ResponseEntity.status(HttpStatus.OK)
                     .body("Successfully deleted item with ID: " + itemId);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error", e);
         }
