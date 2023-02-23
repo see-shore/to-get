@@ -25,7 +25,7 @@ function Home() {
         <Link to='/products'>Product Page</Link>
         <Link to='/confirm-order'>Order Confirmation Page</Link>
         <Link to='/payment'>Payment Page</Link>
-        <Link to='/set-price'>Set Price (Admin)</Link>
+        <Link to='/admin'>Admin</Link>
         <Link to='/nothing'>Broken Link</Link>
       </TempTOC>
     </div>
