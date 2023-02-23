@@ -1,11 +1,10 @@
-package com.seeshore.toget.controller;
+package com.seeshore.toget.controller.staged;
 
-import com.seeshore.toget.model.Item;
-import com.seeshore.toget.model.Order;
-import com.seeshore.toget.model.Vendor;
 import com.seeshore.toget.model.request.RequestItem;
-import com.seeshore.toget.service.IItemService;
-import com.seeshore.toget.service.IVendorService;
+import com.seeshore.toget.model.staged.StagedItem;
+import com.seeshore.toget.model.staged.StagedVendor;
+import com.seeshore.toget.service.staged.IStagedItemService;
+import com.seeshore.toget.service.staged.IStagedVendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,26 +17,26 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class ItemController {
+public class StagedItemController {
 
     @Autowired
-    private IItemService itemService;
+    private IStagedItemService stagedItemService;
     @Autowired
-    private IVendorService vendorService;
+    private IStagedVendorService stagedVendorService;
 
-    // Create a new item
-    @PostMapping("/item/new")
-    public ResponseEntity<Item> saveItem(@RequestBody RequestItem requestItem) {
+    // Create a new staged item
+    @PostMapping("/staged-item/new")
+    public ResponseEntity<StagedItem> saveStagedItem(@RequestBody RequestItem requestItem) {
         try {
-            Optional<Vendor> vendor = vendorService.findVendorById(requestItem.getVendorId());
+            Optional<StagedVendor> vendor = stagedVendorService.findStagedVendorById(requestItem.getVendorId());
             if (vendor.isEmpty()) {
                 System.out.println("Provided vendor ID is unknown");
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                         "Provided vendor ID is unknown");
             }
 
-            Item item = new Item(requestItem, vendor.get());
-            Item savedItem = itemService.saveItem(item);
+            StagedItem item = new StagedItem(requestItem, vendor.get());
+            StagedItem savedItem = stagedItemService.saveStagedItem(item);
             return new ResponseEntity<>(savedItem, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -46,18 +45,18 @@ public class ItemController {
         }
     }
 
-    // Fetch all items of one vendor
-    @GetMapping("/item")
-    public ResponseEntity<List<Item>> findItemsByVendor(@RequestParam Long vendorId) {
+    // Fetch all staged items of one staged vendor
+    @GetMapping("/staged-item")
+    public ResponseEntity<List<StagedItem>> findStagedItemsByVendor(@RequestParam Long vendorId) {
         try {
-            Optional<Vendor> vendor = vendorService.findVendorById(vendorId);
+            Optional<StagedVendor> vendor = stagedVendorService.findStagedVendorById(vendorId);
             if (vendor.isEmpty()) {
                 System.out.println("Provided vendor ID is unknown");
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                         "Provided vendor ID is unknown");
             }
 
-            List<Item> items = vendor.get().getItems();
+            List<StagedItem> items = vendor.get().getItems();
             return new ResponseEntity<>(items, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -66,11 +65,11 @@ public class ItemController {
         }
     }
 
-    // Fetch all items
-    @GetMapping("/item/all")
-    public ResponseEntity<List<Item>> getAllItems() {
+    // Fetch all staged items
+    @GetMapping("/staged-item/all")
+    public ResponseEntity<List<StagedItem>> getAllStagedItems() {
         try {
-            List<Item> items = new ArrayList<>(itemService.findAllItems());
+            List<StagedItem> items = new ArrayList<>(stagedItemService.findAllStagedItems());
             return new ResponseEntity<>(items, HttpStatus.OK);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
@@ -78,28 +77,22 @@ public class ItemController {
         }
     }
 
-
-    // Delete one item
-    @DeleteMapping("/item")
-    public ResponseEntity<String> deleteItemById(@RequestParam Long itemId) {
+    // Delete one staged item
+    @DeleteMapping("/staged-item")
+    public ResponseEntity<String> deleteStagedItemById(@RequestParam Long itemId) {
         try {
-            Optional<Item> item = itemService.findItemById(itemId);
+            Optional<StagedItem> item = stagedItemService.findStagedItemById(itemId);
             if (item.isEmpty()) {
-                System.out.println("Provided item ID is unknown");
+                System.out.println("Provided staged item ID is unknown");
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                        "Provided item ID is unknown");
+                        "Provided staged item ID is unknown");
             }
 
-            Item fetchedItem = item.get();
-            for (Order order : fetchedItem.getOrders()) {
-                order.dismissItem();
-            }
-            fetchedItem.dismissOrders();
-            fetchedItem.dismissVendor();
-
-            itemService.deleteItem(fetchedItem);
+            StagedItem fetchedItem = item.get();
+            fetchedItem.dismissStagedVendor();
+            stagedItemService.deleteStagedItem(fetchedItem);
             return ResponseEntity.status(HttpStatus.OK)
-                    .body("Successfully deleted item with ID: " + itemId);
+                    .body("Successfully deleted staged item with ID: " + itemId);
         } catch (Exception e) {
             System.out.println(e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,

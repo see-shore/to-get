@@ -1,6 +1,7 @@
-package com.seeshore.toget.model;
+package com.seeshore.toget.model.staged;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.seeshore.toget.model.Item;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -8,9 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "vendors")
-public class Vendor implements Serializable {
-
+@Table(name = "staged_vendors")
+public class StagedVendor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -25,11 +25,14 @@ public class Vendor implements Serializable {
     @Column(name = "website")
     private String website;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendor", fetch = FetchType.EAGER, orphanRemoval = true)
-    @JsonManagedReference(value = "vendor-item")
-    private List<Item> items = new ArrayList<>();
+    @Column(name = "available")
+    private int available;
 
-    public Vendor() {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendor", fetch = FetchType.EAGER, orphanRemoval = true)
+    @JsonManagedReference(value = "staged-vendor-item")
+    private List<StagedItem> items = new ArrayList<>();
+
+    public StagedVendor() {
     }
 
     public Long getId() {
@@ -48,11 +51,15 @@ public class Vendor implements Serializable {
         return website;
     }
 
-    public List<Item> getItems() {
+    public List<StagedItem> getItems() {
         return items;
     }
 
-    public void dismissItem(Item item) {
+    public int getAvailable() {
+        return available;
+    }
+
+    public void dismissStagedItem(StagedItem item) {
         this.items.remove(item);
     }
 }
