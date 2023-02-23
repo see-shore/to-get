@@ -22,13 +22,11 @@ public class Order implements Serializable {
     private int quantity;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "item_id", nullable = false, updatable = false, insertable = true)
-    @JsonBackReference
+    @JoinColumn(name = "item_id", nullable = true, updatable = false, insertable = true)
     private Item item;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false, updatable = false, insertable = true)
-    @JsonBackReference
+    @JoinColumn(name = "user_id", nullable = true, updatable = false, insertable = true)
     private User user;
 
     public Order(int quantity, Item item, User user) {

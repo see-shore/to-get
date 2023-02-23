@@ -25,8 +25,7 @@ public class User implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
     public User() {

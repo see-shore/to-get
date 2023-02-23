@@ -25,8 +25,7 @@ public class Vendor implements Serializable {
     @Column(name = "website")
     private String website;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendor", fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendor", fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Item> items = new ArrayList<>();
 
     public Vendor() {

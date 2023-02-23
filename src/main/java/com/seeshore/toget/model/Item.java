@@ -32,13 +32,11 @@ public class Item implements Serializable {
     @Column(name = "available")
     private int available;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
-    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "vendor_id", nullable = false, updatable = false, insertable = true)
-    @JsonBackReference
+    @JoinColumn(name = "vendor_id", nullable = true, updatable = false, insertable = true)
     private Vendor vendor;
 
     public Item(RequestItem requestItem, Vendor vendor) {
