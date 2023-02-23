@@ -1,6 +1,7 @@
 package com.seeshore.toget.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.seeshore.toget.model.request.RequestItem;
 import jakarta.persistence.*;
@@ -34,6 +35,7 @@ public class Item implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", orphanRemoval = true)
     @JsonManagedReference(value = "item-order")
+    @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
