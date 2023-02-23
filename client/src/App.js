@@ -9,9 +9,7 @@ import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetail';
 import OrderConfirmation from './pages/OrderConfirmation';
 import Payment from './pages/Payment';
-import SetPrice from './pages/admin/SetPrice';
-import OrderTotal from './pages/admin/OrderTotal';
-import OrderUser from './pages/admin/OrderUser';
+import AdminBase from './components/AdminBase';
 import DoesNotExist from './pages/DoesNotExist';
 
 function App() {
@@ -28,9 +26,7 @@ function App() {
         <Route path='/confirm-order' element={<OrderConfirmation />} />
         <Route path='/payment' element={<Payment />} />
         {/* Admin Pages */}
-        <Route path='/set-price' element={<SetPrice />} />
-        <Route path='/order' element={<OrderTotal />} />
-        <Route path='/user-order' element={<SetPrice />} />
+        <Route path='/admin' element={<AdminBase />} />
         {/* 404 */}
         <Route path='*' element={<DoesNotExist />} />
       </Routes>
