@@ -11,4 +11,5 @@ public interface IItemService {
     public Item saveItem(Item item);
     public void deleteItemById(Long itemId);
     public void deleteItem(Item item);
+    public void deleteAllItems();
 }

@@ -30,9 +30,6 @@ public class Item implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date addedDate;
 
-    @Column(name = "available")
-    private int available;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", orphanRemoval = true)
     @JsonManagedReference(value = "item-order")
     @JsonIgnore
@@ -48,7 +45,6 @@ public class Item implements Serializable {
             this.name = requestItem.getName();
             this.price = requestItem.getPrice();
             this.addedDate = new Date();
-            this.available = 1;
             this.vendor = vendor;
         } catch (Exception e) {
             throw new RuntimeException("One or more request body fields could not be parsed");
@@ -74,12 +70,12 @@ public class Item implements Serializable {
         return addedDate;
     }
 
-    public int getAvailable() {
-        return available;
-    }
-
     public List<Order> getOrders() {
         return orders;
+    }
+
+    public Vendor getVendor() {
+        return vendor;
     }
 
     public void dismissOrders() {

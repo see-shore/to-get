@@ -34,4 +34,9 @@ public class VendorServiceImpl implements IVendorService {
     public void deleteVendorById(Long vendorId) {
         vendorRepository.deleteById(vendorId);
     }
+
+    @Override
+    public void deleteAllVendors() {
+        vendorRepository.deleteAll();
+    }
 }
