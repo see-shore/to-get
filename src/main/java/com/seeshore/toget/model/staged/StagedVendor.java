@@ -1,7 +1,6 @@
 package com.seeshore.toget.model.staged;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.seeshore.toget.model.Item;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -57,6 +56,10 @@ public class StagedVendor implements Serializable {
 
     public int getAvailable() {
         return available;
+    }
+
+    public void setAvailable(int available) {
+        this.available = available;
     }
 
     public void dismissStagedItem(StagedItem item) {

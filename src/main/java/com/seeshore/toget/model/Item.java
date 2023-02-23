@@ -46,7 +46,7 @@ public class Item implements Serializable {
             this.name = requestItem.getName();
             this.price = requestItem.getPrice();
             this.addedDate = new Date();
-            this.available = requestItem.getAvailable();
+            this.available = 1;
             this.vendor = vendor;
         } catch (Exception e) {
             throw new RuntimeException("One or more request body fields could not be parsed");

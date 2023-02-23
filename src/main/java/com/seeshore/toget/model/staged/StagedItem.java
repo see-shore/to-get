@@ -40,7 +40,7 @@ public class StagedItem implements Serializable {
             this.name = requestItem.getName();
             this.price = requestItem.getPrice();
             this.addedDate = new Date();
-            this.available = requestItem.getAvailable();
+            this.available = 1;
             this.vendor = vendor;
         } catch (Exception e) {
             throw new RuntimeException("One or more request body fields could not be parsed");
@@ -68,6 +68,10 @@ public class StagedItem implements Serializable {
 
     public int getAvailable() {
         return available;
+    }
+
+    public void setAvailable(int available) {
+        this.available = available;
     }
 
     public void dismissStagedVendor() {

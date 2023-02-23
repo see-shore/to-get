@@ -30,9 +30,9 @@ public class StagedItemController {
         try {
             Optional<StagedVendor> vendor = stagedVendorService.findStagedVendorById(requestItem.getVendorId());
             if (vendor.isEmpty()) {
-                System.out.println("Provided vendor ID is unknown");
+                System.out.println("Provided staged vendor ID is unknown");
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                        "Provided vendor ID is unknown");
+                        "Provided staged vendor ID is unknown");
             }
 
             StagedItem item = new StagedItem(requestItem, vendor.get());
@@ -51,9 +51,9 @@ public class StagedItemController {
         try {
             Optional<StagedVendor> vendor = stagedVendorService.findStagedVendorById(vendorId);
             if (vendor.isEmpty()) {
-                System.out.println("Provided vendor ID is unknown");
+                System.out.println("Provided staged vendor ID is unknown");
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                        "Provided vendor ID is unknown");
+                        "Provided staged vendor ID is unknown");
             }
 
             List<StagedItem> items = vendor.get().getItems();

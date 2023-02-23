@@ -34,6 +34,7 @@ public class StagedVendorController {
     @PostMapping("/staged-vendor/new")
     public ResponseEntity<StagedVendor> saveStagedVendor(@RequestBody StagedVendor vendor) {
         try {
+            vendor.setAvailable(1);
             StagedVendor savedVendor = stagedVendorService.saveStagedVendor(vendor);
             return new ResponseEntity<>(savedVendor, HttpStatus.OK);
         } catch (Exception e) {
