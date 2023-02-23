@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
+import styled from 'styled-components';
 
 const NewItem = styled.div`
   padding: 10vh;
@@ -13,7 +13,7 @@ const EmptyProductData = {
   vendorId: '',
 };
 
-function NewProduct() {
+function NewProduct({ callback }) {
   const [newProduct, setNewProduct] = useState(EmptyProductData);
   const formRef = useRef();
 
@@ -25,10 +25,16 @@ function NewProduct() {
     event.preventDefault();
 
     if (formRef.current.reportValidity()) {
-      axios.post('http://localhost:8080/item/new', newProduct).then((res) => {
-        console.log('response ', res);
-      });
-      setNewProduct(EmptyProductData);
+      axios
+        .post('http://localhost:8080/item/new', newProduct)
+        .then((res) => {
+          console.log('response ', res);
+          setNewProduct(EmptyProductData);
+          callback();
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     }
   };
 

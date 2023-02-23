@@ -7,7 +7,6 @@ import NewProduct from '../../components/NewProduct';
 import GridRow from '../../components/ItemRow';
 
 const StyledGrid = styled(Grid)`
-  padding-top: 20vh;
   display: flex;
   justify-content: center;
 `;
@@ -19,16 +18,17 @@ const StyledContainer = styled.div`
 `;
 
 function SetPrice() {
-  const [vendor, setVendor] = useState(2);
+  const [vendor, setVendor] = useState(1);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const vendorProducts = async () => {
+  const loadProducts = async () => {
     axios({
       method: 'get',
       url: `http://localhost:8080/item?vendorId=${vendor}`,
     })
       .then((res) => {
+        console.log('product list', res.data);
         setProducts(res.data);
         setLoading(false);
       })
@@ -38,8 +38,12 @@ function SetPrice() {
   };
 
   useEffect(() => {
-    vendorProducts();
+    loadProducts();
   }, []);
+
+  const handleNewProduct = () => {
+    loadProducts();
+  };
 
   return (
     <StyledContainer>
@@ -48,14 +52,14 @@ function SetPrice() {
           {products.map((p) => (
             <>
               <Grid item xs={2} sm={4} md={4} key={1}>
-                <GridRow product={p} />
+                <GridRow product={p} type={'price'} />
               </Grid>
               <Box width='100%' />
             </>
           ))}
         </StyledGrid>
       )}
-      <NewProduct />
+      <NewProduct callback={handleNewProduct} />
     </StyledContainer>
   );
 }
