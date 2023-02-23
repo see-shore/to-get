@@ -33,10 +33,12 @@ public class Item implements Serializable {
     private int available;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", orphanRemoval = true)
+    @JsonManagedReference(value = "item-order")
     private List<Order> orders = new ArrayList<>();
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "vendor_id", nullable = true, updatable = false, insertable = true)
+    @JsonBackReference(value = "vendor-item")
     private Vendor vendor;
 
     public Item(RequestItem requestItem, Vendor vendor) {
@@ -74,12 +76,11 @@ public class Item implements Serializable {
         return available;
     }
 
-    public void dismissOrder(Order order) {
-        this.orders.remove(order);
+    public List<Order> getOrders() {
+        return orders;
     }
 
     public void dismissOrders() {
-        this.orders.forEach(order -> order.dismissItem());
         this.orders.clear();
     }
 

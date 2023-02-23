@@ -1,5 +1,6 @@
 package com.seeshore.toget.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -26,6 +27,7 @@ public class User implements Serializable {
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
+    @JsonManagedReference(value = "user-order")
     private List<Order> orders = new ArrayList<>();
 
     public User() {

@@ -1,6 +1,7 @@
 package com.seeshore.toget.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -23,10 +24,12 @@ public class Order implements Serializable {
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "item_id", nullable = true, updatable = false, insertable = true)
+    @JsonBackReference(value = "item-order")
     private Item item;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = true, updatable = false, insertable = true)
+    @JsonBackReference(value = "user-order")
     private User user;
 
     public Order(int quantity, Item item, User user) {
@@ -64,7 +67,6 @@ public class Order implements Serializable {
     }
 
     public void dismissItem() {
-        this.item.dismissOrder(this);
         this.item = null;
     }
 }
