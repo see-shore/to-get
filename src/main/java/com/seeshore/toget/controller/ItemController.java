@@ -2,7 +2,6 @@ package com.seeshore.toget.controller;
 
 import com.seeshore.toget.model.Item;
 import com.seeshore.toget.model.Order;
-import com.seeshore.toget.model.User;
 import com.seeshore.toget.model.Vendor;
 import com.seeshore.toget.model.request.RequestItem;
 import com.seeshore.toget.service.IItemService;
@@ -69,6 +68,7 @@ public class ItemController {
         }
     }
 
+    // Fetch all items
     @GetMapping("/item/all")
     public ResponseEntity<List<Item>> getAllItems() {
         try {
@@ -81,6 +81,7 @@ public class ItemController {
     }
 
 
+    // Delete one item
     @DeleteMapping("/item")
     public ResponseEntity<String> deleteItemById(@RequestParam Long itemId) {
         try {

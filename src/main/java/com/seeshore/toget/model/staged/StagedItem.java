@@ -1,19 +1,16 @@
-package com.seeshore.toget.model;
+package com.seeshore.toget.model.staged;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.seeshore.toget.model.Vendor;
 import com.seeshore.toget.model.request.RequestItem;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "items")
-public class Item implements Serializable {
+@Table(name = "staged_items")
+public class StagedItem implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,17 +30,12 @@ public class Item implements Serializable {
     @Column(name = "available")
     private int available;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", orphanRemoval = true)
-    @JsonManagedReference(value = "item-order")
-    @JsonIgnore
-    private List<Order> orders = new ArrayList<>();
-
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "vendor_id", nullable = true, updatable = false, insertable = true)
-    @JsonBackReference(value = "vendor-item")
-    private Vendor vendor;
+    @JsonBackReference(value = "staged-vendor-item")
+    private StagedVendor vendor;
 
-    public Item(RequestItem requestItem, Vendor vendor) {
+    public StagedItem(RequestItem requestItem, StagedVendor vendor) {
         try {
             this.name = requestItem.getName();
             this.price = requestItem.getPrice();
@@ -55,7 +47,7 @@ public class Item implements Serializable {
         }
     }
 
-    public Item() {
+    public StagedItem() {
     }
 
     public Long getId() {
@@ -78,16 +70,12 @@ public class Item implements Serializable {
         return available;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public void setAvailable(int available) {
+        this.available = available;
     }
 
-    public void dismissOrders() {
-        this.orders.clear();
-    }
-
-    public void dismissVendor() {
-        this.vendor.dismissItem(this);
+    public void dismissStagedVendor() {
+        this.vendor.dismissStagedItem(this);
         this.vendor = null;
     }
 }
