@@ -10,4 +10,5 @@ public interface IItemService {
     public Optional<Item> findItemById(Long itemId);
     public Item saveItem(Item item);
     public void deleteItemById(Long itemId);
+    public void deleteItem(Item item);
 }

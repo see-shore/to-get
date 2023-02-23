@@ -36,7 +36,7 @@ public class Item implements Serializable {
     @JsonManagedReference(value = "item-order")
     private List<Order> orders = new ArrayList<>();
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "vendor_id", nullable = true, updatable = false, insertable = true)
     @JsonBackReference(value = "vendor-item")
     private Vendor vendor;

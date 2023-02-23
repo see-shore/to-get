@@ -22,12 +22,12 @@ public class Order implements Serializable {
     @Column(name = "quantity")
     private int quantity;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id", nullable = true, updatable = false, insertable = true)
     @JsonBackReference(value = "item-order")
     private Item item;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = true, updatable = false, insertable = true)
     @JsonBackReference(value = "user-order")
     private User user;

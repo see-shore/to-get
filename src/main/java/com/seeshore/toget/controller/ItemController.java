@@ -96,7 +96,7 @@ public class ItemController {
             fetchedItem.dismissOrders();
             fetchedItem.dismissVendor();
 
-            itemService.deleteItemById(itemId);
+            itemService.deleteItem(fetchedItem);
             return ResponseEntity.status(HttpStatus.OK)
                     .body("Successfully deleted item with ID: " + itemId);
         } catch (Exception e) {
