@@ -134,7 +134,7 @@ public class AdminController {
             }
 
             return ResponseEntity.status(HttpStatus.OK)
-                    .body("Successfully purged all published data.");
+                    .body("Successfully publish all staged data.");
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error", e);
