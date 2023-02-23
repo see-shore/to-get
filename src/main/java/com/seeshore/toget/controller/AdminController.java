@@ -6,12 +6,16 @@ import com.seeshore.toget.model.Vendor;
 import com.seeshore.toget.model.archived.ArchivedItem;
 import com.seeshore.toget.model.archived.ArchivedOrder;
 import com.seeshore.toget.model.archived.ArchivedVendor;
+import com.seeshore.toget.model.staged.StagedItem;
+import com.seeshore.toget.model.staged.StagedVendor;
 import com.seeshore.toget.service.IItemService;
 import com.seeshore.toget.service.IOrderService;
 import com.seeshore.toget.service.IVendorService;
 import com.seeshore.toget.service.archived.IArchivedItemService;
 import com.seeshore.toget.service.archived.IArchivedOrderService;
 import com.seeshore.toget.service.archived.IArchivedVendorService;
+import com.seeshore.toget.service.staged.IStagedItemService;
+import com.seeshore.toget.service.staged.IStagedVendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +41,10 @@ public class AdminController {
     private IArchivedItemService archivedItemService;
     @Autowired
     private IArchivedOrderService archivedOrderService;
+    @Autowired
+    private IStagedVendorService stagedVendorService;
+    @Autowired
+    private IStagedItemService stagedItemService;
 
     // Copy all published data and add it to the archived tables
     @PostMapping("/admin/archive-all")
@@ -89,6 +97,41 @@ public class AdminController {
         try {
             vendorService.deleteAllVendors();
             itemService.deleteAllItems();
+
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("Successfully purged all published data.");
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error", e);
+        }
+    }
+
+    // Purge all published data, then copy staged data into published tables
+    @PostMapping("/admin/publish-to-users")
+    public ResponseEntity<String> publishStagedEntities() {
+        try {
+            vendorService.deleteAllVendors();
+            itemService.deleteAllItems();
+
+            HashMap<Long, Vendor> publishedVendorMap = new HashMap<Long, Vendor>();
+
+            List<StagedVendor> stagedVendors = stagedVendorService.findAllStagedVendors();
+            for (StagedVendor stagedVendor : stagedVendors) {
+                if (stagedVendor.getAvailable() == 1) {
+                    Vendor vendor = new Vendor(stagedVendor);
+                    Vendor savedVendor = vendorService.saveVendor(vendor);
+                    publishedVendorMap.put(stagedVendor.getId(), savedVendor);
+                }
+            }
+
+            List<StagedItem> stagedItems = stagedItemService.findAllStagedItems();
+            for (StagedItem stagedItem : stagedItems) {
+                if (stagedItem.getAvailable() == 1) {
+                    Vendor vendor = publishedVendorMap.get(stagedItem.getStagedVendor().getId());
+                    Item item = new Item(stagedItem, vendor);
+                    Item savedItem = itemService.saveItem(item);
+                }
+            }
 
             return ResponseEntity.status(HttpStatus.OK)
                     .body("Successfully purged all published data.");

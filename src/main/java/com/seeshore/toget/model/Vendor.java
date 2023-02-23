@@ -1,6 +1,7 @@
 package com.seeshore.toget.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.seeshore.toget.model.staged.StagedVendor;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -28,6 +29,12 @@ public class Vendor implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendor", fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference(value = "vendor-item")
     private List<Item> items = new ArrayList<>();
+
+    public Vendor(StagedVendor stagedVendor) {
+        this.name = stagedVendor.getName();
+        this.phone = stagedVendor.getPhone();
+        this.website = stagedVendor.getWebsite();
+    }
 
     public Vendor() {
     }

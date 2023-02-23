@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.seeshore.toget.model.request.RequestItem;
+import com.seeshore.toget.model.staged.StagedItem;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -44,6 +45,17 @@ public class Item implements Serializable {
         try {
             this.name = requestItem.getName();
             this.price = requestItem.getPrice();
+            this.addedDate = new Date();
+            this.vendor = vendor;
+        } catch (Exception e) {
+            throw new RuntimeException("One or more request body fields could not be parsed");
+        }
+    }
+
+    public Item(StagedItem stagedItem, Vendor vendor) {
+        try {
+            this.name = stagedItem.getName();
+            this.price = stagedItem.getPrice();
             this.addedDate = new Date();
             this.vendor = vendor;
         } catch (Exception e) {

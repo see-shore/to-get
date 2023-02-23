@@ -1,5 +1,7 @@
 package com.seeshore.toget.model.staged;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -9,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "staged_vendors")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class StagedVendor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,6 +32,7 @@ public class StagedVendor implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendor", fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference(value = "staged-vendor-item")
+    @JsonIgnore
     private List<StagedItem> items = new ArrayList<>();
 
     public StagedVendor() {
