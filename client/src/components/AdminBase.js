@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import OrderTotal from '../pages/admin/OrderTotal';
 import OrderUser from '../pages/admin/OrderUser';
 import SetPrice from '../pages/admin/SetPrice';
+import { getItemsAsync } from '../redux/slices/itemsSlice';
 
 const StyledSideBar = styled.div`
   height: 100%;
@@ -33,7 +35,12 @@ const StyledButton = styled.button`
 const PageContainer = styled.div``;
 
 function AdminBase() {
+  const dispatch = useDispatch();
   const [currPage, setCurrPage] = useState('set-price');
+
+  React.useEffect(() => {
+    dispatch(getItemsAsync());
+  }, [dispatch]);
 
   const handleClick = (type) => {
     setCurrPage(type);
