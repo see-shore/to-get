@@ -8,6 +8,8 @@ import SetPrice from '../pages/admin/SetPrice';
 import { getItemsAsync } from '../redux/slices/itemsSlice';
 import { getVendorsAsync } from '../redux/slices/vendorsSlice';
 import { getOrdersAsync } from '../redux/slices/ordersSlice';
+import { getStagedItemsAsync } from '../redux/slices/staged/stagedItemsSlice';
+import { getStagedVendorsAsync } from '../redux/slices/staged/stagedVendorsSlice';
 
 const StyledSideBar = styled.div`
   height: 100%;
@@ -44,6 +46,8 @@ function AdminBase() {
     dispatch(getItemsAsync());
     dispatch(getVendorsAsync());
     dispatch(getOrdersAsync());
+    dispatch(getStagedItemsAsync());
+    dispatch(getStagedVendorsAsync());
   }, [dispatch]);
 
   const handleClick = (type) => {
