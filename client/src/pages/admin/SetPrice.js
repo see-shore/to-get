@@ -38,7 +38,7 @@ function SetPrice() {
   };
 
   useEffect(() => {
-    loadProducts();
+    // loadProducts();
   }, []);
 
   const handleNewProduct = () => {

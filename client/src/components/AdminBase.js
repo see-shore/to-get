@@ -6,6 +6,8 @@ import OrderTotal from '../pages/admin/OrderTotal';
 import OrderUser from '../pages/admin/OrderUser';
 import SetPrice from '../pages/admin/SetPrice';
 import { getItemsAsync } from '../redux/slices/itemsSlice';
+import { getVendorsAsync } from '../redux/slices/vendorsSlice';
+import { getOrdersAsync } from '../redux/slices/ordersSlice';
 
 const StyledSideBar = styled.div`
   height: 100%;
@@ -40,6 +42,8 @@ function AdminBase() {
 
   React.useEffect(() => {
     dispatch(getItemsAsync());
+    dispatch(getVendorsAsync());
+    dispatch(getOrdersAsync());
   }, [dispatch]);
 
   const handleClick = (type) => {

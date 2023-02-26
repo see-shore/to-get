@@ -31,6 +31,6 @@ export const itemsSlice = createSlice({
   }
 });
 
-export const {} = itemsSlice.actions;
+export const { } = itemsSlice.actions;
 
 export default itemsSlice.reducer;
