@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@CrossOrigin
 public class StagedVendorController {
 
     @Autowired

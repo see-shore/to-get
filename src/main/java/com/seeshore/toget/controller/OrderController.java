@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@CrossOrigin
 public class OrderController {
 
     @Autowired
