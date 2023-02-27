@@ -25,5 +25,8 @@
     "borderRadius": 2,
     "opacity": 0.7,
     "color": "#FFFFFF"
+  },
+  "icon": {
+    "margin": "auto 5px auto 5px"
   }
 }

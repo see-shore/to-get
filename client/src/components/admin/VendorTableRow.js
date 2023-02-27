@@ -5,6 +5,8 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
+  DialogActions,
+  Button,
   TextField,
   IconButton,
   Grid,
@@ -19,6 +21,7 @@ import {
 import { useDispatch } from 'react-redux';
 
 import styles from '../../styles/components/VendorTableRow.json';
+import DeleteItemDialog from './DeleteItemDialog';
 
 function availabilityCopy(available) {
   if (available === 1) {
@@ -56,7 +59,8 @@ function VendorTableRow(props) {
       price: parseInt(formValue.price),
       ...formValue
     };
-    dispatch(); // UPDATE
+    // TODO: dispatch update
+    handleClose();
   };
 
   const handleChange = (event) => {
@@ -129,6 +133,12 @@ function VendorTableRow(props) {
             </Grid>
           </Grid>
         </DialogContent>
+        <DialogActions>
+          <DeleteItemDialog onClose={handleClose} />
+          <Button sx={{ color: '#609966' }} variant='outlined' onClick={handleSubmit} type='submit'>
+            <SendIcon sx={styles.icon} />Edit Staged Item
+          </Button>
+        </DialogActions>
       </form>
     </>
   );
