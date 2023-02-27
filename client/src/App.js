@@ -9,7 +9,7 @@ import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetail';
 import OrderConfirmation from './pages/OrderConfirmation';
 import Payment from './pages/Payment';
-import AdminBase from './components/AdminBase';
+import Admin from './pages/Admin';
 import DoesNotExist from './pages/DoesNotExist';
 import { store } from './redux/store/store';
 import { Provider } from 'react-redux';
@@ -33,7 +33,7 @@ function App() {
           <Route path='/confirm-order' element={<OrderConfirmation />} />
           <Route path='/payment' element={<Payment />} />
           {/* Admin Pages */}
-          <Route path='/admin' element={<AdminBase />} />
+          <Route path='/admin' element={<Admin />} />
           {/* 404 */}
           <Route path='*' element={<DoesNotExist />} />
         </Routes>
