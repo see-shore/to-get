@@ -7,10 +7,20 @@
   "header": {
     "fontWeight": "bold"
   },
+  "toolbarGrid": {
+    "display": "flex",
+    "justifyContent": "space-between"
+  },
   "toolbar": {
     "color": "#FFFFFF",
     "backgroundColor": "#609966",
     "borderRadius": 2,
     "opacity": 0.7
+  },
+  "vendorTitle": {
+    "display": "flex",
+    "justifyContent": "start",
+    "alignItems": "center",
+    "width": 400
   }
 }

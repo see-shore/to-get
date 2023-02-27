@@ -8,7 +8,7 @@ import {
   Grid,
   IconButton
 } from '@mui/material';
-import { Close as CloseIcon, Delete as DeleteIcon, Send as SendIcon } from '@mui/icons-material';
+import { Close as CloseIcon, Delete as DeleteIcon } from '@mui/icons-material';
 
 import styles from '../../styles/components/DeleteItemDialog.json';
 

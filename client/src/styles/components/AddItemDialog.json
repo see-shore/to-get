@@ -1,0 +1,15 @@
+{
+  "dialogContent": {
+    "height": 300
+  },
+  "iconButton": {
+    "color": "#FFFFFF"
+  },
+  "icon": {
+    "margin": "auto 5px auto 5px"
+  },
+  "dialogTitle": {
+    "display": "flex",
+    "justifyContent": "space-between"
+  }
+}

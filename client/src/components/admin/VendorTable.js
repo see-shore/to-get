@@ -8,10 +8,12 @@ import {
   TableRow,
   Typography,
   Box,
-  Toolbar
+  Toolbar,
+  Grid
 } from '@mui/material';
 
 import VendorTableRow from './VendorTableRow';
+import AddItemDialog from './AddItemDialog';
 import styles from '../../styles/components/VendorTable.json';
 
 function createData(id, name, price, addedDate, available) {
@@ -31,15 +33,22 @@ function VendorTable(props) {
   return (
     <Box sx={styles.table}>
       <Toolbar sx={styles.toolbar} variant='dense'>
-        <Typography variant='h6'>
-          {vendor.name}
-        </Typography>
-        <Typography sx={{ marginLeft: 2 }} variant='h6'>
-          {vendor.phone}
-        </Typography>
-        <Typography sx={{ marginLeft: 2 }} variant='h6'>
-          {vendor.website}
-        </Typography>
+        <Grid container sx={styles.toolbarGrid}>
+          <Grid item sx={styles.vendorTitle}>
+            <Typography variant='h6'>
+              {vendor.name}
+            </Typography>
+            <Typography sx={{ marginLeft: 2 }} variant='h6'>
+              {vendor.phone}
+            </Typography>
+            <Typography sx={{ marginLeft: 2 }} variant='h6'>
+              {vendor.website}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <AddItemDialog vendor={vendor} />
+          </Grid>
+        </Grid>
       </Toolbar>
       <TableContainer>
         <Table size='small'>

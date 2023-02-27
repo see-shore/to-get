@@ -13,10 +13,8 @@ import {
   Checkbox
 } from '@mui/material';
 import {
-  Delete as DeleteIcon,
   Send as SendIcon,
-  Close as CloseIcon,
-  Edit as EditIcon
+  Close as CloseIcon
 } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 
@@ -124,8 +122,8 @@ function VendorTableRow(props) {
               </Grid>
               <Grid item>
                 <Checkbox
-                  id='checkInCol'
-                  name='checkInCol'
+                  id='availableCol'
+                  name='availableCol'
                   checked={(formValue.available === 1)}
                   onChange={handleCheckChange}
                 />
