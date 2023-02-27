@@ -38,3 +38,12 @@ export const selectStagedItemsMap = createSelector(
     return map;
   }
 );
+
+// Takes parameters state and itemId
+const selectStagedItemById = createSelector(
+  [
+    state => state.stagedItems.stagedItems,
+    (state, itemId) => itemId
+  ],
+  (stagedItems, itemId) => stagedItems.filter(item => item.id === itemId)
+);

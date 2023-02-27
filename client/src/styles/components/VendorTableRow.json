@@ -1,0 +1,29 @@
+{
+  "row": {
+    "cursor": "pointer"
+  },
+  "dialogContent": {
+    "height": 250
+  },
+  "dialogTitle": {
+    "display": "flex",
+    "justifyContent": "space-between"
+  },
+  "dialogContainer": {
+    "display": "flex",
+    "justifyContent": "center"
+  },
+  "textField": {
+    "marginTop": 2
+  },
+  "availableRow": {
+    "display": "flex",
+    "justifyContent": "space-between",
+    "alignItems": "center",
+    "margin": "10px auto auto auto",
+    "backgroundColor": "#609966",
+    "borderRadius": 2,
+    "opacity": 0.7,
+    "color": "#FFFFFF"
+  }
+}

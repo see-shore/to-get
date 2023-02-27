@@ -32,7 +32,7 @@ function Admin() {
   return (
     <div>
       <Box
-        sx={{ marginTop: 15, flexGrow: 1, bgcolor: 'background.paper', display: 'flex' }}
+        sx={{ marginTop: 15, marginLeft: 5, flexGrow: 1, bgcolor: 'background.paper', display: 'flex' }}
       >
         <Tabs
           orientation="vertical"

@@ -10,7 +10,6 @@ export const getStagedVendorsAsync = createAsyncThunk(
   'stagedVendors/getStagedVendors',
   async (_, { dispatch }) => {
     const stagedVendors = await getStagedVendors();
-    console.log(stagedVendors);
     return stagedVendors;
   }
 );

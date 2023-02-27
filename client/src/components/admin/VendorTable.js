@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   Table,
   TableBody,
@@ -7,18 +6,18 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
   Typography,
   Box,
-  Grid,
-  Toolbar,
-  IconButton
+  Toolbar
 } from '@mui/material';
+
+import VendorTableRow from './VendorTableRow';
+import styles from '../../styles/components/VendorTable.json';
 
 function createData(id, name, price, addedDate, available) {
   const formattedDate = new Date(addedDate);
   const formattedPrice = (price / 100).toFixed(2);
-  return { id, name, formattedPrice, formattedDate, available };
+  return { id, name, price, formattedPrice, formattedDate, available };
 }
 
 function VendorTable(props) {
@@ -30,38 +29,32 @@ function VendorTable(props) {
   });
 
   return (
-    <Box sx={{ width: 600, height: 200 }}>
-      <Toolbar>
-        <Typography>
+    <Box sx={styles.table}>
+      <Toolbar sx={styles.toolbar} variant='dense'>
+        <Typography variant='h6'>
           {vendor.name}
         </Typography>
-        <Typography sx={{ marginLeft: 2 }}>
+        <Typography sx={{ marginLeft: 2 }} variant='h6'>
           {vendor.phone}
         </Typography>
-        <Typography sx={{ marginLeft: 2 }}>
+        <Typography sx={{ marginLeft: 2 }} variant='h6'>
           {vendor.website}
         </Typography>
       </Toolbar>
       <TableContainer>
         <Table size='small'>
           <TableHead>
-            <TableRow>
-              <TableCell> ID </TableCell>
-              <TableCell> Name </TableCell>
-              <TableCell> Price </TableCell>
-              <TableCell> Added on </TableCell>
-              <TableCell> Available </TableCell>
+            <TableRow sx={styles.header}>
+              <TableCell><h4>ID</h4></TableCell>
+              <TableCell><h4>Name</h4></TableCell>
+              <TableCell><h4>Price</h4></TableCell>
+              <TableCell> <h4>Added on</h4></TableCell>
+              <TableCell><h4>Available</h4></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <TableRow key={row.id} >
-                <TableCell>{row.id}</TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{`$${row.formattedPrice}`}</TableCell>
-                <TableCell>{row.formattedDate.toDateString()}</TableCell>
-                <TableCell>{row.available}</TableCell>
-              </TableRow>
+              <VendorTableRow key={row.id} row={row} vendor={vendor} />
             ))}
           </TableBody>
         </Table>
