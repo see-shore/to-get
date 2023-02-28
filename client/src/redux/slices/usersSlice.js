@@ -10,7 +10,6 @@ export const getUsersAsync = createAsyncThunk(
   'users/getUsers',
   async (_, { dispatch }) => {
     const users = await getUsers();
-    console.log(users);
     return users;
   }
 );
