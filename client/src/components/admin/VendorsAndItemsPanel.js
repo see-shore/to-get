@@ -8,6 +8,7 @@ import AddVendorDialog from './AddVendorDialog';
 import { Grid } from '@mui/material';
 import styles from '../../styles/components/VendorsAndItemsPanel.json';
 import PublishButton from './PublishButton';
+import ArchiveButton from './ArchiveButton';
 
 function VendorsAndItemsPanel() {
   const stagedVendors = useSelector((state) => state.stagedVendors.stagedVendors);
@@ -27,6 +28,9 @@ function VendorsAndItemsPanel() {
       </Grid>
       <Grid item sx={styles.buttonGrid}>
         <AddVendorDialog />
+        <Grid sx={{ marginTop: 2 }}>
+          <ArchiveButton />
+        </Grid>
         <Grid sx={{ marginTop: 2 }}>
           <PublishButton />
         </Grid>

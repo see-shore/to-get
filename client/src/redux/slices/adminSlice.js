@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { publishToUsers } from "../api/adminAPI";
+import { archiveAllPublishedData, publishToUsers } from "../api/adminAPI";
 
 const initialState = {
   
@@ -9,6 +9,14 @@ export const publishToUsersAsync = createAsyncThunk(
   'admin/publishToUsers',
   async (_, { dispatch }) => {
     const response = await publishToUsers();
+    return response;
+  }
+);
+
+export const archiveAllPublishedDataAsync = createAsyncThunk(
+  'admin/archiveAll',
+  async (_, { dispatch }) => {
+    const response = await archiveAllPublishedData();
     return response;
   }
 );

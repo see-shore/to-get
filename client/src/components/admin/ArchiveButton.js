@@ -11,14 +11,14 @@ import {
 } from '@mui/material';
 import {
   Close as CloseIcon,
-  Publish as PublishIcon
+  AutoDelete as AutoDeleteIcon
 } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 
-import styles from '../../styles/components/PublishButton.json';
-import { publishToUsersAsync } from '../../redux/slices/adminSlice';
+import styles from '../../styles/components/ArchiveButton.json';
+import { archiveAllPublishedDataAsync } from '../../redux/slices/adminSlice';
 
-function PublishButton() {
+function ArchiveButton() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
@@ -31,7 +31,7 @@ function PublishButton() {
   };
 
   const handleSubmit = () => {
-    dispatch(publishToUsersAsync());
+    dispatch(archiveAllPublishedDataAsync());
     handleClose();
   };
 
@@ -40,7 +40,7 @@ function PublishButton() {
       <Box sx={styles.button} onClick={handleOpen}>
         <Grid sx={styles.buttonCopy}>
           <Button sx={{ color: "#FFFFFF" }}>
-            <PublishIcon sx={styles.icon} />Publish to users
+            <AutoDeleteIcon sx={styles.icon} />Archive published data
           </Button>
         </Grid>
       </Box>
@@ -54,11 +54,11 @@ function PublishButton() {
           </Grid>
         </DialogTitle>
         <DialogContent>
-          <h4>Publishing to users deletes all data in the published database. Did you archive all published data first?</h4>
+          <h4>You are about to archive all published data (including orders). Are you sure you want to do this?</h4>
         </DialogContent>
         <DialogActions>
           <Button style={{ color: '#ef5350' }} variant='outlined' onClick={handleSubmit}>
-            <PublishIcon sx={styles.icon} />Yes
+            <AutoDeleteIcon sx={styles.icon} />Yes
           </Button>
           <Button sx={styles.cancelButton} onClick={handleClose} type='submit'>
             <CloseIcon sx={styles.icon} />Cancel
@@ -69,4 +69,4 @@ function PublishButton() {
   );
 }
 
-export default PublishButton;
+export default ArchiveButton;
