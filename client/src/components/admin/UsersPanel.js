@@ -1,12 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import UserBlock from './UserBlock';
 
 function UsersPanel() {
   const users = useSelector((state) => state.users.users);
 
   return (
     <>
-      {JSON.stringify(users)}
+      {users.map((user) => (
+        <UserBlock key={user.id} user={user}/>
+      ))}
     </>
   );
 }
