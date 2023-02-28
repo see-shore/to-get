@@ -105,7 +105,7 @@ function AddItemDialog(props) {
               required
               id='price'
               name='price'
-              label='Price'
+              label='Price (Cents)'
               value={formValue.price}
               onChange={handleChange}
               sx={styles.textField}

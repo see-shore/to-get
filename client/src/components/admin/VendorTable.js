@@ -26,9 +26,12 @@ function VendorTable(props) {
   const rows = [];
   const { items, vendor } = props;
 
-  items.forEach((item) => {
-    rows.push(createData(item.id, item.name, item.price, item.addedDate, item.available))
-  });
+  if (items) {
+    items.forEach((item) => {
+      rows.push(createData(item.id, item.name, item.price, item.addedDate, item.available))
+    });
+  }
+  
 
   return (
     <Box sx={styles.table}>
