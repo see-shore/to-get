@@ -15,6 +15,7 @@ import {
 import VendorTableRow from './VendorTableRow';
 import AddItemDialog from './AddItemDialog';
 import styles from '../../styles/components/VendorTable.json';
+import EditVendorDialog from './EditVendorDialog';
 
 function createData(id, name, price, addedDate, available) {
   const formattedDate = new Date(addedDate);
@@ -46,6 +47,7 @@ function VendorTable(props) {
             </Typography>
           </Grid>
           <Grid item>
+            <EditVendorDialog vendor={vendor} />
             <AddItemDialog vendor={vendor} />
           </Grid>
         </Grid>

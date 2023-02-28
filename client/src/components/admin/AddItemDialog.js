@@ -62,6 +62,16 @@ function AddItemDialog(props) {
     handleClose();
   };
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormValue((prevState) => {
+      return {
+        ...prevState,
+        [name]: value
+      };
+    });
+  };
+
   return (
     <>
       <IconButton sx={styles.iconButton} onClick={handleOpen} size='small'>
@@ -78,7 +88,26 @@ function AddItemDialog(props) {
         </DialogTitle>
         <form>
           <DialogContent sx={styles.dialogContent}>
-
+            <TextField
+              required
+              id='name'
+              name='name'
+              label='Name'
+              value={formValue.name}
+              onChange={handleChange}
+              sx={styles.textField}
+              fullWidth
+            />
+            <TextField
+              required
+              id='price'
+              name='price'
+              label='Price'
+              value={formValue.name}
+              onChange={handleChange}
+              sx={styles.textField}
+              fullWidth
+            />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleSubmit} variant='outlined' sx={{ color: '#609966' }} type='submit'>
