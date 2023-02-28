@@ -4,6 +4,7 @@ import vendorsReducer from '../slices/vendorsSlice';
 import ordersReducer from '../slices/ordersSlice';
 import stagedItemsReducer from '../slices/staged/stagedItemsSlice';
 import stagedVendorsReducer from '../slices/staged/stagedVendorsSlice';
+import usersReducer from '../slices/usersSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     vendors: vendorsReducer,
     orders: ordersReducer,
     stagedItems: stagedItemsReducer,
-    stagedVendors: stagedVendorsReducer
+    stagedVendors: stagedVendorsReducer,
+    users: usersReducer
   }
 });

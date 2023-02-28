@@ -6,8 +6,10 @@ import Tab from '@mui/material/Tab';
 
 import { getStagedItemsAsync } from '../redux/slices/staged/stagedItemsSlice';
 import { getStagedVendorsAsync } from '../redux/slices/staged/stagedVendorsSlice';
+import { getUsersAsync } from '../redux/slices/usersSlice';
 import PanelWrapper from '../components/admin/PanelWrapper';
 import VendorsAndItemsPanel from '../components/admin/VendorsAndItemsPanel';
+import UsersPanel from '../components/admin/UsersPanel';
 
 function allyProps(index) {
   return {
@@ -23,6 +25,7 @@ function Admin() {
   useEffect(() => {
     dispatch(getStagedItemsAsync());
     dispatch(getStagedVendorsAsync());
+    dispatch(getUsersAsync());
   }, [dispatch]);
 
   const handleTabChange = (event, newIndex) => {
@@ -53,7 +56,7 @@ function Admin() {
           
         </PanelWrapper>
         <PanelWrapper value={tabIndex} index={2}>
-          
+          <UsersPanel />
         </PanelWrapper>
       </Box>
     </div>
