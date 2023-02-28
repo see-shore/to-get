@@ -1,0 +1,16 @@
+{
+  "buttonCopy": {
+    "display": "flex",
+    "justifyContent": "center"
+  },
+  "button": {
+    "color": "#FFFFFF",
+    "backgroundColor": "#183A1D",
+    "borderRadius": 2,
+    "opacity": 0.9,
+    "width": 170,
+    "height": 30,
+    "margin": "20x 5px 10px 50px",
+    "cursor": "pointer"
+  }
+}
