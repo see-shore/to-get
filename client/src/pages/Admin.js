@@ -12,6 +12,7 @@ import PanelWrapper from '../components/admin/PanelWrapper';
 import VendorsAndItemsPanel from '../components/admin/VendorsAndItemsPanel';
 import UsersPanel from '../components/admin/UsersPanel';
 import OrdersPanel from '../components/admin/OrdersPanel';
+import NavBar from '../components/NavBar';
 
 function allyProps(index) {
   return {
@@ -36,33 +37,36 @@ function Admin() {
   };
 
   return (
-    <div>
-      <Box
-        sx={{ marginTop: 15, marginLeft: 5, flexGrow: 1, bgcolor: 'background.paper', display: 'flex' }}
-      >
-        <Tabs
-          orientation="vertical"
-          variant="scrollable"
-          value={tabIndex}
-          onChange={handleTabChange}
-          aria-label="Admin tabs"
-          sx={{ borderRight: 1, borderColor: 'divider' }}
+    <>
+      <NavBar />
+      <div>
+        <Box
+          sx={{ marginTop: 15, marginLeft: 5, flexGrow: 1, bgcolor: 'background.paper', display: 'flex' }}
         >
-          <Tab label='Vendors & Items' {...allyProps(0)} />
-          <Tab label='Orders' {...allyProps(1)} />
-          <Tab label='Users' {...allyProps(2)} />
-        </Tabs>
-        <PanelWrapper value={tabIndex} index={0}>
-          <VendorsAndItemsPanel />
-        </PanelWrapper>
-        <PanelWrapper value={tabIndex} index={1}>
-          <OrdersPanel />
-        </PanelWrapper>
-        <PanelWrapper value={tabIndex} index={2}>
-          <UsersPanel />
-        </PanelWrapper>
-      </Box>
-    </div>
+          <Tabs
+            orientation="vertical"
+            variant="scrollable"
+            value={tabIndex}
+            onChange={handleTabChange}
+            aria-label="Admin tabs"
+            sx={{ borderRight: 1, borderColor: 'divider' }}
+          >
+            <Tab label='Vendors & Items' {...allyProps(0)} />
+            <Tab label='Orders' {...allyProps(1)} />
+            <Tab label='Users' {...allyProps(2)} />
+          </Tabs>
+          <PanelWrapper value={tabIndex} index={0}>
+            <VendorsAndItemsPanel />
+          </PanelWrapper>
+          <PanelWrapper value={tabIndex} index={1}>
+            <OrdersPanel />
+          </PanelWrapper>
+          <PanelWrapper value={tabIndex} index={2}>
+            <UsersPanel />
+          </PanelWrapper>
+        </Box>
+      </div>
+    </>
   );
 }
 

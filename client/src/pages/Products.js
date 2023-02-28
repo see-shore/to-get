@@ -1,33 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import ProductList from '../components/ProductList';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getItemsAsync } from '../redux/slices/itemsSlice';
 
 function Products() {
-  const [products, setProducts] = useState([]);
-  const [currVendor, setCurrVendor] = useState(2);
+  const dispatch = useDispatch();
+  const items = useSelector(state => state.items.items);
 
   useEffect(() => {
-    loadProducts();
-  }, []);
-
-  const loadProducts = async () => {
-    axios({
-      method: 'get',
-      url: `http://localhost:8080/item?vendorId=${currVendor}`,
-    })
-      .then((res) => {
-        setProducts(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
+    dispatch(getItemsAsync());
+  }, [dispatch]);
 
   return (
-    <div>
-      <a className='tempPageSign'>Temp Products Page</a>
-      <ProductList products={products} />
-    </div>
+    <div style={{ marginTop: 50 }}>{JSON.stringify(items)}</div>
   );
 }
 

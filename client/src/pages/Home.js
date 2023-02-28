@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import NavBar from '../components/NavBar';
 
 const TempTOC = styled.h1`
   display: flex;
@@ -14,21 +15,25 @@ const TempTOC = styled.h1`
 
 function Home() {
   return (
-    <div>
-      <a className='tempPageSign'>Temp Home Page</a>
-      {/* set up temp toc since navigation still unconfirmed */}
+    <>
+      <NavBar />
+      <div>
+        <a className='tempPageSign'>Temp Home Page</a>
+        {/* set up temp toc since navigation still unconfirmed */}
 
-      <TempTOC>
-        <p style={{ fontWeight: 300, fontSize: 50 }}>Existing Links</p>
-        <Link to='/contact'>Contact Page</Link>
-        <Link to='/login'>Login Page</Link>
-        <Link to='/products'>Product Page</Link>
-        <Link to='/confirm-order'>Order Confirmation Page</Link>
-        <Link to='/payment'>Payment Page</Link>
-        <Link to='/admin'>Admin</Link>
-        <Link to='/nothing'>Broken Link</Link>
-      </TempTOC>
-    </div>
+        <TempTOC>
+          <p style={{ fontWeight: 300, fontSize: 50 }}>Existing Links</p>
+          <Link to='/contact'>Contact Page</Link>
+          <Link to='/login'>Login Page</Link>
+          <Link to='/products'>Product Page</Link>
+          <Link to='/confirm-order'>Order Confirmation Page</Link>
+          <Link to='/payment'>Payment Page</Link>
+          <Link to='/admin'>Admin</Link>
+          <Link to='/nothing'>Broken Link</Link>
+        </TempTOC>
+      </div>
+    </>
+    
   );
 }
 export default Home;
