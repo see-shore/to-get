@@ -16,8 +16,11 @@ import {
 } from '@mui/icons-material';
 
 import styles from '../../styles/components/AddUserDialog.json';
+import { useDispatch } from 'react-redux';
+import { addUserAsync } from '../../redux/slices/usersSlice';
 
 function AddUserDialog() {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [formValue, setFormValue] = useState({
     firstName: '',
@@ -55,7 +58,7 @@ function AddUserDialog() {
       lastName: formValue.lastName.trim(),
       email: formValue.email.trim()
     };
-    // dispatch update this user
+    dispatch(addUserAsync(userData));
     handleClose();
   };
 

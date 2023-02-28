@@ -16,8 +16,8 @@ function OrdersPanel() {
           orders = userOrdersMap[user.id];
         }
         return (
-          <div style={{ margin: "15px auto 15px 45px" }}>
-            <OrderAccordion key={user.id} user={user} orders={orders} />
+          <div key={user.id} style={{ margin: "15px auto 15px 45px" }}>
+            <OrderAccordion user={user} orders={orders} />
           </div>
         );
       })}

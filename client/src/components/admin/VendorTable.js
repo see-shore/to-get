@@ -6,7 +6,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
   Box,
   Toolbar,
   Grid
@@ -36,15 +35,15 @@ function VendorTable(props) {
       <Toolbar sx={styles.toolbar} variant='dense'>
         <Grid container sx={styles.toolbarGrid}>
           <Grid item sx={styles.vendorTitle}>
-            <Typography variant='h6'>
+            <h3>
               {vendor.name}
-            </Typography>
-            <Typography sx={{ marginLeft: 2 }} variant='h6'>
+            </h3>
+            <h3 style={{ marginLeft: 10 }}>
               {vendor.phone}
-            </Typography>
-            <Typography sx={{ marginLeft: 2 }} variant='h6'>
+            </h3>
+            <h3 style={{ marginLeft: 10 }}>
               {vendor.website}
-            </Typography>
+            </h3>
           </Grid>
           <Grid item>
             <EditVendorDialog vendor={vendor} />

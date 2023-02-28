@@ -10,7 +10,6 @@ export const getOrdersAsync = createAsyncThunk(
   'orders/getOrders',
   async (_, { dispatch }) => {
     const orders = await getOrders();
-    console.log(orders);
     return orders;
   }
 );

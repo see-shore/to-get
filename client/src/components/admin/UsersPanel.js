@@ -9,8 +9,8 @@ function UsersPanel() {
   return (
     <div>
       {users.map((user) => (
-        <div style={{ margin: "auto auto 15px 45px" }}>
-          <UserBlock key={user.id} user={user} />
+        <div key={user.id} style={{ margin: "auto auto 15px 45px" }}>
+          <UserBlock user={user} />
         </div>
       ))}
       <div style={{ margin: "15px auto 15px 45px" }}>

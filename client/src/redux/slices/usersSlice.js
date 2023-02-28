@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getUsers } from '../api/usersAPI';
+import { getUsers, addUser } from '../api/usersAPI';
 
 const initialState = {
   users: [],
@@ -11,6 +11,18 @@ export const getUsersAsync = createAsyncThunk(
   async (_, { dispatch }) => {
     const users = await getUsers();
     return users;
+  }
+);
+
+export const addUserAsync = createAsyncThunk(
+  'users/addUser',
+  async (userData, { dispatch }) => {
+    try {
+      const response = await addUser(userData);
+      return response;
+    } catch (err) {
+      console.error(err);
+    }
   }
 );
 
@@ -26,6 +38,13 @@ export const usersSlice = createSlice({
       .addCase(getUsersAsync.fulfilled, (state, action) => {
         state.loadingUsersData = false;
         state.users = action.payload;
+      })
+      .addCase(addUserAsync.pending, (state) => {
+        state.loadingUsersData = true;
+      })
+      .addCase(addUserAsync.fulfilled, (state, action) => {
+        state.loadingUsersData = false;
+        state.users.push(action.payload);
       });
   }
 });
