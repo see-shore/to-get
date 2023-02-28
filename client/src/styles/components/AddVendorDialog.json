@@ -1,0 +1,29 @@
+{
+  "buttonCopy": {
+    "display": "flex",
+    "justifyContent": "center"
+  },
+  "button": {
+    "color": "#FFFFFF",
+    "backgroundColor": "#CC704B",
+    "borderRadius": 2,
+    "opacity": 0.7,
+    "width": 170,
+    "height": 30,
+    "margin": "10x 5px 10px 50px",
+    "cursor": "pointer"
+  },
+  "dialogContent": {
+    "height": 250
+  },
+  "dialogTitle": {
+    "display": "flex",
+    "justifyContent": "space-between"
+  },
+  "textField": {
+    "marginTop": 2
+  },
+  "icon": {
+    "margin": "auto 5px auto 5px"
+  }
+}
