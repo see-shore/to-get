@@ -13,10 +13,13 @@ import {
   Add as AddIcon,
   Close as CloseIcon
 } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
 
 import styles from '../../styles/components/AddItemDialog.json';
+import { addStagedItemAsync } from '../../redux/slices/staged/stagedItemsSlice';
 
 function AddItemDialog(props) {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [formValue, setFormValue] = useState({
     name: '',
@@ -53,12 +56,12 @@ function AddItemDialog(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newItemData = {
+    const itemData = {
       name: formValue.name.trim(),
       price: parseInt(formValue.price.trim()),
       vendorId: vendor.id
     };
-    // dispatch post new staged item
+    dispatch(addStagedItemAsync(itemData));
     handleClose();
   };
 
@@ -103,7 +106,7 @@ function AddItemDialog(props) {
               id='price'
               name='price'
               label='Price'
-              value={formValue.name}
+              value={formValue.price}
               onChange={handleChange}
               sx={styles.textField}
               fullWidth

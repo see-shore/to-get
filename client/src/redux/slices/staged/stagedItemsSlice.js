@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getStagedItems } from '../../api/staged/stagedItemsAPI';
+import { addStagedItem, getStagedItems } from '../../api/staged/stagedItemsAPI';
 
 const initialState = {
   stagedItems: [],
@@ -11,6 +11,14 @@ export const getStagedItemsAsync = createAsyncThunk(
   async (_, { dispatch }) => {
     const stagedItems = await getStagedItems();
     return stagedItems;
+  }
+);
+
+export const addStagedItemAsync = createAsyncThunk(
+  'stagedItems/addStagedItem',
+  async (itemData, { dispatch }) => {
+    const stagedItem = await addStagedItem(itemData);
+    return stagedItem;
   }
 );
 
@@ -26,6 +34,13 @@ export const stagedItemsSlice = createSlice({
       .addCase(getStagedItemsAsync.fulfilled, (state, action) => {
         state.loadingStagedItemsData = false;
         state.stagedItems = action.payload;
+      })
+      .addCase(addStagedItemAsync.pending, (state) => {
+        state.loadingStagedItemsData = true;
+      })
+      .addCase(addStagedItemAsync.fulfilled, (state, action) => {
+        state.loadingStagedItemsData = false;
+        state.stagedItems.push(action.payload);
       });
   }
 });
