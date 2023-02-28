@@ -12,14 +12,12 @@ import {
 } from '@mui/material';
 import {
   Close as CloseIcon,
-  Send as SendIcon
+  Add as AddIcon
 } from '@mui/icons-material';
 
-import styles from '../../styles/components/UserBlock.json';
-import Avatar from '../../woman-avatar.png';
+import styles from '../../styles/components/AddUserDialog.json';
 
-function UserBlock(props) {
-  const { user } = props;
+function AddUserDialog() {
   const [open, setOpen] = useState(false);
   const [formValue, setFormValue] = useState({
     firstName: '',
@@ -30,9 +28,9 @@ function UserBlock(props) {
   const handleOpen = () => {
     setOpen(true);
     setFormValue({
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email
+      firstName: '',
+      lastName: '',
+      email: ''
     });
   };
 
@@ -64,25 +62,16 @@ function UserBlock(props) {
   return (
     <>
       <Box sx={styles.block} onClick={handleOpen}>
-        <Grid container>
-          <Grid item>
-            <img src={Avatar} style={styles.avatar} alt="Jane Doe Avatar"/>
-          </Grid>
-          <Grid item sx={styles.userText}>
-            <Grid>
-              <h3>{user.firstName + " " + user.lastName}</h3>
-            </Grid>
-            <Grid sx={styles.userDetails}>
-              <h4 style={{ marginRight: 3 }}>{`ID: ${user.id}, Email: `}</h4>
-              <h4>{user.email}</h4>
-            </Grid>
-          </Grid>
+        <Grid sx={styles.buttonCopy}>
+          <Button sx={{ color: "#FFFFFF" }}>
+            <AddIcon sx={styles.icon} />Add new user
+          </Button>
         </Grid>
       </Box>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth='xs'>
         <DialogTitle>
           <Grid sx={styles.dialogTitle}>
-            {`Edit user with ID: ${user.id}`}
+            Add new user
             <IconButton onClick={handleClose} size='small'>
               <CloseIcon />
             </IconButton>
@@ -122,7 +111,7 @@ function UserBlock(props) {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleSubmit} variant='outlined' sx={{ color: '#609966' }} type='submit'>
-              <SendIcon sx={styles.icon} />Edit user
+              <AddIcon sx={styles.icon} />Create user
             </Button>
           </DialogActions>
         </form>
@@ -131,4 +120,4 @@ function UserBlock(props) {
   );
 }
 
-export default UserBlock;
+export default AddUserDialog;
