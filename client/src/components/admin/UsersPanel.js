@@ -8,11 +8,11 @@ function UsersPanel() {
 
   return (
     <div>
-      <div style={{ margin: "auto auto 15px 45px" }}>
-        {users.map((user) => (
-          <UserBlock key={user.id} user={user}/>
-        ))}
-      </div>
+      {users.map((user) => (
+        <div style={{ margin: "auto auto 15px 45px" }}>
+          <UserBlock key={user.id} user={user} />
+        </div>
+      ))}
       <div style={{ margin: "15px auto 15px 45px" }}>
         <AddUserDialog />
       </div>

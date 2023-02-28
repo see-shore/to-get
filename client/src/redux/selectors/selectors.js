@@ -40,10 +40,36 @@ export const selectStagedItemsMap = createSelector(
 );
 
 // Takes parameters state and itemId
-const selectStagedItemById = createSelector(
+export const selectStagedItemById = createSelector(
   [
     state => state.stagedItems.stagedItems,
     (state, itemId) => itemId
   ],
   (stagedItems, itemId) => stagedItems.filter(item => item.id === itemId)
+);
+
+const selectUsers = state => state.users.users;
+
+const selectOrders = state => state.orders.orders;
+
+export const selectUserOrdersMap = createSelector(
+  selectUsers,
+  selectOrders,
+  (users, orders) => {
+    const map = {};
+
+    if (users.length && orders.length) {
+      users.forEach((user) => {
+        map[user.id] = [];
+      });
+
+      orders.forEach((order) => {
+        if (map[order.userId]) {
+          map[order.userId].push(order);
+        }
+      });
+    }
+
+    return map;
+  }
 );

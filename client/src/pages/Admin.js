@@ -7,9 +7,11 @@ import Tab from '@mui/material/Tab';
 import { getStagedItemsAsync } from '../redux/slices/staged/stagedItemsSlice';
 import { getStagedVendorsAsync } from '../redux/slices/staged/stagedVendorsSlice';
 import { getUsersAsync } from '../redux/slices/usersSlice';
+import { getOrdersAsync } from '../redux/slices/ordersSlice';
 import PanelWrapper from '../components/admin/PanelWrapper';
 import VendorsAndItemsPanel from '../components/admin/VendorsAndItemsPanel';
 import UsersPanel from '../components/admin/UsersPanel';
+import OrdersPanel from '../components/admin/OrdersPanel';
 
 function allyProps(index) {
   return {
@@ -25,6 +27,7 @@ function Admin() {
   useEffect(() => {
     dispatch(getStagedItemsAsync());
     dispatch(getStagedVendorsAsync());
+    dispatch(getOrdersAsync());
     dispatch(getUsersAsync());
   }, [dispatch]);
 
@@ -53,7 +56,7 @@ function Admin() {
           <VendorsAndItemsPanel />
         </PanelWrapper>
         <PanelWrapper value={tabIndex} index={1}>
-          
+          <OrdersPanel />
         </PanelWrapper>
         <PanelWrapper value={tabIndex} index={2}>
           <UsersPanel />
