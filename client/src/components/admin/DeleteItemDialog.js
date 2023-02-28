@@ -34,7 +34,7 @@ function DeleteItemDialog(props) {
       <Button style={{ color: '#ef5350' }} variant='outlined' onClick={handleOpen}>
         <DeleteIcon sx={styles.icon} />Delete Item
       </Button>
-      <Dialog open={open}>
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle>
           <Grid sx={styles.dialogTitle}>
             Warning

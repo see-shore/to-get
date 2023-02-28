@@ -12,5 +12,16 @@
     "height": 30,
     "margin": "20x 5px 10px 50px",
     "cursor": "pointer"
+  },
+  "dialogTitle": {
+    "display": "flex",
+    "justifyContent": "space-between"
+  },
+  "icon": {
+    "margin": "auto 5px auto 5px"
+  },
+  "cancelButton": {
+    "backgroundColor": "#ef5350",
+    "color": "#ffffff"
   }
 }
