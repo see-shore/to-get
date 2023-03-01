@@ -1,0 +1,16 @@
+{
+  "button": {
+    "width": "100%",
+    "position": "fixed",
+    "bottom": 0,
+    "height": 50,
+    "backgroundColor": "#8C8C8C",
+    "display": "flex",
+    "justifyContent": "center",
+    "alignItems": "center",
+    "fontSize": 15,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold",
+    "cursor": "pointer"
+  }
+}

@@ -7,6 +7,7 @@ import ShopOwnerAvatar from '../components/product/ShopOwnerAvatar';
 import SpeechBox from '../components/product/SpeechBox';
 import UserProfileDialog from '../components/user/UserProfileDialog';
 import ProductPanel from '../components/product/ProductPanel';
+import CartDialog from '../components/user/CartDialog';
 
 function Products() {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function Products() {
       <div style={styles.panel}>
         <ProductPanel items={items} height={height} />
       </div>
+      <CartDialog />
     </div>
     
   );
