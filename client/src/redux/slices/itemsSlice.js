@@ -3,6 +3,7 @@ import { getItems } from '../api/itemsAPI';
 
 const initialState = {
   items: [],
+  cart: {},   // { itemId: quantity }
   loadingItemsData: false
 };
 
@@ -10,7 +11,6 @@ export const getItemsAsync = createAsyncThunk(
   'items/getItems',
   async (_, { dispatch }) => {
     const items = await getItems();
-    console.log(items);
     return items;
   }
 );
@@ -18,7 +18,21 @@ export const getItemsAsync = createAsyncThunk(
 export const itemsSlice = createSlice({
   name: 'items',
   initialState,
-  reducers: {},
+  reducers: {
+    updateCart: (state, action) => {
+      console.log(action.payload);
+      const itemId = action.payload.itemId;
+      const quantity = action.payload.quantity;
+      state.cart[itemId] = quantity;
+      localStorage.setItem('cart', JSON.stringify(state.cart));
+      localStorage.setItem('cartUpdatedAt', new Date());
+    },
+    removeFromCart: (state, action) => {
+      delete state.cart[action.payload];
+      localStorage.setItem('cart', JSON.stringify(state.cart));
+      localStorage.setItem('cartUpdatedAt', new Date());
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getItemsAsync.pending, (state) => {
@@ -31,6 +45,9 @@ export const itemsSlice = createSlice({
   }
 });
 
-export const { } = itemsSlice.actions;
+export const { 
+  updateCart,
+  removeFromCart
+} = itemsSlice.actions;
 
 export default itemsSlice.reducer;

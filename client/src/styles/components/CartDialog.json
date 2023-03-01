@@ -12,5 +12,23 @@
     "fontFamily": "helvetica",
     "fontWeight": "bold",
     "cursor": "pointer"
+  },
+  "dialogTitle": {
+    "display": "flex",
+    "justifyContent": "space-between"
+  },
+  "dialogContent": {
+    "height": 250
+  },
+  "textField": {
+    "marginTop": 2
+  },
+  "icon": {
+    "margin": "auto 5px auto 5px"
+  },
+  "cartCopy": {
+    "fontSize": 15,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold"
   }
 }
