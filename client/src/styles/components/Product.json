@@ -15,7 +15,7 @@
     "display": "flex",
     "justifyContent": "center",
     "width": 160,
-    "marginTop": 8
+    "marginTop": 10
   },
   "counter": {
     "height": 30,
@@ -47,5 +47,17 @@
     "alignItems": "center",
     "marginLeft": 10,
     "marginTop": 2
+  },
+  "dialogTitle": {
+    "display": "flex",
+    "justifyContent": "space-between"
+  },
+  "dialogContent": {
+    "minHeight": 250
+  },
+  "cardCopy": {
+    "fontSize": 15,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold"
   }
 }
