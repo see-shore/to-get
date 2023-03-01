@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getItemsAsync } from '../redux/slices/itemsSlice';
@@ -13,8 +13,10 @@ function Products() {
   const items = useSelector(state => state.items.items);
 
   useEffect(() => {
-    // dispatch(getItemsAsync());
+    dispatch(getItemsAsync());
   }, [dispatch]);
+
+  const height = Math.ceil(items.length / 2) * 220;
 
   return (
     <div>
@@ -31,10 +33,10 @@ function Products() {
         </div>
       </div>
       <div style={styles.productsCard}>
-        <p style={styles.weekPickCopy}>This week's pick</p>
+        <p style={styles.weekPickCopy}>This week's picks</p>
       </div>
       <div style={styles.panel}>
-        <ProductPanel />
+        <ProductPanel items={items} height={height} />
       </div>
     </div>
     

@@ -4,17 +4,19 @@ import { Grid } from '@mui/material';
 import styles from '../../styles/components/ProductPanel.json';
 import Product from '../../components/product/Product';
 
-const DUMMY = [0, 1, 2, 3, 4, 5, 6];
+function ProductPanel(props) {
+  const { items, height } = props;
 
-function ProductPanel() {
   return (
-    <Grid container style={styles.container}>
-      {DUMMY.map((num) => (
-        <Grid item key={num}>
-          <Product />
+    <Grid container sx={{ ...styles.container, height: height }}>
+      {items.map((item) => (
+        <Grid item key={item.id}>
+          <Product item={item} />
         </Grid>
       ))}
-      <div style={{ width: 150, height: 150, margin: "10px 10px 10px 10px" }} />
+      {(items.length % 2 !== 0) &&
+        <div style={{ width: 150, height: 150, margin: "10px 10px 10px 10px" }} />
+      }
     </Grid>
   );
 }

@@ -7,8 +7,9 @@ import {
 
 import styles from '../../styles/components/Product.json';
 
-function Product() {
+function Product(props) {
   const [count, setCount] = useState(0);
+  const { item } = props;
 
   const increment = () => {
     setCount(count + 1);
@@ -22,14 +23,20 @@ function Product() {
     }
   }
 
+  const formatPrice = (price) => {
+    const formattedPrice = (price / 100).toFixed(2);
+    return `$${formattedPrice}`;
+  }
+
   return (
-    <Grid container style={styles.container}>
-      <Grid item style={styles.productName}>Product</Grid>
-      <Grid item style={styles.counter}>
+    <Grid container sx={styles.container}>
+      <Grid item sx={styles.price}>{formatPrice(item.price)}</Grid>
+      <Grid item sx={styles.productName}>{item.name}</Grid>
+      <Grid item sx={styles.counter}>
         <IconButton onClick={decrement}>
           <RemoveIcon />
         </IconButton>
-        <Grid item style={styles.numberDisplay}>{count}</Grid>
+        <Grid item sx={styles.numberDisplay}>{count}</Grid>
         <IconButton onClick={increment}>
           <AddIcon />
         </IconButton>
