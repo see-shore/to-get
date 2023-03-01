@@ -4,6 +4,34 @@
     "width": 160,
     "height": 200,
     "margin": "10px 10px 10px 10px",
-    "borderRadius": 20
+    "borderRadius": 20,
+    "display": "flex",
+    "justifyContent": "center"
+  },
+  "productName": {
+    "fontSize": 15,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold",
+    "display": "flex",
+    "justifyContent": "center",
+    "width": 160,
+    "marginTop": 130
+  },
+  "counter": {
+    "height": 30,
+    "display": "flex",
+    "justifyContent": "space-between"
+  },
+  "numberDisplay": {
+    "backgroundColor": "#FFFFFF",
+    "width": 40,
+    "height": 25,
+    "borderRadius": 5,
+    "fontSize": 15,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold",
+    "display": "flex",
+    "justifyContent": "center",
+    "alignItems": "center"
   }
 }
