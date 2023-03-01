@@ -2,13 +2,9 @@ import React, { useState } from 'react';
 import {
   IconButton,
   Grid,
-  TextField,
   Dialog,
-  DialogActions,
-  Button,
   DialogContent,
-  DialogTitle,
-  Box
+  DialogTitle
 } from '@mui/material';
 import {
   Remove as RemoveIcon,

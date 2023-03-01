@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { 
   IconButton,
-  TextField,
   Dialog,
-  DialogActions,
-  Button,
   DialogContent,
   DialogTitle,
-  Grid,
-  Box
+  Grid
 } from '@mui/material';
 import {
   ShoppingCart as ShoppingCartIcon,
