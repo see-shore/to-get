@@ -1,0 +1,9 @@
+{
+  "container": {
+    "backgroundColor": "#9C9C9C",
+    "width": 160,
+    "height": 200,
+    "margin": "10px 10px 10px 10px",
+    "borderRadius": 20
+  }
+}

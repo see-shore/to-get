@@ -5,7 +5,6 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
 import Products from './pages/Products';
-import ProductDetails from './pages/ProductDetail';
 import OrderConfirmation from './pages/OrderConfirmation';
 import Payment from './pages/Payment';
 import Admin from './pages/Admin';
@@ -27,7 +26,6 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/create-account' element={<CreateAccount />} />
           <Route path='/products' element={<Products />} />
-          <Route path='/products/:slug' element={<ProductDetails />} />
           <Route path='/confirm-order' element={<OrderConfirmation />} />
           <Route path='/payment' element={<Payment />} />
           {/* Admin Pages */}

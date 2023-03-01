@@ -6,6 +6,7 @@ import styles from '../styles/pages/Products.json';
 import ShopOwnerAvatar from '../components/product/ShopOwnerAvatar';
 import SpeechBox from '../components/product/SpeechBox';
 import UserProfileDialog from '../components/user/UserProfileDialog';
+import ProductPanel from '../components/product/ProductPanel';
 
 function Products() {
   const dispatch = useDispatch();
@@ -31,6 +32,9 @@ function Products() {
       </div>
       <div style={styles.productsCard}>
         <p style={styles.weekPickCopy}>This week's pick</p>
+      </div>
+      <div style={styles.panel}>
+        <ProductPanel />
       </div>
     </div>
     
