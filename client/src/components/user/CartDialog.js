@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   IconButton,
   TextField,
@@ -17,10 +17,26 @@ import {
 
 import styles from '../../styles/components/CartDialog.json'
 import { useSelector } from 'react-redux';
+import { selectItemsMap } from '../../redux/selectors/selectors';
+import ConfirmOrderButton from './ConfirmOrderButton';
 
 function CartButton() {
   const [open, setOpen] = useState(false);
+  const [totalBalance, setTotalBalance] = useState(0);
   const cart = useSelector(state => state.items.cart);
+  const itemsMap = useSelector(state => selectItemsMap(state));
+
+  useEffect(() => {
+    setTotalBalance(0);
+    for (const itemId in cart) {
+      if (itemsMap[itemId]) {
+        const item = itemsMap[itemId];
+        const quantity = cart[itemId];
+        let orderBalance = quantity * item.price;
+        setTotalBalance(prevBalance => prevBalance + orderBalance);
+      }
+    }
+  }, [cart, setTotalBalance, itemsMap]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -28,6 +44,24 @@ function CartButton() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const generateOrder = (itemId, quantity) => {
+    if (itemsMap[itemId]) {
+      const item = itemsMap[itemId];
+      let orderBalance = quantity * item.price;
+      orderBalance = (orderBalance / 100).toFixed(2);
+      return (
+        <div key={itemId} style={styles.orderLine}>
+          <div>
+            <p style={styles.orderLineCopy}>{`${quantity}x   ${item.name}`}</p>
+          </div>
+          <div>
+            <p style={styles.orderLineCopy}>{`$${orderBalance}`}</p>
+          </div>
+        </div>
+      );
+    }
   };
 
   return (
@@ -49,7 +83,24 @@ function CartButton() {
         </DialogTitle>
         <form>
           <DialogContent sx={styles.dialogContent}>
-            {JSON.stringify(cart)}
+            {Object.keys(cart).map((itemId) => {
+              return generateOrder(itemId, cart[itemId]);
+            })}
+            <div style={styles.totalLine}>
+              <div>
+                <p style={{...styles.orderLineCopy, marginRight: 10}}>{"Your total is: "}</p>
+              </div>
+              <div>
+                <p style={styles.orderLineCopy}>{`$${(totalBalance / 100).toFixed(2)}`}</p>
+              </div>
+            </div>
+            <div style={styles.deliveryCopy}>
+              <p style={styles.orderLineCopy}>Your order will be delivered on</p>
+              <p style={{...styles.orderLineCopy, marginTop: 5}}>March 10th.</p>
+            </div>
+            <div style={styles.orderButton}>
+              <ConfirmOrderButton />
+            </div>
           </DialogContent>
         </form>
       </Dialog>

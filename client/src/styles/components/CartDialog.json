@@ -18,7 +18,7 @@
     "justifyContent": "space-between"
   },
   "dialogContent": {
-    "height": 250
+    "minHeight": 250
   },
   "textField": {
     "marginTop": 2
@@ -30,5 +30,28 @@
     "fontSize": 15,
     "fontFamily": "helvetica",
     "fontWeight": "bold"
+  },
+  "orderLine": {
+    "display": "flex",
+    "justifyContent": "space-between",
+    "marginBottom": 10
+  },
+  "orderLineCopy": {
+    "fontSize": 15,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold"
+  },
+  "totalLine": {
+    "display": "flex",
+    "justifyContent": "right",
+    "marginTop": 75
+  },
+  "deliveryCopy": {
+    "marginTop": 20
+  },
+  "orderButton": {
+    "display": "flex",
+    "justifyContent": "center",
+    "marginTop": 20
   }
 }

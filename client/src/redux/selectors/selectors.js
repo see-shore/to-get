@@ -73,3 +73,20 @@ export const selectUserOrdersMap = createSelector(
     return map;
   }
 );
+
+const selectItems = state => state.items.items;
+
+export const selectItemsMap = createSelector(
+  selectItems,
+  (items) => {
+    const map = {};
+
+    if (items.length) {
+      items.forEach((item) => {
+        map[item.id] = item;
+      });
+    }
+
+    return map;
+  }
+);

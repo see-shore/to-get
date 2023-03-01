@@ -1,0 +1,17 @@
+{
+  "button": {
+    "backgroundColor": "#9C9C9C",
+    "width": 175,
+    "height": 30,
+    "borderRadius": 5,
+    "display": "flex",
+    "alignItems": "center",
+    "justifyContent": "center",
+    "cursor": "pointer"
+  },
+  "buttonText": {
+    "fontSize": 10,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold"
+  }
+}

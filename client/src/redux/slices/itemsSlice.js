@@ -20,7 +20,6 @@ export const itemsSlice = createSlice({
   initialState,
   reducers: {
     updateCart: (state, action) => {
-      console.log(action.payload);
       const itemId = action.payload.itemId;
       const quantity = action.payload.quantity;
       state.cart[itemId] = quantity;
