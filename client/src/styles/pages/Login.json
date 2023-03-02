@@ -1,0 +1,20 @@
+{
+  "login": {
+    "backgroundColor": "#FAFAFA",
+    "display": "flex",
+    "justifyContent": "center"
+  },
+  "avatar": {
+    "position": "absolute",
+    "top": 230,
+    "left": 20
+  },
+  "speechBubble": {
+    "position": "absolute",
+    "top": 210,
+    "left": 190
+  },
+  "button": {
+    "marginTop": 430
+  }
+}
