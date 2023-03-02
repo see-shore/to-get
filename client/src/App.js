@@ -25,6 +25,9 @@ function App() {
       authorizationParams={{
         redirect_uri: (NODE_BASE_URL + '/products')
       }}
+      audience={API_BASE_URL}
+      useRefreshTokens
+      cacheLocation="localstorage"
     >
       <Provider store={store}>
         <div>
