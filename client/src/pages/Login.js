@@ -1,7 +1,7 @@
-import AuthBasePage from '../components/AuthBasePage';
+import React from 'react';
 
 function Login() {
-  return <AuthBasePage type='login' />;
+  return (<></>);
 }
 
 export default Login;
