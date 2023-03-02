@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { 
-  IconButton,
   Dialog,
   DialogContent,
   DialogTitle,
@@ -9,8 +8,7 @@ import {
   Button
 } from '@mui/material';
 import {
-  Logout as LogoutIcon,
-  Close as CloseIcon
+  Logout as LogoutIcon
 } from '@mui/icons-material';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -39,9 +37,6 @@ function UserProfileDialog() {
         <DialogTitle>
           <Grid sx={styles.dialogTitle}>
             <p style={styles.title}>Jane Doe</p>
-            <IconButton onClick={handleClose} size='small'>
-              <CloseIcon />
-            </IconButton>
           </Grid>
         </DialogTitle>
         <DialogContent sx={styles.dialogContent}>

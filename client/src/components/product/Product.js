@@ -3,13 +3,11 @@ import {
   IconButton,
   Grid,
   Dialog,
-  DialogContent,
-  DialogTitle
+  DialogContent
 } from '@mui/material';
 import {
   Remove as RemoveIcon,
-  Add as AddIcon,
-  Close as CloseIcon
+  Add as AddIcon
 } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 
@@ -55,7 +53,7 @@ function Product(props) {
   return (
     <>
       <Grid container sx={styles.container}>
-        <Grid item sx={{ width: "100%", height: 140, cursor: "pointer"}} onClick={handleOpen}>
+        <Grid item sx={{ width: "100%", height: 140, cursor: "pointer" }} onClick={handleOpen}>
           <Grid item sx={styles.price}>{formatPrice(item.price)}</Grid>
           <Grid item sx={styles.productName}>{item.name}</Grid>
         </Grid>
@@ -70,16 +68,32 @@ function Product(props) {
         </Grid>
       </Grid>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth='xs' sx={styles.dialog}>
-        <DialogTitle>
-          <Grid sx={styles.dialogTitle}>
-            <p style={styles.cardCopy}>{item.name}</p>
-            <IconButton onClick={handleClose} size='small'>
-              <CloseIcon />
-            </IconButton>
+        <DialogContent sx={{ ...styles.dialogContent, display: "flex", justifyContent: "center" }}>
+          <Grid container sx={{ display: "flex", alignItems: "center" }}>
+            <Grid item style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+              <div style={styles.productPicture}>
+
+              </div>
+              <div>
+                <p style={styles.itemName}>{item.name}</p>
+                <div style={styles.description}>
+                  <p style={styles.descriptionText}>Description</p>
+                </div>
+                <p style={styles.dialogPrice}>{`$${(item.price / 100).toFixed(2)}`}</p>
+              </div>
+            </Grid>
+            <Grid item sx={{ width: "100%", display: "flex", justifyContent: "right" }}>
+              <div style={styles.counter}>
+                <IconButton onClick={decrement} sx={styles.iconButton}>
+                  <RemoveIcon />
+                </IconButton>
+                <Grid item sx={styles.numberDisplay}>{count}</Grid>
+                <IconButton onClick={increment} sx={styles.iconButton}>
+                  <AddIcon />
+                </IconButton>
+              </div>
+            </Grid>
           </Grid>
-        </DialogTitle>
-        <DialogContent sx={{...styles.dialogContent, display: "flex", justifyContent: "center", alignItems: "center"}}>
-          <p style={styles.cardCopy}>PRODUCT INFO. WHAT GOES HERE?</p>
         </DialogContent>
       </Dialog>
     </>

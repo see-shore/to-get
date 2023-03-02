@@ -59,5 +59,36 @@
     "fontSize": 15,
     "fontFamily": "helvetica",
     "fontWeight": "bold"
+  },
+  "productPicture": {
+    "width": 125,
+    "height": 125,
+    "backgroundColor": "#C4C4C4",
+    "borderRadius": 10,
+    "marginRight": 20
+  },
+  "description": {
+    "width": 125,
+    "height": 60,
+    "backgroundColor": "#F1F1F1",
+    "borderRadius": 5,
+    "display": "flex",
+    "justifyContent": "center",
+    "alignItems": "center"
+  },
+  "itemName": {
+    "fontSize": 20,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold",
+    "marginBottom": 10
+  },
+  "dialogPrice": {
+    "fontSize": 17,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold",
+    "marginTop": 10
+  },
+  "iconButton": {
+    "backgroundColor": "#C4C4C4"
   }
 }

@@ -7,8 +7,7 @@ import {
   Grid
 } from '@mui/material';
 import {
-  ShoppingCart as ShoppingCartIcon,
-  Close as CloseIcon
+  ShoppingCart as ShoppingCartIcon
 } from '@mui/icons-material';
 
 import styles from '../../styles/components/CartDialog.json'
@@ -72,9 +71,6 @@ function CartButton() {
         <DialogTitle>
           <Grid sx={styles.dialogTitle}>
             <p style={styles.cartCopy}>Jane's Cart</p>
-            <IconButton onClick={handleClose} size='small'>
-              <CloseIcon />
-            </IconButton>
           </Grid>
         </DialogTitle>
         <form>
