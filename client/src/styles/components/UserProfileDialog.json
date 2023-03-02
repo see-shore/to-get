@@ -2,6 +2,25 @@
   "avatar": {
     "width": 40,
     "height": 40,
-    "borderRadius": "50%"
+    "borderRadius": "50%",
+    "cursor": "pointer"
+  },
+  "dialogTitle": {
+    "display": "flex",
+    "justifyContent": "space-between"
+  },
+  "dialogContent": {
+    "minHeight": 250,
+    "display": "flex",
+    "justifyContent": "center",
+    "alignItems": "center"
+  },
+  "icon": {
+    "margin": "auto 5px auto 5px"
+  },
+  "text": {
+    "fontSize": 15,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold"
   }
 }

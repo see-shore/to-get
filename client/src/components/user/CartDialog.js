@@ -68,7 +68,7 @@ function CartButton() {
           <ShoppingCartIcon fontSize='large' />
         </IconButton>
       </div>
-      <Dialog open={open} onClose={handleClose}  fullWidth maxWidth='xs' sx={styles.dialog}>
+      <Dialog open={open} onClose={handleClose} fullWidth maxWidth='xs' sx={styles.dialog}>
         <DialogTitle>
           <Grid sx={styles.dialogTitle}>
             <p style={styles.cartCopy}>Jane's Cart</p>

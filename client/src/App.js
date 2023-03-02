@@ -13,8 +13,9 @@ import { Provider } from 'react-redux';
 import axios from 'axios';
 import { Auth0Provider } from '@auth0/auth0-react';
 
-export const BASE_URL = 'http://localhost:8080';
-axios.defaults.baseURL = BASE_URL;
+export const API_BASE_URL = 'http://localhost:8080';
+export const NODE_BASE_URL = 'http://localhost:3000';
+axios.defaults.baseURL = API_BASE_URL;
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
       domain={process.env.REACT_APP_AUTH0_DOMAIN}
       clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
       authorizationParams={{
-        redirect_uri: window.location.origin
+        redirect_uri: (NODE_BASE_URL + '/products')
       }}
     >
       <Provider store={store}>
