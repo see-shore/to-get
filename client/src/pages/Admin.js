@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 
 import { getStagedItemsAsync } from '../redux/slices/staged/stagedItemsSlice';
 import { getStagedVendorsAsync } from '../redux/slices/staged/stagedVendorsSlice';
@@ -70,4 +71,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default withAuthenticationRequired(Admin);

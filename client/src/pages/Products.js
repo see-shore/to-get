@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
 import { getItemsAsync } from '../redux/slices/itemsSlice';
 import styles from '../styles/pages/Products.json';
@@ -53,4 +53,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default withAuthenticationRequired(Products);
