@@ -35,17 +35,31 @@ public class OrderController {
     @PostMapping("/order/new")
     public ResponseEntity<Order> saveOrder(@RequestBody RequestOrder requestOrder) {
         try {
-            Optional<Item> item = itemService.findItemById(requestOrder.getItemId());
-            Optional<User> user = userService.findUserById(requestOrder.getUserId());
-            if (item.isEmpty() || user.isEmpty()) {
-                System.out.println("Provided item or user ID is unknown");
+            Order savedOrder = saveOrderHelper(requestOrder);
+            return new ResponseEntity<>(savedOrder, HttpStatus.OK);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error", e);
+        }
+    }
+
+    // Create new orders (batch)
+    @PostMapping("/order/new/batch")
+    public ResponseEntity<List<Order>> saveOrders(@RequestBody List<RequestOrder> requestOrders) {
+        try {
+            if (requestOrders.isEmpty()) {
+                System.out.println("No orders were provided");
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                        "Provided item or user ID is unknown");
+                        "No orders were provided");
             }
 
-            Order order = new Order(requestOrder.getQuantity(), item.get(), user.get());
-            Order savedOrder = orderService.saveOrder(order);
-            return new ResponseEntity<>(savedOrder, HttpStatus.OK);
+            List<Order> orders = new ArrayList<>();
+            for (RequestOrder requestOrder : requestOrders) {
+                Order savedOrder = saveOrderHelper(requestOrder);
+                orders.add(savedOrder);
+            }
+
+            return new ResponseEntity<>(orders, HttpStatus.OK);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error", e);
@@ -84,5 +98,19 @@ public class OrderController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error", e);
         }
+    }
+
+    // Order save helper
+    public Order saveOrderHelper(RequestOrder requestOrder) {
+        Optional<Item> item = itemService.findItemById(requestOrder.getItemId());
+        Optional<User> user = userService.findUserById(requestOrder.getUserId());
+        if (item.isEmpty() || user.isEmpty()) {
+            System.out.println("Provided item or user ID is unknown");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Provided item or user ID is unknown");
+        }
+
+        Order order = new Order(requestOrder.getQuantity(), item.get(), user.get());
+        return orderService.saveOrder(order);
     }
 }

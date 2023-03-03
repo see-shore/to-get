@@ -1,15 +1,26 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getOrders } from '../api/ordersAPI';
+import { createOrders, getOrders } from '../api/ordersAPI';
 
 const initialState = {
   orders: [],
-  loadingOrdersData: false
+  loadingOrdersData: false,
+  saveOrdersPending: false,
+  myOrders: []
 };
 
 export const getOrdersAsync = createAsyncThunk(
   'orders/getOrders',
   async (_, { dispatch }) => {
     const orders = await getOrders();
+    return orders;
+  }
+);
+
+export const createOrdersAsync = createAsyncThunk(
+  'orders/createOrders',
+  async (ordersData, { dispatch }) => {
+    console.log(ordersData);
+    const orders = await createOrders(ordersData);
     return orders;
   }
 );
@@ -26,6 +37,13 @@ export const ordersSlice = createSlice({
       .addCase(getOrdersAsync.fulfilled, (state, action) => {
         state.loadingOrdersData = false;
         state.orders = action.payload;
+      })
+      .addCase(createOrdersAsync.pending, (state) => {
+        state.saveOrdersPending = true;
+      })
+      .addCase(createOrdersAsync.fulfilled, (state, action) => {
+        state.saveOrdersPending = false;
+        state.myOrders = action.payload;
       });
   }
 });

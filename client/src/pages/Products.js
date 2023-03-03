@@ -10,6 +10,7 @@ import UserProfileDialog from '../components/user/UserProfileDialog';
 import ProductPanel from '../components/product/ProductPanel';
 import CartDialog from '../components/user/CartDialog';
 import { setToken } from '../util/AuthUtil';
+import ThanksModal from '../components/user/ThanksDialog';
 
 function Products() {
   const dispatch = useDispatch();

@@ -15,12 +15,12 @@ import {
 } from '../../styles/components/ThanksDialog.styled';
 
 const plastic = [
-  { name: 'one', number: '1' },
-  { name: 'two', number: '2' },
-  { name: 'three', number: '3' },
-  { name: 'three', number: '3' },
-  { name: 'three', number: '3' },
-  { name: 'three', number: '3' },
+  { id: 1, name: 'one', number: '1' },
+  { id: 2, name: 'two', number: '2' },
+  { id: 3, name: 'three', number: '3' },
+  { id: 4, name: 'three', number: '3' },
+  { id: 5, name: 'three', number: '3' },
+  { id: 6, name: 'three', number: '3' },
 ];
 
 function ThanksModal() {
@@ -39,7 +39,7 @@ function ThanksModal() {
       .filter((_, idx) => idx < 3)
       .map((item) => {
         return (
-          <ItemContainer>
+          <ItemContainer key={item.id}>
             <TempImage />
             <ItemName>{item.name}</ItemName>
             <ItemNum>{item.number}</ItemNum>

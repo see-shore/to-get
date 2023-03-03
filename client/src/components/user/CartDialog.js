@@ -11,9 +11,10 @@ import {
 } from '@mui/icons-material';
 
 import styles from '../../styles/components/CartDialog.json'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectItemsMap } from '../../redux/selectors/selectors';
 import CartDialogButton from './CartDialogButton';
+import { createOrdersAsync } from '../../redux/slices/ordersSlice';
 
 function CartButton() {
   const [open, setOpen] = useState(false);
@@ -21,9 +22,14 @@ function CartButton() {
   const cart = useSelector(state => state.items.cart);
   const itemsMap = useSelector(state => selectItemsMap(state));
   const [isEmpty, setIsEmpty] = useState(true);
+  // This is the cart translated into order objects to send to orders endpoint
+  const [orders, setOrders] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setTotalBalance(0);
+    setOrders([]);
+  
     if (Object.keys(cart).length === 0) {
       setIsEmpty(true);
     } else {
@@ -34,11 +40,17 @@ function CartButton() {
           const quantity = cart[itemId];
           let orderBalance = quantity * item.price;
           setTotalBalance(prevBalance => prevBalance + orderBalance);
+  
+          const newOrder = {
+            itemId,
+            userId: 1, // CHANGE THIS!!!
+            quantity
+          };
+          setOrders(prevState => [...prevState, newOrder]);
         }
       }
     }
-
-  }, [cart, setTotalBalance, itemsMap, setIsEmpty]);
+  }, [cart, setTotalBalance, itemsMap, setIsEmpty, setOrders]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -46,6 +58,11 @@ function CartButton() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleSubmit = () => {
+    dispatch(createOrdersAsync(orders));
+    handleClose();
   };
 
   const generateOrder = (itemId, quantity) => {
@@ -101,7 +118,7 @@ function CartButton() {
           <p style={styles.orderLineCopy}>Your order will be delivered on</p>
           <p style={{ ...styles.orderLineCopy, marginTop: 5 }}>March 10th.</p>
         </div>
-        <div onClick={handleClose} style={styles.orderButton}>
+        <div onClick={() => handleSubmit()} style={styles.orderButton}>
           <CartDialogButton isEmpty={isEmpty} />
         </div>
       </DialogContent>
