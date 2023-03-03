@@ -2,6 +2,15 @@
 
 To.get is an application created by team See Shore of the CDM to facilitate group buying on campus and to tackle plastic waste reduction.
 
+## Team See Shore
+
+[Project Page @ CDM](https://thecdm.ca/projects/industry-projects/seeshore-sfu-fcat)
+
+**Developers**: James Chung (UBC), Jaddie Tan (SFU)\
+**Product Owners**: Xiao Chen (CDM), Javier (Monkey) Fernandez (CDM)\
+**Project Manager**: Maia Puyat (CDM)\
+**UI/UX Designer**: Oscar Chu (CDM)
+
 ## Technical Overview
 - Spring Boot server
 - React.js client
