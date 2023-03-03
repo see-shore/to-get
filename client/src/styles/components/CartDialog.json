@@ -20,6 +20,9 @@
   "dialogContent": {
     "minHeight": 250
   },
+  "emptyDalogContent": {
+    "minHeight": 150
+  },
   "textField": {
     "marginTop": 2
   },
