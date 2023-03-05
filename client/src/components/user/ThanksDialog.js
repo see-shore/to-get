@@ -36,6 +36,10 @@ function ThanksDialog(props) {
     props.onClose();
   };
 
+  const handleOrderSubmit = () => {
+    props.onOrderClick();
+  };
+
   const generatePlasticMon = (plastic) =>
     plastic
       .filter((_, idx) => idx < 3)
@@ -59,7 +63,7 @@ function ThanksDialog(props) {
         ? <div style={styles.button}>
             <CircularProgress size={17} />
           </div>
-        : <div style={styles.button}>
+        : <div onClick={() => handleOrderSubmit()} style={styles.button}>
             <p style={styles.buttonText}>{buttonCopy}</p>
           </div>}
       <StyledDialog open={open} fullWidth>
