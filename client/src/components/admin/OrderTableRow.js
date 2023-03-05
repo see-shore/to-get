@@ -2,15 +2,7 @@ import React, { useState } from 'react';
 import {
   TableCell,
   TableRow,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  TextField,
-  IconButton,
-  Grid,
-  Checkbox
+  Dialog
 } from '@mui/material';
 
 import styles from '../../styles/components/OrderTableRow.json';

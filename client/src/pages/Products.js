@@ -10,11 +10,21 @@ import UserProfileDialog from '../components/user/UserProfileDialog';
 import ProductPanel from '../components/product/ProductPanel';
 import CartDialog from '../components/user/CartDialog';
 import { setToken } from '../util/AuthUtil';
+import { cartExists, isCartValid, getCart } from '../util/AppUtil';
+import { setCart } from '../redux/slices/itemsSlice';
 
 function Products() {
   const dispatch = useDispatch();
   const items = useSelector(state => state.items.items);
   const { getAccessTokenSilently } = useAuth0();
+
+  useEffect(() => {
+    console.log((cartExists() && isCartValid()));
+    if (cartExists() && isCartValid()) {
+      const cart = getCart();
+      dispatch(setCart(cart));
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getItemsAsync());
