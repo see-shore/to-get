@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   StyledTitle,
   Button,
@@ -13,6 +13,9 @@ import {
   ItemName,
   ItemNum,
 } from '../../styles/components/ThanksDialog.styled';
+import styles from '../../styles/components/CartDialogButton.json';
+import { useSelector } from 'react-redux';
+import { CircularProgress } from '@mui/material';
 
 const plastic = [
   { id: 1, name: 'one', number: '1' },
@@ -23,15 +26,14 @@ const plastic = [
   { id: 6, name: 'three', number: '3' },
 ];
 
-function ThanksModal() {
-  const [open, setOpen] = useState(true);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
+function ThanksDialog(props) {
+  const open = useSelector(state => state.orders.thanksDialogOpen);
+  const loading = useSelector(state => state.orders.saveOrdersPending);
+  const { isEmpty } = props;
+  const buttonCopy = isEmpty ? "Continue Shopping" : "Confirm Order";
 
   const handleClose = () => {
-    setOpen(false);
+    props.onClose();
   };
 
   const generatePlasticMon = (plastic) =>
@@ -52,18 +54,27 @@ function ThanksModal() {
   };
 
   return (
-    <StyledDialog open={open} onClose={handleClose} fullWidth maxWidth='xs'>
-      <StyledTitle>Thanks</StyledTitle>
-      <SecHeading>By getting things together we can reduce our impact.</SecHeading>
-      <StyledDialogContent>
-        <PlasticContainer>{generatePlasticMon(plastic)}</PlasticContainer>
-        <EnvText>{generateInspoText()}</EnvText>
-        <ButtonContainer>
-          <Button onClick={handleClose}>Finish</Button>
-        </ButtonContainer>
-      </StyledDialogContent>
-    </StyledDialog>
+    <>
+      {loading
+        ? <div style={styles.button}>
+            <CircularProgress size={17} />
+          </div>
+        : <div style={styles.button}>
+            <p style={styles.buttonText}>{buttonCopy}</p>
+          </div>}
+      <StyledDialog open={open} fullWidth>
+        <StyledTitle>Thanks</StyledTitle>
+        <SecHeading>By getting things together we can reduce our impact.</SecHeading>
+        <StyledDialogContent>
+          <PlasticContainer>{generatePlasticMon(plastic)}</PlasticContainer>
+          <EnvText>{generateInspoText()}</EnvText>
+          <ButtonContainer>
+            <Button onClick={handleClose}>Finish</Button>
+          </ButtonContainer>
+        </StyledDialogContent>
+      </StyledDialog>
+    </>
   );
 }
 
-export default ThanksModal;
+export default ThanksDialog;

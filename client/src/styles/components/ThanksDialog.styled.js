@@ -16,6 +16,7 @@ export const Button = styled.button`
   width: 60%;
   position: absolute;
   bottom: 2em;
+  cursor: pointer;
 `;
 
 export const ButtonContainer = styled.div`

@@ -13,8 +13,8 @@ import {
 import styles from '../../styles/components/CartDialog.json'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectItemsMap } from '../../redux/selectors/selectors';
-import CartDialogButton from './CartDialogButton';
 import { createOrdersAsync } from '../../redux/slices/ordersSlice';
+import ThanksDialog from './ThanksDialog';
 
 function CartButton() {
   const [open, setOpen] = useState(false);
@@ -29,7 +29,7 @@ function CartButton() {
   useEffect(() => {
     setTotalBalance(0);
     setOrders([]);
-  
+
     if (Object.keys(cart).length === 0) {
       setIsEmpty(true);
     } else {
@@ -40,7 +40,7 @@ function CartButton() {
           const quantity = cart[itemId];
           let orderBalance = quantity * item.price;
           setTotalBalance(prevBalance => prevBalance + orderBalance);
-  
+
           const newOrder = {
             itemId,
             userId: 1, // CHANGE THIS!!!
@@ -62,7 +62,6 @@ function CartButton() {
 
   const handleSubmit = () => {
     dispatch(createOrdersAsync(orders));
-    handleClose();
   };
 
   const generateOrder = (itemId, quantity) => {
@@ -90,11 +89,11 @@ function CartButton() {
           <p style={styles.orderLineCopy}>Your cart is empty! Please select</p>
           <p style={{ ...styles.orderLineCopy, marginTop: 5 }}>an item to continue.</p>
         </div>
-        <div 
-          onClick={handleClose} 
+        <div
+          onClick={handleClose}
           style={{ ...styles.orderButton, marginBottom: 10, marginTop: 30 }}
         >
-          <CartDialogButton isEmpty={isEmpty} />
+          <ThanksDialog isEmpty={isEmpty} />
         </div>
       </DialogContent>
     );
@@ -119,7 +118,7 @@ function CartButton() {
           <p style={{ ...styles.orderLineCopy, marginTop: 5 }}>March 10th.</p>
         </div>
         <div onClick={() => handleSubmit()} style={styles.orderButton}>
-          <CartDialogButton isEmpty={isEmpty} />
+          <ThanksDialog isEmpty={isEmpty} onClose={handleClose} />
         </div>
       </DialogContent>
     );
@@ -133,14 +132,14 @@ function CartButton() {
           <ShoppingCartIcon fontSize='large' />
         </IconButton>
       </div>
-      <Dialog open={open} onClose={handleClose} fullWidth maxWidth='xs' sx={styles.dialog}>
+      <Dialog open={open} onClose={handleClose} maxWidth='xs' sx={styles.dialog}>
         <DialogTitle>
           <Grid sx={styles.dialogTitle}>
             <p style={styles.cartCopy}>Jane's Cart</p>
           </Grid>
         </DialogTitle>
         <form>
-          {isEmpty ? 
+          {isEmpty ?
             generateEmptyDialogContent() : generateNonEmptyDialogContent()}
         </form>
       </Dialog>

@@ -5,7 +5,8 @@ const initialState = {
   orders: [],
   loadingOrdersData: false,
   saveOrdersPending: false,
-  myOrders: []
+  myOrders: [],
+  thanksDialogOpen: false
 };
 
 export const getOrdersAsync = createAsyncThunk(
@@ -19,7 +20,6 @@ export const getOrdersAsync = createAsyncThunk(
 export const createOrdersAsync = createAsyncThunk(
   'orders/createOrders',
   async (ordersData, { dispatch }) => {
-    console.log(ordersData);
     const orders = await createOrders(ordersData);
     return orders;
   }
@@ -44,10 +44,13 @@ export const ordersSlice = createSlice({
       .addCase(createOrdersAsync.fulfilled, (state, action) => {
         state.saveOrdersPending = false;
         state.myOrders = action.payload;
+        state.thanksDialogOpen = true;
       });
   }
 });
 
-export const { } = ordersSlice.actions;
+export const {
+  closeThanksDialog
+} = ordersSlice.actions;
 
 export default ordersSlice.reducer;
