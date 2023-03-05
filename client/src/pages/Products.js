@@ -19,7 +19,6 @@ function Products() {
   const { getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
-    console.log((cartExists() && isCartValid()));
     if (cartExists() && isCartValid()) {
       const cart = getCart();
       dispatch(setCart(cart));

@@ -38,7 +38,6 @@ export const itemsSlice = createSlice({
     },
     setCart: (state, action) => {
       state.cart = action.payload;
-      console.log(state.cart);
     }
   },
   extraReducers: (builder) => {

@@ -16,7 +16,7 @@ import { updateCart, removeFromCart } from '../../redux/slices/itemsSlice';
 
 function Product(props) {
   const dispatch = useDispatch();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(props.defaultN);
   const [open, setOpen] = useState(false);
   const { item } = props;
 
