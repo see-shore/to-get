@@ -49,8 +49,6 @@ export const ordersSlice = createSlice({
   }
 });
 
-export const {
-  closeThanksDialog
-} = ordersSlice.actions;
+export const { } = ordersSlice.actions;
 
 export default ordersSlice.reducer;

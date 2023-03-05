@@ -37,7 +37,9 @@ function ThanksDialog(props) {
   };
 
   const handleOrderSubmit = () => {
-    props.onOrderClick();
+    if (!isEmpty) {
+      props.onOrderClick();
+    }
   };
 
   const generatePlasticMon = (plastic) =>

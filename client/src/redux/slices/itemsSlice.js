@@ -30,6 +30,11 @@ export const itemsSlice = createSlice({
       delete state.cart[action.payload];
       localStorage.setItem('cart', JSON.stringify(state.cart));
       localStorage.setItem('cartUpdatedAt', new Date());
+    },
+    clearCart: (state) => {
+      state.cart = {};
+      localStorage.removeItem('cart');
+      localStorage.removeItem('cartUpdatedAt');
     }
   },
   extraReducers: (builder) => {
@@ -46,7 +51,8 @@ export const itemsSlice = createSlice({
 
 export const { 
   updateCart,
-  removeFromCart
+  removeFromCart,
+  clearCart
 } = itemsSlice.actions;
 
 export default itemsSlice.reducer;

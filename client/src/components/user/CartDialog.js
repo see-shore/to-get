@@ -118,7 +118,10 @@ function CartButton() {
           <p style={{ ...styles.orderLineCopy, marginTop: 5 }}>March 10th.</p>
         </div>
         <div style={styles.orderButton}>
-          <ThanksDialog isEmpty={isEmpty} onOrderClick={handleSubmit} onClose={handleClose} />
+          <ThanksDialog 
+            isEmpty={isEmpty} 
+            onOrderClick={handleSubmit} 
+            onClose={handleClose} />
         </div>
       </DialogContent>
     );
