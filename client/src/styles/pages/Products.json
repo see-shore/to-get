@@ -27,8 +27,8 @@
   },
   "speechBubble": {
     "position": "absolute",
-    "top": 110,
-    "left": 190
+    "top": 95,
+    "left": 160
   },
   "profile": {
     "position": "absolute",

@@ -1,0 +1,12 @@
+{
+  "container": {
+    "width": 210,
+    "height": 50,
+    "display": "flex",
+    "justifyContent": "center",
+    "alignItems": "center"
+  },
+  "image": {
+    "width": "100%"
+  }
+}

@@ -1,23 +1,12 @@
 import React from 'react';
 
-const style = {
-  backgroundColor: "#C4C4C4",
-  width: 180,
-  height: 50,
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center"
-};
+import SpeechBubble from '../../images/speech-bubble.png';
+import styles from '../../styles/components/SpeechBox.json';
 
 function SpeechBox() {
   return (
-    <div>
-      <div style={style}>
-        <div style={{ justify: "center" }}>
-          <p>Speech text from</p>
-          <p>Avatar</p>
-        </div>
-      </div>
+    <div style={styles.container}>
+      <img src={SpeechBubble} alt="Speech Bubble" style={styles.image} />
     </div>
   );
 }

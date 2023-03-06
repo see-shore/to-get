@@ -15,6 +15,7 @@ function Login() {
       </div>
       <div style={styles.speechBubble}>
         <SpeechBox />
+        <p style={styles.welcomeCopy}>WELCOME COPY. WHAT GOES HERE?</p>
       </div>
       <div style={styles.button}>
         <LoginButton />
