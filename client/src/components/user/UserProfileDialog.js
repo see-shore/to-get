@@ -15,9 +15,12 @@ import { useAuth0 } from '@auth0/auth0-react';
 import Avatar from '../../woman-avatar.png';
 import styles from '../../styles/components/UserProfileDialog.json';
 import { NODE_BASE_URL } from '../../App';
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../../redux/slices/itemsSlice';
 
 function UserProfileDialog() {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
   const { logout } = useAuth0();
 
   const handleOpen = () => {
@@ -26,6 +29,13 @@ function UserProfileDialog() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleLogout = () => {
+    dispatch(clearCart());
+    logout({ 
+      logoutParams: { returnTo: (NODE_BASE_URL + '/login') } 
+    });
   };
 
   return (
@@ -44,7 +54,7 @@ function UserProfileDialog() {
         </DialogContent>
         <DialogActions>
             <Button 
-              onClick={() => logout({ logoutParams: { returnTo: (NODE_BASE_URL + '/login') } })} 
+              onClick={() => handleLogout()} 
               sx={{ color:'#FFFFFF', backgroundColor: '#ef5350' }} 
               type='submit'
             >
