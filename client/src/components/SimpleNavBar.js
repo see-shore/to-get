@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import AppLogo from '../images/app-logo.png';
+
 const StyledNavBar = styled.header`
   background: #abe5c2;
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
   height: 8vh;
   padding: 0 4em;
@@ -15,13 +17,15 @@ const StyledNavBar = styled.header`
 `;
 
 const StyledLogo = styled.img`
-  height: 3em;
+  height: 4em;
+  margin-left: -10px;
 `;
 
 function SimpleNavBar() {
   return (
     <StyledNavBar>
       <StyledLogo src={'/logo192.png'} />
+      <img src={AppLogo} alt="App Logo" style={{ height: 30, marginTop: 10 }} />
     </StyledNavBar>
   );
 }

@@ -20,6 +20,10 @@
   "welcomeCopy": {
     "position": "absolute",
     "top": 0,
-    "left": 30
+    "left": 30,
+    "fontSize": 12,
+    "fontWeight": "bold",
+    "fontFamily": "helvetica",
+    "padding": 3
   }
 }
