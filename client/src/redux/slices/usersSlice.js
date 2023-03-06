@@ -1,9 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getUsers, addUser } from '../api/usersAPI';
+import { getUsers, addUser, getUser } from '../api/usersAPI';
 
 const initialState = {
   users: [],
-  loadingUsersData: false
+  loadingUsersData: false,
+  user: {},  // Currently logged in user pulled from MySQL DB
+  loadingUserData: false
 };
 
 export const getUsersAsync = createAsyncThunk(
@@ -26,6 +28,14 @@ export const addUserAsync = createAsyncThunk(
   }
 );
 
+export const getUserAsync = createAsyncThunk(
+  'users/getUser',
+  async (email, { dispatch }) => {
+    const user = await getUser(email);
+    return user;
+  }
+);
+
 export const usersSlice = createSlice({
   name: 'users',
   initialState,
@@ -45,6 +55,13 @@ export const usersSlice = createSlice({
       .addCase(addUserAsync.fulfilled, (state, action) => {
         state.loadingUsersData = false;
         state.users.push(action.payload);
+      })
+      .addCase(getUserAsync.pending, (state) => {
+        state.loadingUserData = true;
+      })
+      .addCase(getUserAsync.fulfilled, (state, action) => {
+        state.loadingUserData = false;
+        state.user = action.payload;
       });
   }
 });

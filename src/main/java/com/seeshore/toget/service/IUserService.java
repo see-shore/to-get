@@ -11,4 +11,5 @@ public interface IUserService {
     public List<User> findAllUsers();
     public User saveUser(User user);
     public void deleteUserById(Long userId);
+    public User findUserByEmail(String email);
 }

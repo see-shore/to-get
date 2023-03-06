@@ -31,6 +31,18 @@ public class UserController {
         }
     }
 
+    // Fetch one user (by email)
+    @GetMapping("/user")
+    public ResponseEntity<User> getUserByEmail(@RequestParam String email) {
+        try {
+            User user = userService.findUserByEmail(email);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error", e);
+        }
+    }
+
     // Create a new user
     @PostMapping("/user/new")
     public ResponseEntity<User> saveUser(@RequestBody User user) {
