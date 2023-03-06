@@ -55,5 +55,9 @@
     "top": 25,
     "display": "flex",
     "justifyContent": "center"
+  },
+  "cartDialog": {
+    "display": "flex",
+    "justifyContent": "center"
   }
 }

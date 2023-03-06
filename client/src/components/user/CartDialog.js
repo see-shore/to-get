@@ -131,7 +131,7 @@ function CartButton() {
     <>
       <div style={styles.button} onClick={handleOpen}>
         Jane's Cart
-        <IconButton sx={{ width: 30, height: 30, marginLeft: 1 }}>
+        <IconButton sx={{ width: 30, height: 30, marginLeft: 1, color: "#FFFFFF" }}>
           <ShoppingCartIcon fontSize='large' />
         </IconButton>
       </div>

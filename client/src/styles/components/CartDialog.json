@@ -1,17 +1,19 @@
 {
   "button": {
-    "width": "100%",
+    "width": "80%",
     "position": "fixed",
-    "bottom": 0,
-    "height": 50,
-    "backgroundColor": "#8C8C8C",
+    "bottom": 10,
+    "height": 40,
+    "backgroundColor": "#000000",
+    "color": "#FFFFFF",
     "display": "flex",
     "justifyContent": "center",
     "alignItems": "center",
     "fontSize": 15,
     "fontFamily": "helvetica",
     "fontWeight": "bold",
-    "cursor": "pointer"
+    "cursor": "pointer",
+    "borderRadius": 20
   },
   "dialogTitle": {
     "display": "flex",

@@ -36,7 +36,7 @@ function Products() {
     getToken();
   }, [dispatch, getAccessTokenSilently]);
 
-  const height = Math.ceil(items.length / 2) * 220;
+  const height = Math.ceil(items.length / 2) * 240;
 
   return (
     <div>
@@ -64,7 +64,10 @@ function Products() {
       <div style={styles.panel}>
         <ProductPanel items={items} height={height} />
       </div>
-      <CartDialog />
+      <div style={styles.cartDialog}>
+        <CartDialog />
+      </div>
+      
     </div>
     
   );
