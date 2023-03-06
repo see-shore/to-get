@@ -12,6 +12,7 @@ import CartDialog from '../components/user/CartDialog';
 import { setToken } from '../util/AuthUtil';
 import { cartExists, isCartValid, getCart } from '../util/AppUtil';
 import { setCart } from '../redux/slices/itemsSlice';
+import divider from '../images/div-divider.png';
 
 function Products() {
   const dispatch = useDispatch();
@@ -50,8 +51,14 @@ function Products() {
           <SpeechBox />
         </div>
       </div>
+      
       <div style={styles.productsCard}>
-        <p style={styles.weekPickCopy}>This week's picks</p>
+        <div>
+          <img src={divider} alt="Divider" style={styles.divider} />
+        </div>
+        <div style={styles.header}>
+          <p style={styles.weekPickCopy}>This week's picks</p>
+        </div>
       </div>
       <div style={styles.panel}>
         <ProductPanel items={items} height={height} />

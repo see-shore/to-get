@@ -1,22 +1,15 @@
 import React from 'react';
+import shopOwnerImage from '../../images/shop-owner.png';
 
-const style = {
-  backgroundColor: "#C4C4C4",
-  width: 150,
-  height: 150,
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center"
+const styles = {
+  image: {
+    width: 150
+  }
 };
 
 function ShopOwnerAvatar() {
   return (
-    <div style={style}>
-      <div style={{ justify: "center" }}>
-        <p>Shop Owner</p>
-        <p>Avatar</p>
-      </div>
-    </div>
+    <img src={shopOwnerImage} alt={"Shop Owner"} style={styles.image} />
   );
 }
 

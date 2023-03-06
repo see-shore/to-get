@@ -1,7 +1,7 @@
 {
   "container": {
     "width": "100%",
-    "backgroundColor": "#C4C4C4",
+    "backgroundColor": "#F0D794",
     "position": "absolute",
     "top": 370,
     "display": "flex",

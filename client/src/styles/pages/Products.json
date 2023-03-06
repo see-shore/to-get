@@ -1,16 +1,15 @@
 {
   "backgroundCard": {
-    "backgroundColor": "#9C9C9C",
+    "backgroundColor": "#FFFFFF",
     "width": "100%",
     "height": 600
   },
   "productsCard": {
-    "backgroundColor": "#C4C4C4",
+    "backgroundColor": "#F0D794",
     "borderRadius": 20,
     "width": "100%",
     "height": "100%",
     "display": "flex",
-    "justifyContent": "center",
     "position": "absolute",
     "top": 310,
     "left": 0
@@ -23,7 +22,7 @@
   },
   "avatar": {
     "position": "absolute",
-    "top": 130,
+    "top": 90,
     "left": 20
   },
   "speechBubble": {
@@ -45,5 +44,11 @@
   "panel": {
     "display": "flex",
     "justifyContent": "center"
+  },
+  "divider": {
+    "width": "100%"
+  },
+  "header": {
+    "width": 400
   }
 }
