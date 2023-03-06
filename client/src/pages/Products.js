@@ -50,6 +50,7 @@ function Products() {
         </div>
         <div style={styles.speechBubble}>
           <SpeechBox />
+          <p style={styles.bubbleCopy}>Welcome to the shop, Jane. What would you like to get today?</p>
         </div>
       </div>
       

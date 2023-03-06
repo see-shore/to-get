@@ -59,5 +59,13 @@
   "cartDialog": {
     "display": "flex",
     "justifyContent": "center"
+  },
+  "bubbleCopy": {
+    "position": "absolute",
+    "top": 0,
+    "left": 30,
+    "fontWeight": "bold",
+    "fonFamily": "helvetica",
+    "fontSize": 12
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledNavBar = styled.header`
-  background: #C4C4C4;
+  background: #abe5c2;
   display: flex;
   justify-content: space-between;
   align-items: center;
