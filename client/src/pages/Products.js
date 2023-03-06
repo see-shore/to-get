@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { Grid } from '@mui/material';
 
 import { getItemsAsync } from '../redux/slices/itemsSlice';
 import styles from '../styles/pages/Products.json';
@@ -52,14 +53,14 @@ function Products() {
         </div>
       </div>
       
-      <div style={styles.productsCard}>
-        <div>
+      <Grid container sx={styles.productsCard}>
+        <Grid item sx={styles.divider}>
           <img src={divider} alt="Divider" style={styles.divider} />
-        </div>
-        <div style={styles.header}>
+        </Grid>
+        <Grid item sx={styles.header}>
           <p style={styles.weekPickCopy}>This week's picks</p>
-        </div>
-      </div>
+        </Grid>
+      </Grid>
       <div style={styles.panel}>
         <ProductPanel items={items} height={height} />
       </div>

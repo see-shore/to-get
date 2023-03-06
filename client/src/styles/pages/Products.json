@@ -6,10 +6,10 @@
   },
   "productsCard": {
     "backgroundColor": "#F0D794",
-    "borderRadius": 20,
     "width": "100%",
     "height": "100%",
     "display": "flex",
+    "justifyContent": "center",
     "position": "absolute",
     "top": 310,
     "left": 0
@@ -49,6 +49,11 @@
     "width": "100%"
   },
   "header": {
-    "width": 400
+    "width": "100%",
+    "height": 50,
+    "position": "absolute",
+    "top": 25,
+    "display": "flex",
+    "justifyContent": "center"
   }
 }

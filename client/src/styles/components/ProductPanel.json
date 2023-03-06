@@ -3,7 +3,7 @@
     "width": "100%",
     "backgroundColor": "#F0D794",
     "position": "absolute",
-    "top": 370,
+    "top": 380,
     "display": "flex",
     "justifyContent": "center"
   }
