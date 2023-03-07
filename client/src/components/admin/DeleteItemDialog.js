@@ -9,11 +9,15 @@ import {
   IconButton
 } from '@mui/material';
 import { Close as CloseIcon, Delete as DeleteIcon } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
 
 import styles from '../../styles/components/DeleteItemDialog.json';
+import { deleteStagedItemAsync } from '../../redux/slices/staged/stagedItemsSlice';
 
 function DeleteItemDialog(props) {
   const [open, setOpen] = useState(false);
+  const { itemId } = props;
+  const dispatch = useDispatch();
 
   const handleOpen = () => {
     setOpen(true);
@@ -24,7 +28,7 @@ function DeleteItemDialog(props) {
   };
 
   const handleDelete = () => {
-    // TODO: dispatch delete
+    dispatch(deleteStagedItemAsync(itemId));
     handleClose();
     props.onClose();
   };

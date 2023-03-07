@@ -14,3 +14,8 @@ export const updateStagedItem = async (itemData) => {
   const response = await axios.put(`/staged-item?itemId=${itemData.id}`, itemData);
   return response.data;
 };
+
+export const deleteStagedItem = async (itemId) => {
+  const response = await axios.delete(`/staged-item?itemId=${itemId}`);
+  return response.status;
+};

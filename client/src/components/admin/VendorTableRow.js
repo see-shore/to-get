@@ -145,7 +145,7 @@ function VendorTableRow(props) {
           </Grid>
         </DialogContent>
         <DialogActions>
-          <DeleteItemDialog onClose={handleClose} />
+          <DeleteItemDialog itemId={row.id} onClose={handleClose} />
           <Button sx={{ color: '#609966' }} variant='outlined' onClick={handleSubmit} type='submit'>
             <SendIcon sx={styles.icon} />Edit Staged Item
           </Button>
