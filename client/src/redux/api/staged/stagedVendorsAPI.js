@@ -14,3 +14,8 @@ export const deleteStagedVendor = async (vendorId) => {
   const response = await axios.delete(`/staged-vendor?vendorId=${vendorId}`);
   return response.status;
 };
+
+export const updateStagedVendor = async (vendorData) => {
+  const response = await axios.put(`/staged-vendor?vendorId=${vendorData.id}`, vendorData);
+  return response.data;
+};

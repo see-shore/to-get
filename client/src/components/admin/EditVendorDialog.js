@@ -18,7 +18,7 @@ import {
 
 import styles from '../../styles/components/EditVendorDialog.json';
 import { useDispatch } from 'react-redux';
-import { deleteStagedVendorAsync } from '../../redux/slices/staged/stagedVendorsSlice';
+import { deleteStagedVendorAsync, updateStagedVendorAsync } from '../../redux/slices/staged/stagedVendorsSlice';
 
 function EditVendorDialog(props) {
   const [open, setOpen] = useState(false);
@@ -57,11 +57,12 @@ function EditVendorDialog(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const vendorData = {
+      id: vendor.id,
       name: formValue.name.trim(),
       phone: formValue.phone.trim(),
       website: formValue.website.trim()
     };
-    // dispatch update this vendor
+    dispatch(updateStagedVendorAsync(vendorData));
     handleClose();
   };
 
