@@ -82,7 +82,7 @@ function Products() {
         <ProductPanel items={items} height={height} />
       </div>
       <div style={styles.cartDialog}>
-        <CartDialog firstName={accountUser.firstName} />
+        <CartDialog firstName={accountUser.firstName} userId={accountUser.id} />
       </div>
       
     </div>

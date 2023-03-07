@@ -25,7 +25,7 @@ function CartButton(props) {
   // This is the cart translated into order objects to send to orders endpoint
   const [orders, setOrders] = useState([]);
   const dispatch = useDispatch();
-  const { firstName } = props;
+  const { firstName, userId } = props;
 
   useEffect(() => {
     setTotalBalance(0);
@@ -44,14 +44,14 @@ function CartButton(props) {
 
           const newOrder = {
             itemId,
-            userId: 1, // CHANGE THIS!!!
+            userId,
             quantity
           };
           setOrders(prevState => [...prevState, newOrder]);
         }
       }
     }
-  }, [cart, setTotalBalance, itemsMap, setIsEmpty, setOrders]);
+  }, [cart, setTotalBalance, itemsMap, setIsEmpty, setOrders, userId]);
 
   const handleOpen = () => {
     setOpen(true);
