@@ -2,8 +2,6 @@
   "container": {
     "width": "100%",
     "backgroundColor": "#F0D794",
-    "position": "absolute",
-    "top": 380,
     "display": "flex",
     "justifyContent": "center"
   }

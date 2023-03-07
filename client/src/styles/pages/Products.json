@@ -1,18 +1,19 @@
 {
+  "pageContainer": {
+    "display": "flex",
+    "flexDirection": "column",
+    "minHeight": "100vh"
+  },
   "backgroundCard": {
     "backgroundColor": "#FFFFFF",
-    "width": "100%",
-    "height": 600
+    "width": "100%"
   },
   "productsCard": {
     "backgroundColor": "#F0D794",
     "width": "100%",
     "height": "100%",
     "display": "flex",
-    "justifyContent": "center",
-    "position": "absolute",
-    "top": 310,
-    "left": 0
+    "justifyContent": "center"
   },
   "weekPickCopy": {
     "fontSize": 15,
@@ -20,13 +21,15 @@
     "fontWeight": "bold",
     "marginTop": 20
   },
+  "avatarContainer": {
+    "display": "flex",
+    "margin": "8em 2em 0"
+  },
   "avatar": {
-    "position": "absolute",
     "top": 90,
     "left": 20
   },
   "speechBubble": {
-    "position": "absolute",
     "top": 95,
     "left": 160
   },
@@ -43,7 +46,8 @@
   },
   "panel": {
     "display": "flex",
-    "justifyContent": "center"
+    "justifyContent": "center",
+    "flexGrow": 1
   },
   "divider": {
     "width": "100%"
@@ -51,21 +55,11 @@
   "header": {
     "width": "100%",
     "height": 50,
-    "position": "absolute",
-    "top": 25,
     "display": "flex",
     "justifyContent": "center"
   },
   "cartDialog": {
     "display": "flex",
     "justifyContent": "center"
-  },
-  "bubbleCopy": {
-    "position": "absolute",
-    "top": 0,
-    "left": 30,
-    "fontWeight": "bold",
-    "fonFamily": "helvetica",
-    "fontSize": 12
   }
 }

@@ -1,12 +1,25 @@
 {
   "container": {
+    "maxWidth": "60vw",
     "width": 210,
-    "height": 50,
     "display": "flex",
     "justifyContent": "center",
-    "alignItems": "center"
+    "alignItems": "center",
+    "position": "relative"
   },
   "image": {
     "width": "100%"
+  },
+  "text": {
+    "position": "absolute",
+    "top": "0.1em",
+    "width": "100%",
+    "maxHeight": "90%",
+    "padding": "0.5em 0.5em 1em 2.5em",
+    "fontWeight": "bold",
+    "fonFamily": "helvetica",
+    "fontSize": 12,
+    "overflow": "auto",
+    "scrollbarWidth": "none"
   }
 }
