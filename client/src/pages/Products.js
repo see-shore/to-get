@@ -19,9 +19,9 @@ import AdminButton from '../components/admin/AdminButton';
 
 function Products() {
   const dispatch = useDispatch();
-  const items = useSelector(state => state.items.items);
-  const accountUser = useSelector(state => state.users.user);
-  const accountName = accountUser.firstName + " " + accountUser.lastName;
+  const items = useSelector((state) => state.items.items);
+  const accountUser = useSelector((state) => state.users.user);
+  const accountName = accountUser.firstName + ' ' + accountUser.lastName;
   const { getAccessTokenSilently, user } = useAuth0();
 
   useEffect(() => {
@@ -44,35 +44,37 @@ function Products() {
   }, [dispatch, getAccessTokenSilently]);
 
   const height = Math.ceil(items.length / 2) * 240;
+  const WelcomeText = `Welcome to the shop, ${accountUser.firstName}. What would you like to get today?`;
 
   const isUserAdmin = () => {
     return user.name === 'seeshoreadmin@gmail.com';
-  }
+  };
 
   return (
-    <div>
+    <div style={styles.pageContainer}>
       <div style={styles.backgroundCard}>
         <div style={styles.profile}>
           <UserProfileDialog fullName={accountName} />
           <p style={styles.usernameCopy}>{accountName}</p>
         </div>
-        {isUserAdmin() && 
+        {isUserAdmin() && (
           <div style={styles.adminButton}>
             <AdminButton />
           </div>
-        }
-        <div style={styles.avatar}>
-          <ShopOwnerAvatar />
-        </div>
-        <div style={styles.speechBubble}>
-          <SpeechBox />
-          <p style={styles.bubbleCopy}>Welcome to the shop, {accountUser.firstName}. What would you like to get today?</p>
+        )}
+        <div style={styles.avatarContainer}>
+          <div style={styles.avatar}>
+            <ShopOwnerAvatar />
+          </div>
+          <div style={styles.speechBubble}>
+            <SpeechBox text={WelcomeText} />
+          </div>
         </div>
       </div>
-      
+
       <Grid container sx={styles.productsCard}>
         <Grid item sx={styles.divider}>
-          <img src={Divider} alt="Divider" style={styles.divider} />
+          <img src={Divider} alt='Divider' style={styles.divider} />
         </Grid>
         <Grid item sx={styles.header}>
           <p style={styles.weekPickCopy}>This week's picks</p>
@@ -84,9 +86,7 @@ function Products() {
       <div style={styles.cartDialog}>
         <CartDialog firstName={accountUser.firstName} userId={accountUser.id} />
       </div>
-      
     </div>
-    
   );
 }
 
