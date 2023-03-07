@@ -54,7 +54,7 @@ function Product(props) {
     <>
       <Grid container sx={styles.container}>
         <Grid item sx={{ width: "100%", height: 140, cursor: "pointer" }} onClick={handleOpen}>
-          <Grid item sx={styles.price}>{formatPrice(item.price)}</Grid>
+          <Grid item sx={styles.price}>{formatPrice(item.price) + ` / ${item.units}`}</Grid>
           <Grid item sx={styles.productName}>{item.name}</Grid>
         </Grid>
         <Grid item sx={styles.counter}>
@@ -79,7 +79,7 @@ function Product(props) {
                 <div style={styles.description}>
                   <p style={styles.descriptionText}>Description</p>
                 </div>
-                <p style={styles.dialogPrice}>{`$${(item.price / 100).toFixed(2)}`}</p>
+                <p style={styles.dialogPrice}>{`$${(item.price / 100).toFixed(2)} / ${item.units}`}</p>
               </div>
             </Grid>
             <Grid item sx={{ width: "100%", display: "flex", justifyContent: "right" }}>

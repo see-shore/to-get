@@ -18,4 +18,4 @@ export const getUser = async (email) => {
 export const updateUser = async (userData) => {
   const response = await axios.put(`/user?userId=${userData.id}`, userData);
   return response.data;
-}
+};
