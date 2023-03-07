@@ -14,3 +14,8 @@ export const getUser = async (email) => {
   const response = await axios.get(`/user?email=${email}`);
   return response.data;
 };
+
+export const updateUser = async (userData) => {
+  const response = await axios.put(`/user?userId=${userData.id}`, userData);
+  return response.data;
+}

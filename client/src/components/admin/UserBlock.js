@@ -17,6 +17,8 @@ import {
 
 import styles from '../../styles/components/UserBlock.json';
 import Avatar from '../../woman-avatar.png';
+import { useDispatch } from 'react-redux';
+import { updateUserAsync } from '../../redux/slices/usersSlice';
 
 function UserBlock(props) {
   const { user } = props;
@@ -26,6 +28,7 @@ function UserBlock(props) {
     lastName: '',
     email: ''
   });
+  const dispatch = useDispatch();
 
   const handleOpen = () => {
     setOpen(true);
@@ -53,11 +56,12 @@ function UserBlock(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const userData = {
+      id: user.id,
       firstName: formValue.firstName.trim(),
       lastName: formValue.lastName.trim(),
       email: formValue.email.trim()
     };
-    // dispatch update this user
+    dispatch(updateUserAsync(userData));
     handleClose();
   };
 

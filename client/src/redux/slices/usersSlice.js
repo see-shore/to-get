@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getUsers, addUser, getUser } from '../api/usersAPI';
+import { getUsers, addUser, getUser, updateUser } from '../api/usersAPI';
 
 const initialState = {
   users: [],
@@ -36,6 +36,14 @@ export const getUserAsync = createAsyncThunk(
   }
 );
 
+export const updateUserAsync = createAsyncThunk(
+  'users/updateUser',
+  async (userData, { dispatch }) => {
+    const user = await updateUser(userData);
+    return user;
+  }
+);
+
 export const usersSlice = createSlice({
   name: 'users',
   initialState,
@@ -62,7 +70,17 @@ export const usersSlice = createSlice({
       .addCase(getUserAsync.fulfilled, (state, action) => {
         state.loadingUserData = false;
         state.user = action.payload;
-      });
+      })
+      .addCase(updateUserAsync.pending, (state) => {
+        state.loadingUserData = true;
+      })
+      .addCase(updateUserAsync.fulfilled, (state, action) => {
+        state.loadingUserData = false;
+        let index = state.users.findIndex(
+          (user) => user.id === action.payload.id
+        );
+        state.users[index] = action.payload;
+      })
   }
 });
 

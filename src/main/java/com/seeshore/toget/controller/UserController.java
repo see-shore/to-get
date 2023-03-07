@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @CrossOrigin
@@ -62,6 +63,30 @@ public class UserController {
             userService.deleteUserById(userId);
             return ResponseEntity.status(HttpStatus.OK)
                     .body("Successfully deleted user with ID: " + userId);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error", e);
+        }
+    }
+
+    // Update a user
+    @PutMapping("/user")
+    public ResponseEntity<User> updateUser(@RequestParam Long userId,
+                                           @RequestBody User user) {
+        try {
+            Optional<User> userRecord = userService.findUserById(userId);
+            if (userRecord.isEmpty()) {
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                        "Provided user ID is unknown");
+            }
+
+            User fetchedUser = userRecord.get();
+            fetchedUser.setFirstName(user.getFirstName());
+            fetchedUser.setLastName(user.getLastName());
+            fetchedUser.setEmail(user.getEmail());
+
+            User savedUser = userService.saveUser(fetchedUser);
+            return new ResponseEntity<>(savedUser, HttpStatus.OK);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error", e);
