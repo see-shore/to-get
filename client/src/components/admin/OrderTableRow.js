@@ -7,15 +7,17 @@ import {
   DialogActions,
   Button
 } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Delete as DeleteIcon } from '@mui/icons-material';
 
 import styles from '../../styles/components/OrderTableRow.json';
 import { selectItemsMap } from '../../redux/selectors/selectors';
+import { deleteOrderAsync } from '../../redux/slices/ordersSlice';
 
 function OrderTableRow(props) {
   const { order, user } = props;
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
   const formattedDate = new Date(order.orderDate);
   const itemsMap = useSelector(state => selectItemsMap(state));
   const item = itemsMap[order.itemId];
@@ -29,7 +31,7 @@ function OrderTableRow(props) {
   };
 
   const handleDelete = () => {
-    // DISPATCH DELETE
+    dispatch(deleteOrderAsync(order.id));
     handleClose();
   };
 

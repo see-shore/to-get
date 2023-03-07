@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements IOrderService {
@@ -19,7 +20,16 @@ public class OrderServiceImpl implements IOrderService {
         return orderRepository.findAll();
     }
     @Override
+    public Optional<Order> findOrderById(Long orderId) {
+        return orderRepository.findById(orderId);
+    }
+    @Override
     public Order saveOrder(Order order) {
         return orderRepository.saveAndFlush(order);
+    }
+
+    @Override
+    public void deleteOrder(Long orderId) {
+        orderRepository.deleteById(orderId);
     }
 }

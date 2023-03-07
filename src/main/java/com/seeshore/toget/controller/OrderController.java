@@ -100,6 +100,30 @@ public class OrderController {
         }
     }
 
+    // Delete an order
+    @DeleteMapping("/order")
+    public ResponseEntity<String> deleteOrder(@RequestParam Long orderId) {
+        try {
+            Optional<Order> orderRecord = orderService.findOrderById(orderId);
+            if (orderRecord.isEmpty()) {
+                System.out.println("Provided order ID is unknown");
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                        "Provided order ID is unknown");
+            }
+
+            Order fetchedOrder = orderRecord.get();
+            fetchedOrder.dismissItem();
+            fetchedOrder.dismissUser();
+
+            orderService.deleteOrder(orderId);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("Successfully deleted order with ID: " + orderId);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error", e);
+        }
+    }
+
     // Order save helper
     public Order saveOrderHelper(RequestOrder requestOrder) {
         Optional<Item> item = itemService.findItemById(requestOrder.getItemId());

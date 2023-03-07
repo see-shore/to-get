@@ -68,4 +68,8 @@ public class Order implements Serializable {
     public void dismissItem() {
         this.item = null;
     }
+
+    public void dismissUser() {
+        this.user = null;
+    }
 }
