@@ -1,6 +1,6 @@
 {
   "login": {
-    "backgroundColor": "#FAFAFA",
+    "backgroundColor": "#FFFFFF",
     "display": "flex",
     "justifyContent": "center"
   },

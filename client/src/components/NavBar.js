@@ -2,7 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import TextLogo from '../images/app-logo.png';
+import { Button } from '@mui/material';
+import {
+  Logout as LogoutIcon
+} from '@mui/icons-material';
+import { useAuth0 } from '@auth0/auth0-react';
+import { NODE_BASE_URL } from '../App';
 
 const StyledNavBar = styled.header`
   background: #abe5c2;
@@ -26,7 +32,8 @@ const StyledNavLink = styled.div`
 `;
 
 const StyledLogo = styled.img`
-  height: 3em;
+  height: 4em;
+  margin-left: -10px;
 `;
 
 const StyledIcons = styled(FontAwesomeIcon)`
@@ -35,12 +42,28 @@ const StyledIcons = styled(FontAwesomeIcon)`
 `;
 
 function NavBar() {
+  const { logout } = useAuth0();
+
+  const handleLogout = () => {
+    logout({ 
+      logoutParams: { returnTo: (NODE_BASE_URL+ '/login') } 
+    });
+  };
+
   return (
     <StyledNavBar>
       <Link to='/'>
         <StyledLogo src={'/logo192.png'} />
+        <img src={TextLogo} alt="Text Logo" style={{ height: 35, marginTop: 10 }} />
       </Link>
-      <StyledNavLink>
+      <Button 
+              onClick={() => handleLogout()} 
+              sx={{ color:'#FFFFFF', backgroundColor: '#ef5350' }} 
+              type='submit'
+            >
+              <LogoutIcon sx={{ margin: "auto 5px auto 5px" }} />Log out
+            </Button>
+      {/* <StyledNavLink>
         <Link to='#'>
           <StyledIcons icon={solid('magnifying-glass')} />
         </Link>
@@ -50,7 +73,7 @@ function NavBar() {
         <Link to='/confirm-order'>
           <StyledIcons icon={solid('bag-shopping')} />
         </Link>
-      </StyledNavLink>
+      </StyledNavLink> */}
     </StyledNavBar>
   );
 }
