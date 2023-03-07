@@ -66,6 +66,7 @@
     "left": 30,
     "fontWeight": "bold",
     "fonFamily": "helvetica",
-    "fontSize": 12
+    "fontSize": 12,
+    "marginRight": 5
   }
 }

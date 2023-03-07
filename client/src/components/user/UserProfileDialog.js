@@ -18,10 +18,11 @@ import { NODE_BASE_URL } from '../../App';
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../../redux/slices/itemsSlice';
 
-function UserProfileDialog() {
+function UserProfileDialog(props) {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const { logout } = useAuth0();
+  const { fullName } = props;
 
   const handleOpen = () => {
     setOpen(true);
@@ -46,7 +47,7 @@ function UserProfileDialog() {
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth='xs' sx={styles.dialog}>
         <DialogTitle>
           <Grid sx={styles.dialogTitle}>
-            <p style={styles.title}>Jane Doe</p>
+            <p style={styles.title}>{fullName}</p>
           </Grid>
         </DialogTitle>
         <DialogContent sx={styles.dialogContent}>

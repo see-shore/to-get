@@ -16,7 +16,7 @@ import { selectItemsMap } from '../../redux/selectors/selectors';
 import { createOrdersAsync } from '../../redux/slices/ordersSlice';
 import ThanksDialog from './ThanksDialog';
 
-function CartButton() {
+function CartButton(props) {
   const [open, setOpen] = useState(false);
   const [totalBalance, setTotalBalance] = useState(0);
   const cart = useSelector(state => state.items.cart);
@@ -25,6 +25,7 @@ function CartButton() {
   // This is the cart translated into order objects to send to orders endpoint
   const [orders, setOrders] = useState([]);
   const dispatch = useDispatch();
+  const { firstName } = props;
 
   useEffect(() => {
     setTotalBalance(0);
@@ -130,7 +131,7 @@ function CartButton() {
   return (
     <>
       <div style={styles.button} onClick={handleOpen}>
-        Jane's Cart
+        {firstName}'s Cart
         <IconButton sx={{ width: 30, height: 30, marginLeft: 1, color: "#FFFFFF" }}>
           <ShoppingCartIcon fontSize='large' />
         </IconButton>
@@ -138,7 +139,7 @@ function CartButton() {
       <Dialog open={open} onClose={handleClose} maxWidth='xs' sx={styles.dialog}>
         <DialogTitle>
           <Grid sx={styles.dialogTitle}>
-            <p style={styles.cartCopy}>Jane's Cart</p>
+            <p style={styles.cartCopy}>{firstName}'s Cart</p>
           </Grid>
         </DialogTitle>
         <form>

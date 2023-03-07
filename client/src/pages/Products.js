@@ -19,6 +19,8 @@ import { getUserAsync } from '../redux/slices/usersSlice';
 function Products() {
   const dispatch = useDispatch();
   const items = useSelector(state => state.items.items);
+  const accountUser = useSelector(state => state.users.user);
+  const accountName = accountUser.firstName + " " + accountUser.lastName;
   const { getAccessTokenSilently, user } = useAuth0();
 
   useEffect(() => {
@@ -46,15 +48,15 @@ function Products() {
     <div>
       <div style={styles.backgroundCard}>
         <div style={styles.profile}>
-          <UserProfileDialog />
-          <p style={styles.usernameCopy}>{'Jane Doe'}</p>
+          <UserProfileDialog fullName={accountName} />
+          <p style={styles.usernameCopy}>{accountName}</p>
         </div>
         <div style={styles.avatar}>
           <ShopOwnerAvatar />
         </div>
         <div style={styles.speechBubble}>
           <SpeechBox />
-          <p style={styles.bubbleCopy}>Welcome to the shop, Jane. What would you like to get today?</p>
+          <p style={styles.bubbleCopy}>Welcome to the shop, {accountUser.firstName}. What would you like to get today?</p>
         </div>
       </div>
       
@@ -70,7 +72,7 @@ function Products() {
         <ProductPanel items={items} height={height} />
       </div>
       <div style={styles.cartDialog}>
-        <CartDialog />
+        <CartDialog firstName={accountUser.firstName} />
       </div>
       
     </div>

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { withAuthenticationRequired } from '@auth0/auth0-react';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
 import { getStagedItemsAsync } from '../redux/slices/staged/stagedItemsSlice';
 import { getStagedVendorsAsync } from '../redux/slices/staged/stagedVendorsSlice';
@@ -14,6 +14,7 @@ import VendorsAndItemsPanel from '../components/admin/VendorsAndItemsPanel';
 import UsersPanel from '../components/admin/UsersPanel';
 import OrdersPanel from '../components/admin/OrdersPanel';
 import NavBar from '../components/NavBar';
+import { NODE_BASE_URL } from '../App';
 
 function allyProps(index) {
   return {
@@ -25,13 +26,18 @@ function allyProps(index) {
 function Admin() {
   const dispatch = useDispatch();
   const [tabIndex, setTabIndex] = useState(0);
+  const { user } = useAuth0();
 
   useEffect(() => {
+    if (user && user.email !== "seeshoreadmin@gmail.com") {
+      window.location.href = NODE_BASE_URL + '/products';
+      return;
+    }
     dispatch(getStagedItemsAsync());
     dispatch(getStagedVendorsAsync());
     dispatch(getOrdersAsync());
     dispatch(getUsersAsync());
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   const handleTabChange = (event, newIndex) => {
     setTabIndex(newIndex);
