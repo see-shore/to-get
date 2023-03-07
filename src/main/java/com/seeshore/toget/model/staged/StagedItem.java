@@ -22,6 +22,9 @@ public class StagedItem implements Serializable {
     @Column(name = "price")
     private int price;
 
+    @Column(name = "units")
+    private String units;
+
     @Column(name = "added_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date addedDate;
@@ -38,6 +41,7 @@ public class StagedItem implements Serializable {
         try {
             this.name = requestItem.getName();
             this.price = requestItem.getPrice();
+            this.units = requestItem.getUnits();
             this.addedDate = new Date();
             this.available = 1;
             this.vendor = vendor;
@@ -59,6 +63,22 @@ public class StagedItem implements Serializable {
 
     public int getPrice() {
         return price;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
     }
 
     public Date getAddedDate() {

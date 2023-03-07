@@ -3,7 +3,7 @@
     "cursor": "pointer"
   },
   "dialogContent": {
-    "height": 250
+    "height": 300
   },
   "dialogTitle": {
     "display": "flex",

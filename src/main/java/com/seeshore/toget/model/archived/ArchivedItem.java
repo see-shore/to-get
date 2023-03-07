@@ -20,6 +20,9 @@ public class ArchivedItem implements Serializable {
     @Column(name = "price")
     private int price;
 
+    @Column(name = "units")
+    private String units;
+
     @Column(name = "added_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date addedDate;
@@ -31,6 +34,7 @@ public class ArchivedItem implements Serializable {
         this.addedDate = item.getAddedDate();
         this.name = item.getName();
         this.price = item.getPrice();
+        this.units = item.getUnits();
         this.vendorId = vendorId;
     }
 

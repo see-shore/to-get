@@ -9,3 +9,8 @@ export const addStagedItem = async (itemData) => {
   const response = await axios.post('/staged-item/new', itemData);
   return response.data;
 };
+
+export const updateStagedItem = async (itemData) => {
+  const response = await axios.put(`/staged-item?itemId=${itemData.id}`, itemData);
+  return response.data;
+};

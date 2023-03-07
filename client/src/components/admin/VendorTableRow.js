@@ -20,6 +20,7 @@ import { useDispatch } from 'react-redux';
 
 import styles from '../../styles/components/VendorTableRow.json';
 import DeleteItemDialog from './DeleteItemDialog';
+import { updateStagedItemAsync } from '../../redux/slices/staged/stagedItemsSlice';
 
 function availabilityCopy(available) {
   if (available === 1) {
@@ -43,6 +44,7 @@ function VendorTableRow(props) {
     setFormValue({
       name: row.name,
       price: row.price.toString(),
+      units: row.units,
       available: row.available
     });
   };
@@ -53,11 +55,12 @@ function VendorTableRow(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const item = {
+    const itemData = {
+      id: row.id,
       price: parseInt(formValue.price),
       ...formValue
     };
-    // TODO: dispatch update
+    dispatch(updateStagedItemAsync(itemData));
     handleClose();
   };
 
@@ -116,6 +119,16 @@ function VendorTableRow(props) {
               fullWidth
               sx={styles.textField}
             />
+            <TextField 
+              id='units'
+              name='units'
+              label='Units (e.g., "lb", "L", "unit")'
+              placeholder={row.units}
+              value={formValue.units}
+              onChange={handleChange}
+              fullWidth
+              sx={styles.textField}
+            />
             <Grid container sx={styles.availableRow}>
               <Grid item sx={{ marginLeft: 2 }}>
                 Available
@@ -147,6 +160,7 @@ function VendorTableRow(props) {
         <TableCell>{row.id}</TableCell>
         <TableCell>{row.name}</TableCell>
         <TableCell>{`$${row.formattedPrice}`}</TableCell>
+        <TableCell>{row.units}</TableCell>
         <TableCell>{row.formattedDate.toDateString()}</TableCell>
         <TableCell>{availabilityCopy(row.available)}</TableCell>
       </TableRow>

@@ -1,5 +1,6 @@
 package com.seeshore.toget.controller.staged;
 
+import com.seeshore.toget.model.Item;
 import com.seeshore.toget.model.request.RequestItem;
 import com.seeshore.toget.model.staged.StagedItem;
 import com.seeshore.toget.model.staged.StagedVendor;
@@ -94,6 +95,31 @@ public class StagedItemController {
             stagedItemService.deleteStagedItem(fetchedItem);
             return ResponseEntity.status(HttpStatus.OK)
                     .body("Successfully deleted staged item with ID: " + itemId);
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error", e);
+        }
+    }
+
+    // Update a staged item
+    @PutMapping("/staged-item")
+    public ResponseEntity<StagedItem> updateStagedItem(@RequestParam Long itemId,
+                                           @RequestBody RequestItem item) {
+        try {
+            Optional<StagedItem> itemRecord = stagedItemService.findStagedItemById(itemId);
+            if (itemRecord.isEmpty()) {
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                        "Provided item ID is unknown");
+            }
+            StagedItem fetchedItem = itemRecord.get();
+            fetchedItem.setName(item.getName());
+            fetchedItem.setPrice(item.getPrice());
+            fetchedItem.setUnits(item.getUnits());
+            fetchedItem.setAvailable(item.getAvailable());
+
+            StagedItem savedItem = stagedItemService.saveStagedItem(fetchedItem);
+            return new ResponseEntity<>(savedItem, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,

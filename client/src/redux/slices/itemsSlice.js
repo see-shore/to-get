@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getItems } from '../api/itemsAPI';
+import { getItems, updateItem } from '../api/itemsAPI';
 
 const initialState = {
   items: [],
   cart: {},   // { itemId: quantity }
-  loadingItemsData: false
+  loadingItemsData: false,
+  loadingItemData: false
 };
 
 export const getItemsAsync = createAsyncThunk(
@@ -12,6 +13,14 @@ export const getItemsAsync = createAsyncThunk(
   async (_, { dispatch }) => {
     const items = await getItems();
     return items;
+  }
+);
+
+export const updateItemAsync = createAsyncThunk(
+  'items/updateItem',
+  async (itemData, { dispatch }) => {
+    const item = await updateItem(itemData);
+    return item;
   }
 );
 
@@ -48,7 +57,17 @@ export const itemsSlice = createSlice({
       .addCase(getItemsAsync.fulfilled, (state, action) => {
         state.loadingItemsData = false;
         state.items = action.payload;
-      });
+      })
+      .addCase(updateItemAsync.pending, (state) => {
+        state.loadingItemData = true;
+      })
+      .addCase(updateItemAsync.fulfilled, (state, action) => {
+        state.loadingItemData = false;
+        let index = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        state.items[index] = action.payload;
+      })
   }
 });
 

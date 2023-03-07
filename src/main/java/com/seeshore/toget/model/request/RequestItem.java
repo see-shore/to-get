@@ -3,6 +3,7 @@ package com.seeshore.toget.model.request;
 public class RequestItem {
     private String name;
     private int price;
+    private String units;
     private int available;
     private Long vendorId;
 
@@ -12,6 +13,10 @@ public class RequestItem {
 
     public int getPrice() {
         return price;
+    }
+
+    public String getUnits() {
+        return units;
     }
 
     public int getAvailable() {

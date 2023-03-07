@@ -108,4 +108,28 @@ public class ItemController {
                     "Internal server error", e);
         }
     }
+
+    // Update an item
+    @PutMapping("/item")
+    public ResponseEntity<Item> updateItem(@RequestParam Long itemId,
+                                           @RequestBody RequestItem item) {
+        try {
+            Optional<Item> itemRecord = itemService.findItemById(itemId);
+            if (itemRecord.isEmpty()) {
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                        "Provided item ID is unknown");
+            }
+            Item fetchedItem = itemRecord.get();
+            fetchedItem.setName(item.getName());
+            fetchedItem.setPrice(item.getPrice());
+            fetchedItem.setUnits(item.getUnits());
+
+            Item savedItem = itemService.saveItem(fetchedItem);
+            return new ResponseEntity<>(savedItem, HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error", e);
+        }
+    }
 }

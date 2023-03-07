@@ -24,6 +24,7 @@ function AddItemDialog(props) {
   const [formValue, setFormValue] = useState({
     name: '',
     price: '',
+    units: '',
     vendorId: 0
   });
   const { vendor } = props;
@@ -44,6 +45,7 @@ function AddItemDialog(props) {
         ...prevState,
         name: '',
         price: '',
+        units: '',
         vendorId: 0
       };
     });
@@ -59,6 +61,7 @@ function AddItemDialog(props) {
     const itemData = {
       name: formValue.name.trim(),
       price: parseInt(formValue.price.trim()),
+      units: formValue.units.trim(),
       vendorId: vendor.id
     };
     dispatch(addStagedItemAsync(itemData));
@@ -107,6 +110,16 @@ function AddItemDialog(props) {
               name='price'
               label='Price (Cents)'
               value={formValue.price}
+              onChange={handleChange}
+              sx={styles.textField}
+              fullWidth
+            />
+            <TextField
+              required
+              id='units'
+              name='units'
+              label='Units (e.g., "lb", "L", "unit")'
+              value={formValue.units}
               onChange={handleChange}
               sx={styles.textField}
               fullWidth
