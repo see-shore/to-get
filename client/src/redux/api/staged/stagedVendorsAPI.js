@@ -9,3 +9,8 @@ export const addStagedVendor = async (vendorData) => {
   const response = await axios.post('/staged-vendor/new', vendorData);
   return response.data;
 };
+
+export const deleteStagedVendor = async (vendorId) => {
+  const response = await axios.delete(`/staged-vendor?vendorId=${vendorId}`);
+  return response.status;
+};

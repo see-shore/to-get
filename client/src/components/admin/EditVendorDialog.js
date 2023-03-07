@@ -12,10 +12,13 @@ import {
 import {
   Edit as EditIcon,
   Close as CloseIcon,
-  Send as SendIcon
+  Send as SendIcon,
+  Delete as DeleteIcon
 } from '@mui/icons-material';
 
 import styles from '../../styles/components/EditVendorDialog.json';
+import { useDispatch } from 'react-redux';
+import { deleteStagedVendorAsync } from '../../redux/slices/staged/stagedVendorsSlice';
 
 function EditVendorDialog(props) {
   const [open, setOpen] = useState(false);
@@ -24,6 +27,7 @@ function EditVendorDialog(props) {
     phone: '',
     website: ''
   });
+  const dispatch = useDispatch();
 
   const { vendor } = props;
 
@@ -60,6 +64,11 @@ function EditVendorDialog(props) {
     // dispatch update this vendor
     handleClose();
   };
+
+  const handleDelete = () => {
+    dispatch(deleteStagedVendorAsync(vendor.id));
+    handleClose();
+  }
 
   return (
     <>
@@ -109,6 +118,9 @@ function EditVendorDialog(props) {
             />
           </DialogContent>
           <DialogActions>
+            <Button style={{ color: '#ef5350' }} variant='outlined' onClick={handleDelete}>
+              <DeleteIcon sx={styles.icon} />Delete vendor
+            </Button>
             <Button onClick={handleSubmit} variant='outlined' sx={{ color: '#609966' }} type='submit'>
               <SendIcon sx={styles.icon} />Edit vendor
             </Button>

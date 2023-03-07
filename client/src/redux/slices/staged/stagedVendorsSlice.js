@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addStagedVendor, getStagedVendors } from '../../api/staged/stagedVendorsAPI';
+import { addStagedVendor, deleteStagedVendor, getStagedVendors } from '../../api/staged/stagedVendorsAPI';
 
 const initialState = {
   stagedVendors: [],
@@ -22,6 +22,14 @@ export const addStagedVendorAsync = createAsyncThunk(
   }
 );
 
+export const deleteStagedVendorAsync = createAsyncThunk(
+  'stagedVendors/deleteStagedVendor',
+  async (vendorId, { dispatch }) => {
+    await deleteStagedVendor(vendorId);
+    return vendorId;
+  }
+);
+
 export const stagedVendorsSlice = createSlice({
   name: 'stagedVendors',
   initialState,
@@ -41,6 +49,15 @@ export const stagedVendorsSlice = createSlice({
       .addCase(addStagedVendorAsync.fulfilled, (state, action) => {
         state.loadingStagedVendorsData = false;
         state.stagedVendors.push(action.payload);
+      })
+      .addCase(deleteStagedVendorAsync.fulfilled, (state, action) => {
+        let index = state.stagedVendors.findIndex(
+          (vendor) => vendor.id === action.payload
+        );
+        state.stagedVendors = [
+          ...state.stagedVendors.slice(0, index),
+          ...state.stagedVendors.slice(index + 1)
+        ];
       });
   }
 });
