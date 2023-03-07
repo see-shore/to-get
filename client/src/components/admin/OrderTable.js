@@ -12,7 +12,7 @@ import styles from '../../styles/components/OrderTable.json';
 import OrderTableRow from './OrderTableRow';
 
 function OrderTable(props) {
-  const { orders } = props;
+  const { orders, user } = props;
 
   return (
     <TableContainer>
@@ -27,7 +27,7 @@ function OrderTable(props) {
         </TableHead>
         <TableBody>
           {orders.map((order) => (
-            <OrderTableRow key={order.id} order={order} />
+            <OrderTableRow key={order.id} order={order} user={user} />
           ))}
         </TableBody>
       </Table>

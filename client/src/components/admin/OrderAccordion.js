@@ -25,7 +25,7 @@ function OrderAccordion(props) {
           <h3>{user.firstName + " " + user.lastName}'s Orders</h3>
       </AccordionSummary>
       <AccordionDetails>
-        <OrderTable orders={orders} />
+        <OrderTable orders={orders} user={user} />
       </AccordionDetails>
     </Accordion>
   );

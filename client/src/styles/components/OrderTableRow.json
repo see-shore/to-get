@@ -1,5 +1,23 @@
 {
   "row": {
     "cursor": "pointer"
+  },
+  "dialogContent": {
+    "height": 200,
+    "width": 300
+  },
+  "icon": {
+    "margin": "auto 5px auto 5px"
+  },
+  "header": {
+    "fontSize": 15,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold",
+    "marginBottom": 20
+  },
+  "bodyLine": {
+    "fontSize": 12,
+    "fontFamily": "helvetica",
+    "marginTop": 5
   }
 }

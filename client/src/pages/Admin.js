@@ -15,6 +15,7 @@ import UsersPanel from '../components/admin/UsersPanel';
 import OrdersPanel from '../components/admin/OrdersPanel';
 import NavBar from '../components/NavBar';
 import { NODE_BASE_URL } from '../App';
+import { getItemsAsync } from '../redux/slices/itemsSlice';
 
 function allyProps(index) {
   return {
@@ -37,6 +38,7 @@ function Admin() {
     dispatch(getStagedVendorsAsync());
     dispatch(getOrdersAsync());
     dispatch(getUsersAsync());
+    dispatch(getItemsAsync());
   }, [dispatch, user]);
 
   const handleTabChange = (event, newIndex) => {
