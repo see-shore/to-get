@@ -68,5 +68,10 @@
     "fonFamily": "helvetica",
     "fontSize": 12,
     "marginRight": 5
+  },
+  "adminButton": {
+    "position": "absolute",
+    "top": 10,
+    "left": 230
   }
 }

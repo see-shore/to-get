@@ -1,0 +1,28 @@
+{
+  "container": {
+    "display": "flex",
+    "alignItems": "center",
+    "borderRadius": 10,
+    "borderColor": "#DF2E38",
+    "borderStyle": "solid",
+    "borderWidth": 1,
+    "cursor": "pointer"
+  },
+  "button": {
+    "backgroundColor": "#DF2E38",
+    "color": "#FFFFFF",
+    "width": 40,
+    "height": 40,
+    "margin": "5px 5px 5px 5px"
+  },
+  "copy": {
+    "fontSize": 12,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold",
+    "marginRight": 5
+  },
+  "icon": {
+    "width": 30,
+    "height": 30
+  }
+}

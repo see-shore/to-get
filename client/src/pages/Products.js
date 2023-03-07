@@ -15,6 +15,7 @@ import { cartExists, isCartValid, getCart } from '../util/AppUtil';
 import { setCart } from '../redux/slices/itemsSlice';
 import divider from '../images/div-divider.png';
 import { getUserAsync } from '../redux/slices/usersSlice';
+import AdminButton from '../components/admin/AdminButton';
 
 function Products() {
   const dispatch = useDispatch();
@@ -44,6 +45,10 @@ function Products() {
 
   const height = Math.ceil(items.length / 2) * 240;
 
+  const isUserAdmin = () => {
+    return user.name === 'seeshoreadmin@gmail.com';
+  }
+
   return (
     <div>
       <div style={styles.backgroundCard}>
@@ -51,6 +56,11 @@ function Products() {
           <UserProfileDialog fullName={accountName} />
           <p style={styles.usernameCopy}>{accountName}</p>
         </div>
+        {isUserAdmin() && 
+          <div style={styles.adminButton}>
+            <AdminButton />
+          </div>
+        }
         <div style={styles.avatar}>
           <ShopOwnerAvatar />
         </div>
