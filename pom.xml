@@ -11,6 +11,7 @@
 	<groupId>com.see-shore</groupId>
 	<artifactId>to-get</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>to-get</name>
 	<description>To.get – a group buying app for the CDM</description>
 	<properties>
@@ -53,6 +54,7 @@
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>3.0.7</version>
 				<configuration>
+					<appName>to-get-0.0.1-SNAPSHOT</appName>
 					<processTypes>
 						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
 					</processTypes>

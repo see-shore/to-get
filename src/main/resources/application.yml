@@ -1,8 +1,8 @@
 spring:
   datasource:
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-    url: ${DB_URL}
+    username: admin
+    password: HmIP6ecTZlQloUwioha4
+    url: jdbc:mysql://toget-db.cq3uctxl0ape.us-west-2.rds.amazonaws.com:3306/toget
     driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
