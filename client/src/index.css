@@ -6,8 +6,7 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -31,4 +30,8 @@ code {
 .linkStyle {
   text-decoration: none;
   color: black;
+}
+
+p {
+  font-family: 'Inter', sans-serif;
 }
