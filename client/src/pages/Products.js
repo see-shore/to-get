@@ -54,8 +54,7 @@ function Products() {
     <div style={styles.pageContainer}>
       <div style={styles.backgroundCard}>
         <div style={styles.profile}>
-          <UserProfileDialog fullName={accountName} />
-          <p style={styles.usernameCopy}>{accountName}</p>
+          <UserProfileDialog fullName={accountName} firstName={accountUser.firstName} />
         </div>
         {isUserAdmin() && (
           <div style={styles.adminButton}>
