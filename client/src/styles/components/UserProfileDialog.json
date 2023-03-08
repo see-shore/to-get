@@ -14,8 +14,6 @@
   "userName": {
     "border": "3px solid black",
     "height": 40,
-    "alignItems": "center",
-    "display": "flex",
     "margin": -20,
     "paddingLeft": "calc(20px + 1em)",
     "paddingRight": "2em",
@@ -23,7 +21,12 @@
     "fontWeight": 700,
     "fontSize": "1.2rem",
     "letterSpacing": 1,
-    "backgroundColor": "#D9D9D9"
+    "backgroundColor": "#D9D9D9",
+    "maxWidth": 250,
+    "overflow": "hidden",
+    "textOverflow": "ellipsis",
+    "whiteSpace": "nowrap",
+    "lineHeight": "33px"
   },
   "dialogTitle": {
     "display": "flex",
