@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query(value = "SELECT * FROM Users u WHERE u.email = :email LIMIT 1;", nativeQuery = true)
+    @Query(value = "SELECT * FROM users u WHERE u.email = :email LIMIT 1;", nativeQuery = true)
     User findUserByEmail(@Param("email") String email);
 }

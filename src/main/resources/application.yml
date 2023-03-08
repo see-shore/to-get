@@ -2,8 +2,8 @@ spring:
   datasource:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
-    url: jdbc:mysql://${DB_URL}:${DB_PORT}/${DB_NAME}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL}
+    driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
