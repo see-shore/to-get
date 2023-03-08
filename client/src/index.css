@@ -35,3 +35,15 @@ code {
 p {
   font-family: 'Inter', sans-serif;
 }
+
+.styled-button {
+  padding: 0.7em;
+  background: black;
+  border: 2px solid black;
+  border-radius: 2em;
+  width: 100%;
+  color: white;
+  font-weight: 700;
+  font-size: 1.7rem;
+  font-family: 'Inter', sans-serif;
+}

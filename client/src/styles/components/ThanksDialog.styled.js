@@ -1,37 +1,31 @@
 import styled from 'styled-components';
 import { Dialog, DialogContent } from '@mui/material';
 
-export const StyledTitle = styled.h2`
-  font-size: 2.4rem;
-  padding: 1em 0 0.3em 0;
-`;
+export const StyledTitle = styled.h2``;
 
-export const Button = styled.button`
-  font-size: 1.4rem;
-  font-weight: bold;
-  padding: 0.6em;
-  border: transparent;
-  background: #b5b7bc;
-  border-radius: 20px;
-  width: 60%;
-  position: absolute;
-  bottom: 2em;
-  cursor: pointer;
-`;
-
-export const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
+export const TitleContainer = styled.div`
+  & h2 {
+    font-size: 2rem;
+  }
+  padding: 2em 0 1em;
+  text-align: center;
 `;
 
 export const SecHeading = styled.h2`
-  font-size: 1.8rem;
+  font-weight: 500;
+  font-size: 1.6rem;
+  text-align: center;
 `;
 
-export const EnvText = styled.p`
-  font-size: 1.6rem;
-  font-weight: 600;
+export const EnvText = styled(SecHeading)`
   margin-top: 1em;
+`;
+
+export const Button = styled.button`
+  cursor: pointer;
+  position: absolute;
+  width: calc(100% - 1em);
+  inset: auto 0.5em 1em;
 `;
 
 export const StyledDialogContent = styled(DialogContent)`
@@ -41,7 +35,7 @@ export const StyledDialogContent = styled(DialogContent)`
 
 export const StyledDialog = styled(Dialog)`
   div[role='dialog'] {
-    padding: 0 3em 7.5em;
+    padding: 0 3em 6.5em;
   }
 `;
 
@@ -49,33 +43,49 @@ export const PlasticContainer = styled.div`
   display: flex;
   gap: 1em;
   justify-content: center;
-  & {
-    font-size: 1.8rem;
-    font-weight: 600;
+  & div {
+    width: 100%;
   }
 `;
 
 export const ItemContainer = styled.div`
   text-align: center;
+  & p {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
 `;
 
-export const TempImage = styled.div`
-  background: #e6e6e6;
+export const Image = styled.img`
   width: 60px;
-  height: 70px;
+  height: auto;
+  object-fit: cover;
 `;
 
 export const ItemName = styled.p``;
-export const ItemNum = styled.p``;
+export const ItemNum = styled.p`
+  color: #72767e;
+`;
 
-export const StyledButton = styled.button`
-  padding: 0.7em;
-  background: black;
-  border: 2px solid black;
-  border-radius: 2em;
-  width: 100%;
-  color: white;
-  font-weight: 700;
-  font-size: 1.7rem;
-  font-family: 'Inter', sans-serif;
+export const ProfileContainer = styled.div`
+  display: flex;
+  gap: 0.5em;
+`;
+
+export const ProfileTiles = styled.img`
+  height: 35px;
+  width: auto;
+`;
+
+export const UserContainer = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5em;
+`;
+
+export const UserText = styled.p`
+  font-size: 1.2rem;
+  margin-top: 0.5em;
+  font-weight: 600;
 `;
