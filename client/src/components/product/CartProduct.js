@@ -57,7 +57,6 @@ function CartProduct(props) {
         </ImageContainer>
         <InfoContainer>
           <div>
-            {console.log(item)}
             <StyledName>{item.name}</StyledName>
             <UnitPrice>
               {formatPrice(item.price)}/{'unit'}
