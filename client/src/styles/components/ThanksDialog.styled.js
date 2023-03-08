@@ -40,7 +40,6 @@ export const StyledDialogContent = styled(DialogContent)`
 `;
 
 export const StyledDialog = styled(Dialog)`
-  padding: 1em;
   div[role='dialog'] {
     padding: 0 3em 7.5em;
   }
@@ -50,7 +49,6 @@ export const PlasticContainer = styled.div`
   display: flex;
   gap: 1em;
   justify-content: center;
-
   & {
     font-size: 1.8rem;
     font-weight: 600;
@@ -69,3 +67,15 @@ export const TempImage = styled.div`
 
 export const ItemName = styled.p``;
 export const ItemNum = styled.p``;
+
+export const StyledButton = styled.button`
+  padding: 0.7em;
+  background: black;
+  border: 2px solid black;
+  border-radius: 2em;
+  width: 100%;
+  color: white;
+  font-weight: 700;
+  font-size: 1.7rem;
+  font-family: 'Inter', sans-serif;
+`;

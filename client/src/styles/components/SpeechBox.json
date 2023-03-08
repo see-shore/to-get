@@ -1,7 +1,7 @@
 {
   "container": {
     "maxWidth": "60vw",
-    "width": 210,
+    "width": 200,
     "display": "flex",
     "justifyContent": "center",
     "alignItems": "center",

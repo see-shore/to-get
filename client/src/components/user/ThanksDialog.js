@@ -3,6 +3,7 @@ import {
   StyledTitle,
   Button,
   ButtonContainer,
+  StyledButton,
   SecHeading,
   EnvText,
   StyledDialog,
@@ -27,10 +28,10 @@ const plastic = [
 ];
 
 function ThanksDialog(props) {
-  const open = useSelector(state => state.orders.thanksDialogOpen);
-  const loading = useSelector(state => state.orders.saveOrdersPending);
+  const open = useSelector((state) => state.orders.thanksDialogOpen);
+  const loading = useSelector((state) => state.orders.saveOrdersPending);
   const { isEmpty } = props;
-  const buttonCopy = isEmpty ? "Continue Shopping" : "Confirm Order";
+  const buttonCopy = isEmpty ? 'Continue Shopping' : 'Confirm Order';
 
   const handleClose = () => {
     props.onClose();
@@ -61,13 +62,13 @@ function ThanksDialog(props) {
 
   return (
     <>
-      {loading
-        ? <div style={styles.button}>
-            <CircularProgress size={17} />
-          </div>
-        : <div onClick={() => handleOrderSubmit()} style={styles.button}>
-            <p style={styles.buttonText}>{buttonCopy}</p>
-          </div>}
+      {loading ? (
+        <div style={styles.button}>
+          <CircularProgress size={17} />
+        </div>
+      ) : (
+        <StyledButton onClick={() => handleOrderSubmit()}>{buttonCopy}</StyledButton>
+      )}
       <StyledDialog open={open} fullWidth>
         <StyledTitle>Thanks</StyledTitle>
         <SecHeading>By getting things together we can reduce our impact.</SecHeading>
