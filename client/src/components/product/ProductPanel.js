@@ -18,7 +18,6 @@ function ProductPanel(props) {
 
   return (
     <Grid container sx={{ ...styles.container, height: 'auto' }}>
-      {/* <Grid container sx={{ ...styles.container, height: height }}> */}
       {items.map((item) => (
         <Grid item key={item.id}>
           <Product item={item} defaultN={checkCartCache(item.id)} />

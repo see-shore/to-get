@@ -1,31 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import {
-  IconButton,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  Grid
-} from '@mui/material';
-import {
-  ShoppingCart as ShoppingCartIcon
-} from '@mui/icons-material';
+import { IconButton, DialogContent, DialogTitle, Grid } from '@mui/material';
+import { ShoppingCart as ShoppingCartIcon } from '@mui/icons-material';
 
-import styles from '../../styles/components/CartDialog.json'
+import styles from '../../styles/components/CartDialog.json';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectItemsMap } from '../../redux/selectors/selectors';
 import { createOrdersAsync } from '../../redux/slices/ordersSlice';
+import { Dialog } from '../../styles/components/CartDialog.styled';
+import CartProduct from '../product/CartProduct';
 import ThanksDialog from './ThanksDialog';
 
 function CartButton(props) {
   const [open, setOpen] = useState(false);
   const [totalBalance, setTotalBalance] = useState(0);
-  const cart = useSelector(state => state.items.cart);
-  const itemsMap = useSelector(state => selectItemsMap(state));
+  const cart = useSelector((state) => state.items.cart);
+  const itemsMap = useSelector((state) => selectItemsMap(state));
   const [isEmpty, setIsEmpty] = useState(true);
   // This is the cart translated into order objects to send to orders endpoint
   const [orders, setOrders] = useState([]);
   const dispatch = useDispatch();
   const { firstName, userId } = props;
+
+  const totalText = 'Total Estimate:';
+  const deliveryText = 'The delivery scheduled on';
+  const deliveryDate = 'March 10th';
 
   useEffect(() => {
     setTotalBalance(0);
@@ -40,14 +38,14 @@ function CartButton(props) {
           const item = itemsMap[itemId];
           const quantity = cart[itemId];
           let orderBalance = quantity * item.price;
-          setTotalBalance(prevBalance => prevBalance + orderBalance);
+          setTotalBalance((prevBalance) => prevBalance + orderBalance);
 
           const newOrder = {
             itemId,
             userId,
-            quantity
+            quantity,
           };
-          setOrders(prevState => [...prevState, newOrder]);
+          setOrders((prevState) => [...prevState, newOrder]);
         }
       }
     }
@@ -64,7 +62,12 @@ function CartButton(props) {
   const handleSubmit = () => {
     dispatch(createOrdersAsync(orders));
   };
-
+  const checkCartCache = (itemId) => {
+    if (itemId in cart) {
+      return cart[itemId];
+    }
+    return 0;
+  };
   const generateOrder = (itemId, quantity) => {
     if (itemsMap[itemId]) {
       const item = itemsMap[itemId];
@@ -86,14 +89,11 @@ function CartButton(props) {
   const generateEmptyDialogContent = () => {
     return (
       <DialogContent sx={styles.emptyDialogContent}>
-        <div>
+        <div style={{ ...styles.textCopy, textAlign: 'center' }}>
           <p style={styles.orderLineCopy}>Your cart is empty! Please select</p>
           <p style={{ ...styles.orderLineCopy, marginTop: 5 }}>an item to continue.</p>
         </div>
-        <div
-          onClick={handleClose}
-          style={{ ...styles.orderButton, marginBottom: 10, marginTop: 30 }}
-        >
+        <div onClick={handleClose} style={{ ...styles.orderButton, marginTop: '2em' }}>
           <ThanksDialog isEmpty={isEmpty} />
         </div>
       </DialogContent>
@@ -103,26 +103,25 @@ function CartButton(props) {
   const generateNonEmptyDialogContent = () => {
     return (
       <DialogContent sx={styles.dialogContent}>
-        {Object.keys(cart).map((itemId) => {
-          return generateOrder(itemId, cart[itemId]);
-        })}
+        <div style={styles.itemContainer}>
+          {Object.keys(cart).map((item, idx) => {
+            return <CartProduct key={idx} item={itemsMap[item]} defaultN={checkCartCache(item)} />;
+          })}
+        </div>
         <div style={styles.totalLine}>
           <div>
-            <p style={{ ...styles.orderLineCopy, marginRight: 10 }}>{"Your total is: "}</p>
+            <p style={{ ...styles.orderLineCopy, marginRight: 10 }}>{totalText}</p>
           </div>
           <div>
             <p style={styles.orderLineCopy}>{`$${(totalBalance / 100).toFixed(2)}`}</p>
           </div>
         </div>
-        <div style={styles.deliveryCopy}>
-          <p style={styles.orderLineCopy}>Your order will be delivered on</p>
-          <p style={{ ...styles.orderLineCopy, marginTop: 5 }}>March 10th.</p>
+        <div style={styles.textCopy}>
+          <p style={styles.orderLineCopy}>{deliveryText}</p>
+          <p style={{ ...styles.orderLineCopy, marginTop: 5 }}>{deliveryDate}</p>
         </div>
         <div style={styles.orderButton}>
-          <ThanksDialog 
-            isEmpty={isEmpty} 
-            onOrderClick={handleSubmit} 
-            onClose={handleClose} />
+          <ThanksDialog isEmpty={isEmpty} onOrderClick={handleSubmit} onClose={handleClose} />
         </div>
       </DialogContent>
     );
@@ -132,20 +131,24 @@ function CartButton(props) {
     <>
       <div style={styles.button} onClick={handleOpen}>
         {firstName}'s Cart
-        <IconButton sx={{ width: 30, height: 30, marginLeft: 1, color: "#FFFFFF" }}>
+        <IconButton sx={{ width: 30, height: 30, marginLeft: 1, color: '#FFFFFF' }}>
           <ShoppingCartIcon fontSize='large' />
         </IconButton>
       </div>
-      <Dialog open={open} onClose={handleClose} maxWidth='xs' sx={styles.dialog}>
-        <DialogTitle>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        fullWidth
+        maxWidth='xs'
+        xs={styles.dialog}
+        PaperProps={styles.paperStyle}
+      >
+        <DialogTitle sx={styles.title}>
           <Grid sx={styles.dialogTitle}>
             <p style={styles.cartCopy}>{firstName}'s Cart</p>
           </Grid>
         </DialogTitle>
-        <form>
-          {isEmpty ?
-            generateEmptyDialogContent() : generateNonEmptyDialogContent()}
-        </form>
+        <form>{isEmpty ? generateEmptyDialogContent() : generateNonEmptyDialogContent()}</form>
       </Dialog>
     </>
   );

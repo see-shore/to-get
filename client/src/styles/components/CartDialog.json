@@ -19,8 +19,13 @@
     "display": "flex",
     "justifyContent": "space-between"
   },
+  "dialog": {
+    "width": "100%",
+    "maxWidth": "100vw"
+  },
   "dialogContent": {
-    "minHeight": 250
+    "minHeight": 250,
+    "padding": "20px 12px"
   },
   "emptyDalogContent": {
     "minHeight": 150
@@ -33,7 +38,6 @@
   },
   "cartCopy": {
     "fontSize": 15,
-    "fontFamily": "helvetica",
     "fontWeight": "bold"
   },
   "orderLine": {
@@ -41,22 +45,41 @@
     "justifyContent": "space-between",
     "marginBottom": 10
   },
-  "orderLineCopy": {
-    "fontSize": 15,
-    "fontFamily": "helvetica",
-    "fontWeight": "bold"
-  },
+  "orderLineCopy": {},
   "totalLine": {
     "display": "flex",
     "justifyContent": "right",
-    "marginTop": 75
+    "marginTop": "0.8em",
+    "fontFamily": "Inter",
+    "fontSize": "1.8rem",
+    "fontWeight": 700
   },
-  "deliveryCopy": {
-    "marginTop": 20
+  "textCopy": {
+    "marginTop": "0.8em",
+    "fontSize": "1.6rem",
+    "fontWeight": 500,
+    "fontFamily": "Inter"
   },
   "orderButton": {
     "display": "flex",
     "justifyContent": "center",
     "marginTop": 20
+  },
+  "itemContainer": {
+    "display": "flex",
+    "flexDirection": "column",
+    "gap": "0.7em",
+    "maxHeight": "25em",
+    "overflow": "auto",
+    "scrollbarWidth": "none"
+  },
+  "paperStyle": {
+    "style": {
+      "borderRadius": "2em",
+      "border": "2px solid black",
+      "width": "100%",
+      "margin": "24px",
+      "maxHeight": "65vh"
+    }
   }
 }
