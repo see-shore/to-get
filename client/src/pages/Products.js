@@ -44,7 +44,6 @@ function Products() {
       <div style={styles.backgroundCard}>
         <div style={styles.profile}>
           <UserProfileDialog />
-          <p style={styles.usernameCopy}>{'Jane Doe'}</p>
         </div>
         <div style={styles.avatarContainer}>
           <div style={styles.avatar}>

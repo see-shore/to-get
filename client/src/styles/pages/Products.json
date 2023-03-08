@@ -35,8 +35,8 @@
   },
   "profile": {
     "position": "absolute",
-    "top": 10,
-    "left": 20
+    "top": 15,
+    "left": 10
   },
   "usernameCopy": {
     "fontSize": 12,
