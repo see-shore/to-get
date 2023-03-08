@@ -1,6 +1,6 @@
+import React from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Products from './pages/Products';
@@ -14,7 +14,7 @@ import axios from 'axios';
 import { Auth0Provider } from '@auth0/auth0-react';
 
 export const API_BASE_URL = 'http://localhost:8080';
-export const NODE_BASE_URL = 'http://localhost:3000';
+export const NODE_BASE_URL = 'http://localhost:8080';
 axios.defaults.baseURL = API_BASE_URL;
 
 function App() {

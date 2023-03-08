@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
 
 import { getStagedItemsAsync } from '../redux/slices/staged/stagedItemsSlice';
 import { getStagedVendorsAsync } from '../redux/slices/staged/stagedVendorsSlice';
@@ -14,7 +15,6 @@ import VendorsAndItemsPanel from '../components/admin/VendorsAndItemsPanel';
 import UsersPanel from '../components/admin/UsersPanel';
 import OrdersPanel from '../components/admin/OrdersPanel';
 import NavBar from '../components/NavBar';
-import { NODE_BASE_URL } from '../App';
 import { getItemsAsync } from '../redux/slices/itemsSlice';
 
 function allyProps(index) {
@@ -26,12 +26,13 @@ function allyProps(index) {
 
 function Admin() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [tabIndex, setTabIndex] = useState(0);
   const { user } = useAuth0();
 
   useEffect(() => {
     if (user && user.email !== "seeshoreadmin@gmail.com") {
-      window.location.href = NODE_BASE_URL + '/products';
+      navigate('/products');
       return;
     }
     dispatch(getStagedItemsAsync());
@@ -39,7 +40,7 @@ function Admin() {
     dispatch(getOrdersAsync());
     dispatch(getUsersAsync());
     dispatch(getItemsAsync());
-  }, [dispatch, user]);
+  }, [dispatch, user, navigate]);
 
   const handleTabChange = (event, newIndex) => {
     setTabIndex(newIndex);

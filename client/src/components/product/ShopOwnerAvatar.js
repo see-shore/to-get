@@ -1,5 +1,4 @@
 import React from 'react';
-import shopOwnerImage from '../../images/shop-owner.png';
 
 const styles = {
   image: {
@@ -9,7 +8,7 @@ const styles = {
 
 function ShopOwnerAvatar() {
   return (
-    <img src={shopOwnerImage} alt={"Shop Owner"} style={styles.image} />
+    <img src={'images/shop-owner.png'} alt={"Shop Owner"} style={styles.image} /> // CHANGE THIS
   );
 }
 

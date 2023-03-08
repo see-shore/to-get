@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import AppLogo from '../images/app-logo.png';
+// import AppLogo from '../images/app-logo.png'; // CHANGE THIS
 
 const StyledNavBar = styled.header`
   background: #abe5c2;
@@ -24,8 +24,8 @@ const StyledLogo = styled.img`
 function SimpleNavBar() {
   return (
     <StyledNavBar>
-      <StyledLogo src={'/logo192.png'} />
-      <img src={AppLogo} alt="App Logo" style={{ height: 30, marginTop: 10 }} />
+      <StyledLogo src={'images/logo192.png'} />
+      <img src={'images/app-logo.png'} alt="App Logo" style={{ height: 30, marginTop: 10 }} />
     </StyledNavBar>
   );
 }

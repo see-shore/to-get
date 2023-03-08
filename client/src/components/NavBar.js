@@ -53,7 +53,7 @@ function NavBar() {
   return (
     <StyledNavBar>
       <Link to='/'>
-        <StyledLogo src={'/logo192.png'} />
+        <StyledLogo src={'images/logo192.png'} />
         <img src={TextLogo} alt="Text Logo" style={{ height: 35, marginTop: 10 }} />
       </Link>
       <Button 

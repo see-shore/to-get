@@ -3,14 +3,15 @@ import {
   IconButton
 } from '@mui/material';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import { useNavigate } from 'react-router-dom';
 
 import styles from '../../styles/components/AdminButton.json';
-import { NODE_BASE_URL } from '../../App';
 
 function AdminButton() {
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    window.location.href = NODE_BASE_URL + '/admin';
+    navigate('/admin');
   };
 
   return (
