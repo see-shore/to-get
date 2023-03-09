@@ -1,6 +1,7 @@
 {
   "container": {
     "width": 140,
+    "minWidth": 140,
     "maxWidth": "45vw",
     "minHeight": 170,
     "position": "relative",

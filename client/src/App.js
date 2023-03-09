@@ -24,14 +24,14 @@ function App() {
       domain={process.env.REACT_APP_AUTH0_DOMAIN}
       clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
       authorizationParams={{
-        redirect_uri: (NODE_BASE_URL + '/products')
+        redirect_uri: NODE_BASE_URL + '/products',
       }}
       audience={API_BASE_URL}
       useRefreshTokens
-      cacheLocation="localstorage"
+      cacheLocation='localstorage'
     >
       <Provider store={store}>
-        <div>
+        <div className='App'>
           <Routes>
             <Route path='/' element={<Login />} />
             <Route path='/contact' element={<Contact />} />

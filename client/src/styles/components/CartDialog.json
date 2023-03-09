@@ -1,6 +1,6 @@
 {
   "button": {
-    "width": "80%",
+    "width": "90%",
     "position": "fixed",
     "bottom": 10,
     "height": 40,
@@ -13,7 +13,10 @@
     "fontFamily": "helvetica",
     "fontWeight": "bold",
     "cursor": "pointer",
-    "borderRadius": 20
+    "borderRadius": 20,
+    "padding": "0 2em",
+    "maxWidth": 900,
+    "minWidth": "fit-content"
   },
   "dialogTitle": {
     "display": "flex",
