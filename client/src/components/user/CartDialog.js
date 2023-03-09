@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { IconButton, DialogContent, DialogTitle, Grid } from '@mui/material';
-import { ShoppingCart as ShoppingCartIcon } from '@mui/icons-material';
-
-import styles from '../../styles/components/CartDialog.json';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectItemsMap } from '../../redux/selectors/selectors';
 import { createOrdersAsync } from '../../redux/slices/ordersSlice';
 import { Dialog } from '../../styles/components/CartDialog.styled';
+import { IconButton, DialogContent, DialogTitle, Grid } from '@mui/material';
+import { ShoppingCart as ShoppingCartIcon } from '@mui/icons-material';
+
 import CartProduct from '../product/CartProduct';
 import ThanksDialog from './ThanksDialog';
+import styles from '../../styles/components/CartDialog.json';
 
 function CartButton(props) {
   const [open, setOpen] = useState(false);
@@ -68,30 +68,13 @@ function CartButton(props) {
     }
     return 0;
   };
-  const generateOrder = (itemId, quantity) => {
-    if (itemsMap[itemId]) {
-      const item = itemsMap[itemId];
-      let orderBalance = quantity * item.price;
-      orderBalance = (orderBalance / 100).toFixed(2);
-      return (
-        <div key={itemId} style={styles.orderLine}>
-          <div>
-            <p style={styles.orderLineCopy}>{`${quantity}x   ${item.name}`}</p>
-          </div>
-          <div>
-            <p style={styles.orderLineCopy}>{`$${orderBalance}`}</p>
-          </div>
-        </div>
-      );
-    }
-  };
 
   const generateEmptyDialogContent = () => {
     return (
       <DialogContent sx={styles.emptyDialogContent}>
         <div style={{ ...styles.textCopy, textAlign: 'center' }}>
-          <p style={styles.orderLineCopy}>Your cart is empty! Please select</p>
-          <p style={{ ...styles.orderLineCopy, marginTop: 5 }}>an item to continue.</p>
+          <p>Your cart is empty! Please select</p>
+          <p style={{ marginTop: 5 }}>an item to continue.</p>
         </div>
         <div onClick={handleClose} style={{ ...styles.orderButton, marginTop: '2em' }}>
           <ThanksDialog isEmpty={isEmpty} />
@@ -110,15 +93,15 @@ function CartButton(props) {
         </div>
         <div style={styles.totalLine}>
           <div>
-            <p style={{ ...styles.orderLineCopy, marginRight: 10 }}>{totalText}</p>
+            <p style={{ marginRight: 10 }}>{totalText}</p>
           </div>
           <div>
-            <p style={styles.orderLineCopy}>{`$${(totalBalance / 100).toFixed(2)}`}</p>
+            <p>{`$${(totalBalance / 100).toFixed(2)}`}</p>
           </div>
         </div>
         <div style={styles.textCopy}>
-          <p style={styles.orderLineCopy}>{deliveryText}</p>
-          <p style={{ ...styles.orderLineCopy, marginTop: 5 }}>{deliveryDate}</p>
+          <p>{deliveryText}</p>
+          <p style={{ marginTop: 5 }}>{deliveryDate}</p>
         </div>
         <div style={styles.orderButton}>
           <ThanksDialog isEmpty={isEmpty} onOrderClick={handleSubmit} onClose={handleClose} />

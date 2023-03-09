@@ -1,4 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { CircularProgress } from '@mui/material';
+import dialogStyles from '../../styles/components/CartDialog.json';
 import {
   StyledTitle,
   TitleContainer,
@@ -17,10 +20,6 @@ import {
   UserText,
   UserContainer,
 } from '../../styles/components/ThanksDialog.styled';
-import styles from '../../styles/components/CartDialogButton.json';
-import dialogStyles from '../../styles/components/CartDialog.json';
-import { useSelector } from 'react-redux';
-import { CircularProgress } from '@mui/material';
 
 const plastic = [
   { id: 1, name: 'bag', amt: '8', unit: 'grams', type: 'plastic bags' },
@@ -35,7 +34,7 @@ const users = [
   { id: 1, name: 'Bob', image: 1 },
   { id: 2, name: 'Alice', image: 2 },
   { id: 3, name: 'Eve', image: 3 },
-  { id: 3, name: 'Steve', image: 4 },
+  { id: 4, name: 'Steve', image: 4 },
 ];
 
 function ThanksDialog(props) {
@@ -76,7 +75,7 @@ function ThanksDialog(props) {
           {users
             .filter((_, idx) => idx < 5)
             .map((user) => (
-              <ProfileTiles src={require(`../../images/profiles/${user.image}.png`)} />
+              <ProfileTiles key={user.id} src={require(`../../images/profiles/${user.image}.png`)} />
             ))}
         </ProfileContainer>
         <UserText>
