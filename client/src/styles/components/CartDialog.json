@@ -30,22 +30,10 @@
   "emptyDalogContent": {
     "minHeight": 150
   },
-  "textField": {
-    "marginTop": 2
-  },
-  "icon": {
-    "margin": "auto 5px auto 5px"
-  },
   "cartCopy": {
     "fontSize": 15,
     "fontWeight": "bold"
   },
-  "orderLine": {
-    "display": "flex",
-    "justifyContent": "space-between",
-    "marginBottom": 10
-  },
-  "orderLineCopy": {},
   "totalLine": {
     "display": "flex",
     "justifyContent": "right",
