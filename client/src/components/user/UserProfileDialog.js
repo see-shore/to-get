@@ -12,7 +12,7 @@ import {
 } from '@mui/icons-material';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import Avatar from '../../woman-avatar.png';
+import Avatar from '../../images/woman-avatar.png';
 import styles from '../../styles/components/UserProfileDialog.json';
 import { NODE_BASE_URL } from '../../App';
 import { useDispatch } from 'react-redux';

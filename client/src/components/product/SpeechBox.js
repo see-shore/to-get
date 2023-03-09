@@ -1,12 +1,12 @@
 import React from 'react';
 
-// import SpeechBubble from '../../images/speech-bubble.png'; // CHANGE THIS
+import SpeechBubble from '../../images/speech-bubble.png'; // CHANGE THIS
 import styles from '../../styles/components/SpeechBox.json';
 
 function SpeechBox() {
   return (
     <div style={styles.container}>
-      <img src={'images/speech-bubble.png'} alt="Speech Bubble" style={styles.image} />
+      <img src={SpeechBubble} alt="Speech Bubble" style={styles.image} />
     </div>
   );
 }

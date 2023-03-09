@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import AppLogo from '../images/logo192.png';
 import TextLogo from '../images/app-logo.png';
 import { Button } from '@mui/material';
 import {
@@ -53,7 +54,7 @@ function NavBar() {
   return (
     <StyledNavBar>
       <Link to='/'>
-        <StyledLogo src={'images/logo192.png'} />
+        <StyledLogo src={AppLogo} />
         <img src={TextLogo} alt="Text Logo" style={{ height: 35, marginTop: 10 }} />
       </Link>
       <Button 

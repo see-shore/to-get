@@ -16,7 +16,7 @@ import {
 } from '@mui/icons-material';
 
 import styles from '../../styles/components/UserBlock.json';
-import Avatar from '../../woman-avatar.png';
+import Avatar from '../../images/woman-avatar.png';
 import { useDispatch } from 'react-redux';
 import { updateUserAsync } from '../../redux/slices/usersSlice';
 

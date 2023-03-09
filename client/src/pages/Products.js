@@ -13,7 +13,7 @@ import CartDialog from '../components/user/CartDialog';
 import { setToken } from '../util/AuthUtil';
 import { cartExists, isCartValid, getCart } from '../util/AppUtil';
 import { setCart } from '../redux/slices/itemsSlice';
-// import divider from '../images/div-divider.png'; // CHANGE THIS
+import Divider from '../images/div-divider.png'; // CHANGE THIS
 import { getUserAsync } from '../redux/slices/usersSlice';
 import AdminButton from '../components/admin/AdminButton';
 
@@ -72,7 +72,7 @@ function Products() {
       
       <Grid container sx={styles.productsCard}>
         <Grid item sx={styles.divider}>
-          <img src={'images/div-divider.png'} alt="Divider" style={styles.divider} />
+          <img src={Divider} alt="Divider" style={styles.divider} />
         </Grid>
         <Grid item sx={styles.header}>
           <p style={styles.weekPickCopy}>This week's picks</p>
