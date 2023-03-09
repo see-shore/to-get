@@ -53,7 +53,7 @@ function CartProduct(props) {
     <>
       <ItemContainer>
         <ImageContainer>
-          <CircleImage src={require(`../../images/produce/${item.id}.png`)} />
+          <CircleImage src={require(`../../images/produce/real_${item.id}.png`)} />
         </ImageContainer>
         <InfoContainer>
           <div>
