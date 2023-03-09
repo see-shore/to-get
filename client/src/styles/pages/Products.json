@@ -3,7 +3,7 @@
     "display": "flex",
     "flexDirection": "column",
     "minHeight": "100vh",
-    "maxWidth": "700px",
+    "maxWidth": "800px",
     "margin": "auto",
     "position": "relative"
   },
