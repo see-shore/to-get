@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 import axios from 'axios';
 import { Auth0Provider } from '@auth0/auth0-react';
 
+// CHANGE BOTH TO 'https://ec2-35-89-204-152.us-west-2.compute.amazonaws.com:8080' for prod
 export const API_BASE_URL = 'http://localhost:8080';
 export const NODE_BASE_URL = 'http://localhost:3000';
 axios.defaults.baseURL = API_BASE_URL;

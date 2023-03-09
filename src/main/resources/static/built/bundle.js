@@ -34226,8 +34226,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var API_BASE_URL = 'http://localhost:8080';
-var NODE_BASE_URL = 'http://localhost:8080';
+var API_BASE_URL = 'https://ec2-35-89-204-152.us-west-2.compute.amazonaws.com:8080';
+var NODE_BASE_URL = API_BASE_URL;
 axios__WEBPACK_IMPORTED_MODULE_12__["default"].defaults.baseURL = API_BASE_URL;
 function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_auth0_auth0_react__WEBPACK_IMPORTED_MODULE_11__.Auth0Provider, {
@@ -34360,7 +34360,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-// import AppLogo from '../images/app-logo.png';
+// import AppLogo from '../images/app-logo.png'; // CHANGE THIS
 
 var StyledNavBar = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].header(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  background: #abe5c2;\n  display: flex;\n  justify-content: left;\n  align-items: center;\n  height: 8vh;\n  padding: 0 4em;\n  position: fixed;\n  width: 100%;\n  top: 0;\n  z-index: 1000;\n"])));
 var StyledLogo = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].img(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  height: 4em;\n  margin-left: -10px;\n"])));
@@ -36341,8 +36341,10 @@ function ShopOwnerAvatar() {
     src: 'images/shop-owner.png',
     alt: "Shop Owner",
     style: styles.image
-  });
+  }) // CHANGE THIS
+  ;
 }
+
 /* harmony default export */ __webpack_exports__["default"] = (ShopOwnerAvatar);
 
 /***/ }),
@@ -36360,7 +36362,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_components_SpeechBox_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../styles/components/SpeechBox.json */ "./src/styles/components/SpeechBox.json");
 
 
-// import SpeechBubble from '../../images/speech-bubble.png';
+// import SpeechBubble from '../../images/speech-bubble.png'; // CHANGE THIS
 
 function SpeechBox() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -37079,7 +37081,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-// import divider from '../images/div-divider.png';
+// import divider from '../images/div-divider.png'; // CHANGE THIS
 
 
 function Products() {
