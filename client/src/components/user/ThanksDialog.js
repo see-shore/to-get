@@ -95,9 +95,9 @@ function ThanksDialog(props) {
   return (
     <>
       {loading ? (
-        <div style={styles.button}>
+        <button className={'styled-button'}>
           <CircularProgress size={17} />
-        </div>
+        </button>
       ) : (
         <button className={'styled-button'} onClick={() => handleOrderSubmit()}>
           {buttonCopy}
