@@ -76,7 +76,7 @@ function Products() {
           <img src={Divider} alt='Divider' style={styles.divider} />
         </Grid>
         <Grid item sx={styles.header}>
-          <p style={styles.weekPickCopy}>This week's picks</p>
+          <p style={styles.weekPickCopy}>This Week's Picks</p>
         </Grid>
       </Grid>
       <div style={styles.panel}>

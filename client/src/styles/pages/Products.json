@@ -20,9 +20,8 @@
   },
   "weekPickCopy": {
     "fontSize": 15,
-    "fontFamily": "helvetica",
     "fontWeight": "bold",
-    "marginTop": 20
+    "letterSpacing": 1
   },
   "avatarContainer": {
     "display": "flex",
@@ -57,9 +56,9 @@
   },
   "header": {
     "width": "100%",
-    "height": 50,
     "display": "flex",
-    "justifyContent": "center"
+    "justifyContent": "center",
+    "marginBottom": "1em"
   },
   "cartDialog": {
     "display": "flex",
