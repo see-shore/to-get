@@ -30,6 +30,9 @@ public class Item implements Serializable {
     @Column(name = "units")
     private String units;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "added_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date addedDate;
@@ -49,6 +52,7 @@ public class Item implements Serializable {
             this.name = requestItem.getName();
             this.price = requestItem.getPrice();
             this.units = requestItem.getUnits();
+            this.description = requestItem.getDescription();
             this.addedDate = new Date();
             this.vendor = vendor;
         } catch (Exception e) {
@@ -61,6 +65,7 @@ public class Item implements Serializable {
             this.name = stagedItem.getName();
             this.price = stagedItem.getPrice();
             this.units = stagedItem.getUnits();
+            this.description = stagedItem.getDescription();
             this.addedDate = new Date();
             this.vendor = vendor;
         } catch (Exception e) {
@@ -87,6 +92,10 @@ public class Item implements Serializable {
         return units;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -97,6 +106,10 @@ public class Item implements Serializable {
 
     public void setUnits(String units) {
         this.units = units;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getAddedDate() {

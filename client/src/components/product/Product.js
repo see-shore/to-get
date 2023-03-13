@@ -56,7 +56,7 @@ function Product(props) {
             <p style={styles.priceUnit}>{'/unit'}</p>
           </div>
           <div style={styles.crate}>
-            <img style={styles.imageContainer} src={require(`../../images/produce/real_${item.id}.png`)} />
+            {/* <img style={styles.imageContainer} src={require(`../../images/produce/real_${item.id}.png`)} /> */}
             <div style={styles.textContainer}>
               <p style={styles.itemName}>{item.name}</p>
               <p style={styles.itemType}>{'golden'}</p>
@@ -89,7 +89,7 @@ function Product(props) {
               <div>
                 <p style={styles.itemName}>{item.name}</p>
                 <div style={styles.description}>
-                  <p style={styles.descriptionText}>Description</p>
+                  <p style={styles.descriptionText}>{item.description}</p>
                 </div>
                 <p style={styles.dialogPrice}>{`$${(item.price / 100).toFixed(2)} / ${item.units}`}</p>
               </div>

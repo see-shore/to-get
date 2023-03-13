@@ -16,10 +16,10 @@ import AddItemDialog from './AddItemDialog';
 import styles from '../../styles/components/VendorTable.json';
 import EditVendorDialog from './EditVendorDialog';
 
-function createData(id, name, price, units, addedDate, available) {
+function createData(id, name, price, units, description, addedDate, available) {
   const formattedDate = new Date(addedDate);
   const formattedPrice = (price / 100).toFixed(2);
-  return { id, name, price, units, formattedPrice, formattedDate, available };
+  return { id, name, price, units, description, formattedPrice, formattedDate, available };
 }
 
 function VendorTable(props) {
@@ -28,7 +28,17 @@ function VendorTable(props) {
 
   if (items) {
     items.forEach((item) => {
-      rows.push(createData(item.id, item.name, item.price, item.units, item.addedDate, item.available))
+      rows.push(
+        createData(
+          item.id, 
+          item.name, 
+          item.price, 
+          item.units, 
+          item.description,
+          item.addedDate, 
+          item.available
+        )
+      )
     });
   }
   
@@ -62,6 +72,7 @@ function VendorTable(props) {
               <TableCell><h4>Name</h4></TableCell>
               <TableCell><h4>Price</h4></TableCell>
               <TableCell><h4>Units</h4></TableCell>
+              <TableCell><h4>Description</h4></TableCell>
               <TableCell> <h4>Added on</h4></TableCell>
               <TableCell><h4>Available</h4></TableCell>
             </TableRow>

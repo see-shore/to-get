@@ -36,6 +36,8 @@ function VendorTableRow(props) {
   const [formValue, setFormValue] = useState({
     name: '',
     price: '',
+    units: '',
+    description: '',
     available: 1
   });
 
@@ -45,6 +47,7 @@ function VendorTableRow(props) {
       name: row.name,
       price: row.price.toString(),
       units: row.units,
+      description: row.description,
       available: row.available
     });
   };
@@ -129,6 +132,16 @@ function VendorTableRow(props) {
               fullWidth
               sx={styles.textField}
             />
+            <TextField 
+              id='description'
+              name='description'
+              label='Description'
+              placeholder={row.description}
+              value={formValue.description}
+              onChange={handleChange}
+              fullWidth
+              sx={styles.textField}
+            />
             <Grid container sx={styles.availableRow}>
               <Grid item sx={{ marginLeft: 2 }}>
                 Available
@@ -161,6 +174,7 @@ function VendorTableRow(props) {
         <TableCell>{row.name}</TableCell>
         <TableCell>{`$${row.formattedPrice}`}</TableCell>
         <TableCell>{row.units}</TableCell>
+        <TableCell>{row.description}</TableCell>
         <TableCell>{row.formattedDate.toDateString()}</TableCell>
         <TableCell>{availabilityCopy(row.available)}</TableCell>
       </TableRow>
