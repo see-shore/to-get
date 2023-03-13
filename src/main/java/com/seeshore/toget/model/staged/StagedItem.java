@@ -25,6 +25,10 @@ public class StagedItem implements Serializable {
     @Column(name = "units")
     private String units;
 
+    // Represents price per individual item
+    @Column(name = "price_per_unit")
+    private int pricePerUnit;
+
     @Column(name = "description")
     private String description;
 
@@ -45,6 +49,7 @@ public class StagedItem implements Serializable {
             this.name = requestItem.getName();
             this.price = requestItem.getPrice();
             this.units = requestItem.getUnits();
+            this.pricePerUnit = requestItem.getPricePerUnit();
             this.description = requestItem.getDescription();
             this.addedDate = new Date();
             this.available = 1;
@@ -73,6 +78,10 @@ public class StagedItem implements Serializable {
         return units;
     }
 
+    public int getPricePerUnit() {
+        return pricePerUnit;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -87,6 +96,10 @@ public class StagedItem implements Serializable {
 
     public void setUnits(String units) {
         this.units = units;
+    }
+
+    public void setPricePerUnit(int pricePerUnit) {
+        this.pricePerUnit = pricePerUnit;
     }
 
     public void setDescription(String description) {

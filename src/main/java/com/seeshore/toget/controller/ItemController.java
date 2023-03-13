@@ -123,6 +123,8 @@ public class ItemController {
             fetchedItem.setName(item.getName());
             fetchedItem.setPrice(item.getPrice());
             fetchedItem.setUnits(item.getUnits());
+            fetchedItem.setPricePerUnit(item.getPricePerUnit());
+            fetchedItem.setDescription(item.getDescription());
 
             Item savedItem = itemService.saveItem(fetchedItem);
             return new ResponseEntity<>(savedItem, HttpStatus.OK);
