@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { CircularProgress } from '@mui/material';
+import OnlineUsers from './OnlineUsers';
 import dialogStyles from '../../styles/components/CartDialog.json';
 import {
   StyledTitle,
@@ -15,10 +16,6 @@ import {
   Image,
   ItemName,
   ItemNum,
-  ProfileContainer,
-  ProfileTiles,
-  UserText,
-  UserContainer,
 } from '../../styles/components/ThanksDialog.styled';
 
 const plastic = [
@@ -28,13 +25,6 @@ const plastic = [
   { id: 4, name: 'bag', amt: '8', unit: 'grams', type: 'plastic container' },
   { id: 5, name: 'bag', amt: '8', unit: 'grams', type: 'plastic container' },
   { id: 6, name: 'bag', amt: '8', unit: 'grams', type: 'plastic container' },
-];
-
-const users = [
-  { id: 1, name: 'Bob', image: 1 },
-  { id: 2, name: 'Alice', image: 2 },
-  { id: 3, name: 'Eve', image: 3 },
-  { id: 4, name: 'Steve', image: 4 },
 ];
 
 function ThanksDialog(props) {
@@ -68,25 +58,6 @@ function ThanksDialog(props) {
         );
       });
 
-  const displayCurrUsers = (users) => {
-    return (
-      <>
-        <ProfileContainer>
-          {users
-            .filter((_, idx) => idx < 5)
-            .map((user) => (
-              <ProfileTiles key={user.id} src={require(`../../images/profiles/${user.image}.png`)} />
-            ))}
-        </ProfileContainer>
-        <UserText>
-          {(users.length > 2 && `${users[0].name}, ${users[1].name}, and +${users.length - 2} more are here too!`) ||
-            (users.length > 1 && `${users[0].name} and ${users[1].name} are here too!`) ||
-            (users.length == 1 && `${users[0].name} is here too!`)}
-        </UserText>
-      </>
-    );
-  };
-
   const generateInspoText = () => {
     return 'You have saved turtles from swallowing bags corals from etc etc.';
   };
@@ -111,9 +82,7 @@ function ThanksDialog(props) {
         <StyledDialogContent>
           <PlasticContainer>{generatePlasticMon(plastic)}</PlasticContainer>
           <EnvText>{generateInspoText()}</EnvText>
-          <UserContainer style={{ display: users.length == 0 ? 'none' : 'auto' }}>
-            {displayCurrUsers(users)}
-          </UserContainer>
+          <OnlineUsers users={'thanks'} />
           <Button className={'styled-button'} onClick={handleClose}>
             Finish
           </Button>
