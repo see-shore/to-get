@@ -1,6 +1,5 @@
 package com.seeshore.toget.controller.staged;
 
-import com.seeshore.toget.model.Item;
 import com.seeshore.toget.model.request.RequestItem;
 import com.seeshore.toget.model.staged.StagedItem;
 import com.seeshore.toget.model.staged.StagedVendor;
@@ -116,6 +115,8 @@ public class StagedItemController {
             fetchedItem.setName(item.getName());
             fetchedItem.setPrice(item.getPrice());
             fetchedItem.setUnits(item.getUnits());
+            fetchedItem.setPricePerUnit(item.getPricePerUnit());
+            fetchedItem.setDescription(item.getDescription());
             fetchedItem.setAvailable(item.getAvailable());
 
             StagedItem savedItem = stagedItemService.saveStagedItem(fetchedItem);

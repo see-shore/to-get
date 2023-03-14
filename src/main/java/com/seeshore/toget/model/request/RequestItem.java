@@ -4,6 +4,8 @@ public class RequestItem {
     private String name;
     private int price;
     private String units;
+    private int pricePerUnit;
+    private String description;
     private int available;
     private Long vendorId;
 
@@ -17,6 +19,14 @@ public class RequestItem {
 
     public String getUnits() {
         return units;
+    }
+
+    public int getPricePerUnit() {
+        return pricePerUnit;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public int getAvailable() {

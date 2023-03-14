@@ -25,6 +25,8 @@ function AddItemDialog(props) {
     name: '',
     price: '',
     units: '',
+    pricePerUnit: '',
+    description: '',
     vendorId: 0
   });
   const { vendor } = props;
@@ -46,6 +48,8 @@ function AddItemDialog(props) {
         name: '',
         price: '',
         units: '',
+        pricePerUnit: '',
+        description: '',
         vendorId: 0
       };
     });
@@ -61,7 +65,9 @@ function AddItemDialog(props) {
     const itemData = {
       name: formValue.name.trim(),
       price: parseInt(formValue.price.trim()),
+      pricePerUnit: parseInt(formValue.pricePerUnit.trim()),
       units: formValue.units.trim(),
+      description: formValue.description.trim(),
       vendorId: vendor.id
     };
     dispatch(addStagedItemAsync(itemData));
@@ -120,6 +126,26 @@ function AddItemDialog(props) {
               name='units'
               label='Units (e.g., "lb", "L", "unit")'
               value={formValue.units}
+              onChange={handleChange}
+              sx={styles.textField}
+              fullWidth
+            />
+            <TextField
+              required
+              id='pricePerUnit'
+              name='pricePerUnit'
+              label='Individual Price (Cents / Indiv. Item)'
+              value={formValue.pricePerUnit}
+              onChange={handleChange}
+              sx={styles.textField}
+              fullWidth
+            />
+            <TextField
+              required
+              id='description'
+              name='description'
+              label='Description'
+              value={formValue.description}
               onChange={handleChange}
               sx={styles.textField}
               fullWidth

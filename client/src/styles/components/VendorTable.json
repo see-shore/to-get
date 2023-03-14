@@ -1,6 +1,6 @@
 {
   "table": {
-    "width": 600,
+    "width": "100%",
     "minHeight": 100,
     "margin": "auto auto 20px 50px"
   },

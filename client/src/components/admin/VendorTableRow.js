@@ -36,6 +36,9 @@ function VendorTableRow(props) {
   const [formValue, setFormValue] = useState({
     name: '',
     price: '',
+    units: '',
+    pricePerUnit: '',
+    description: '',
     available: 1
   });
 
@@ -45,6 +48,8 @@ function VendorTableRow(props) {
       name: row.name,
       price: row.price.toString(),
       units: row.units,
+      pricePerUnit: row.pricePerUnit.toString(),
+      description: row.description,
       available: row.available
     });
   };
@@ -58,6 +63,7 @@ function VendorTableRow(props) {
     const itemData = {
       id: row.id,
       price: parseInt(formValue.price),
+      pricePerUnit: parseInt(formValue.pricePerUnit),
       ...formValue
     };
     dispatch(updateStagedItemAsync(itemData));
@@ -129,6 +135,26 @@ function VendorTableRow(props) {
               fullWidth
               sx={styles.textField}
             />
+            <TextField 
+              id='pricePerUnit'
+              name='pricePerUnit'
+              label='Individual Price (Cents / Indiv. Item)'
+              placeholder={row.pricePerUnit.toString()}
+              value={formValue.pricePerUnit}
+              onChange={handleChange}
+              fullWidth
+              sx={styles.textField}
+            />
+            <TextField 
+              id='description'
+              name='description'
+              label='Description'
+              placeholder={row.description}
+              value={formValue.description}
+              onChange={handleChange}
+              fullWidth
+              sx={styles.textField}
+            />
             <Grid container sx={styles.availableRow}>
               <Grid item sx={{ marginLeft: 2 }}>
                 Available
@@ -161,6 +187,8 @@ function VendorTableRow(props) {
         <TableCell>{row.name}</TableCell>
         <TableCell>{`$${row.formattedPrice}`}</TableCell>
         <TableCell>{row.units}</TableCell>
+        <TableCell>{`$${row.formattedPricePerUnit}`}</TableCell>
+        <TableCell>{row.description}</TableCell>
         <TableCell>{row.formattedDate.toDateString()}</TableCell>
         <TableCell>{availabilityCopy(row.available)}</TableCell>
       </TableRow>
