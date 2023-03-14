@@ -69,6 +69,8 @@ function CartButton(props) {
     return 0;
   };
 
+  const totalItems = (itemList) => itemList.reduce((total, curr) => total + curr.quantity, 0);
+
   const generateEmptyDialogContent = () => {
     return (
       <DialogContent sx={styles.emptyDialogContent}>
@@ -112,12 +114,13 @@ function CartButton(props) {
 
   return (
     <>
-      <div style={styles.button} onClick={handleOpen}>
-        {firstName}'s Cart
-        <IconButton sx={{ width: 30, height: 30, marginLeft: 1, color: '#FFFFFF' }}>
+      <button style={styles.button} onClick={handleOpen}>
+        {/* <span style={styles.icon}>
           <ShoppingCartIcon fontSize='large' />
-        </IconButton>
-      </div>
+        </span> */}
+        {firstName}'s Cart
+        <span style={styles.itemCount}>{orders.length > 0 && `( ${totalItems(orders)} )`}</span>
+      </button>
       <Dialog
         open={open}
         onClose={handleClose}

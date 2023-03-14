@@ -1,19 +1,20 @@
 {
   "button": {
-    "width": 300,
-    "height": 30,
+    "width": "100%",
     "backgroundColor": "#000000",
     "color": "#FFFFFF",
-    "borderRadius": 10,
+    "border": "none",
+    "borderRadius": "3em",
     "display": "flex",
     "justifyContent": "center",
     "alignItems": "center",
-    "cursor": "pointer"
+    "cursor": "pointer",
+    "padding": "1em"
   },
   "loginCopy": {
-    "fontSize": 12,
-    "fontFamily": "helvetica",
-    "fontWeight": "bold"
+    "fontWeight": 600,
+    "fontSize": "1.6rem",
+    "letterSpacing": "0.1em"
   },
   "hintCopy": {
     "fontSize": 15,

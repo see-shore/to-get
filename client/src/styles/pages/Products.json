@@ -12,7 +12,8 @@
   },
   "backgroundCard": {
     "backgroundColor": "#FFFFFF",
-    "width": "100%"
+    "width": "100%",
+    "position": "relative"
   },
   "productsCard": {
     "backgroundColor": "#F0D794",
@@ -37,6 +38,12 @@
   "speechBubble": {
     "top": 95,
     "left": 160
+  },
+  "onlineUsers": {
+    "position": "absolute",
+    "right": "4vw",
+    "bottom": "10px",
+    "width": "55vw"
   },
   "profile": {
     "position": "absolute",

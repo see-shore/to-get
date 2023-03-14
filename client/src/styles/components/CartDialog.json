@@ -13,10 +13,22 @@
     "fontFamily": "helvetica",
     "fontWeight": "bold",
     "cursor": "pointer",
+    "border": "none",
     "borderRadius": 20,
     "padding": "0 2em",
     "maxWidth": 900,
     "minWidth": "fit-content"
+  },
+  "icon": {
+    "width": 30,
+    "height": 30,
+    "marginRight": 1,
+    "color": "#FFFFFF",
+    "display": "flex",
+    "alignItems": "center"
+  },
+  "itemCount": {
+    "marginLeft": "0.5em"
   },
   "dialogTitle": {
     "display": "flex",

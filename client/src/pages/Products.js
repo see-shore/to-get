@@ -16,6 +16,7 @@ import { setCart } from '../redux/slices/itemsSlice';
 import Divider from '../images/div-divider.png'; // CHANGE THIS
 import { getUserAsync } from '../redux/slices/usersSlice';
 import AdminButton from '../components/admin/AdminButton';
+import OnlineUsers from '../components/user/OnlineUsers';
 
 function Products() {
   const dispatch = useDispatch();
@@ -68,6 +69,9 @@ function Products() {
           <div style={styles.speechBubble}>
             <SpeechBox text={WelcomeText} />
           </div>
+        </div>
+        <div style={styles.onlineUsers}>
+          <OnlineUsers type={'product'} />
         </div>
       </div>
 
