@@ -95,7 +95,9 @@ function Product(props) {
             <p style={styles.priceUnit}>{'/unit'}</p>
           </div>
           <div style={styles.crate}>
-            <img style={styles.imageContainer} src={require(`../../images/produce/real_${item.id}.png`)} />
+            <div style={styles.imageContainer}>
+              <img style={styles.image} src={require(`../../images/produce/real_${item.id}.png`)} />
+            </div>
             <div style={styles.textContainer}>
               <p style={styles.itemName}>{item.name}</p>
               <p style={styles.itemType}>{'golden'}</p>
@@ -120,7 +122,9 @@ function Product(props) {
             </div>
             <p style={styles.dialogTotalPrice}>{!count ? '$0' : `$${((item.price * count) / 100).toFixed(2)}`}</p>
           </div>
-          <img style={styles.detailsImage} src={require(`../../images/produce/real_${item.id}.png`)} />
+          <div style={styles.detailsImageContainer}>
+            <img style={styles.detailsImage} src={require(`../../images/produce/real_${item.id}.png`)} />
+          </div>
           <div style={{ ...styles.descriptionContainer, display: descriptionText.length > 0 ? 'block' : 'none' }}>
             <p style={styles.descriptionHeader}>Description</p>
             <p style={styles.descriptionText}>{descriptionText}</p>

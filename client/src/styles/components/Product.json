@@ -94,14 +94,20 @@
     "fontSize": "2.5rem",
     "fontWeight": 700
   },
-  "detailsImage": {
+  "detailsImageContainer": {
     "width": "100%",
     "height": 150,
-    "background": "grey",
+    "background": "#e3d6cb",
     "margin": "1em auto",
     "objectFit": "cover",
     "border": "2px solid black",
-    "borderRadius": "1em"
+    "borderRadius": "1em",
+    "overflow": "hidden"
+  },
+  "detailsImage": {
+    "width": "100%",
+    "height": "100%",
+    "objectFit": "cover"
   },
   "headerContainer": {
     "display": "flex",
@@ -190,6 +196,12 @@
     "borderTopRightRadius": 0,
     "border": "3px solid black",
     "margin": -3,
+    "overflow": "hidden",
+    "background": "#ddcfab"
+  },
+  "image": {
+    "width": "100%",
+    "height": "100%",
     "objectFit": "cover"
   },
   "itemType": {
