@@ -21,6 +21,7 @@ import { useDispatch } from 'react-redux';
 import styles from '../../styles/components/VendorTableRow.json';
 import DeleteItemDialog from './DeleteItemDialog';
 import { updateStagedItemAsync } from '../../redux/slices/staged/stagedItemsSlice';
+import FileInput from './FileInput';
 
 function availabilityCopy(available) {
   if (available === 1) {
@@ -99,84 +100,83 @@ function VendorTableRow(props) {
           </IconButton>
         </Grid>
       </DialogTitle>
-      <form>
-        <DialogContent sx={styles.dialogContent}>
-          <Grid container sx={styles.dialogContainer}>
-            <Grid item>
-              {`Vendor: ${vendor.name}`}
+      <DialogContent sx={styles.dialogContent}>
+        <Grid container sx={styles.dialogContainer}>
+          <Grid item>
+            {`Vendor: ${vendor.name}`}
+          </Grid>
+          <TextField
+            id='name'
+            name='name'
+            label='Item Name'
+            placeholder={row.name}
+            value={formValue.name}
+            onChange={handleChange}
+            fullWidth
+            sx={styles.textField}
+          />
+          <TextField
+            id='price'
+            name='price'
+            label='Price (Cents)'
+            placeholder={row.price.toString()}
+            value={formValue.price}
+            onChange={handleChange}
+            fullWidth
+            sx={styles.textField}
+          />
+          <TextField
+            id='units'
+            name='units'
+            label='Units (e.g., "lb", "L", "unit")'
+            placeholder={row.units}
+            value={formValue.units}
+            onChange={handleChange}
+            fullWidth
+            sx={styles.textField}
+          />
+          <TextField
+            id='pricePerUnit'
+            name='pricePerUnit'
+            label='Individual Price (Cents / Indiv. Item)'
+            placeholder={row.pricePerUnit.toString()}
+            value={formValue.pricePerUnit}
+            onChange={handleChange}
+            fullWidth
+            sx={styles.textField}
+          />
+          <TextField
+            id='description'
+            name='description'
+            label='Description'
+            placeholder={row.description}
+            value={formValue.description}
+            onChange={handleChange}
+            fullWidth
+            sx={styles.textField}
+          />
+          <Grid container sx={styles.availableRow}>
+            <Grid item sx={{ marginLeft: 2 }}>
+              Available
             </Grid>
-            <TextField
-              id='name'
-              name='name'
-              label='Item Name'
-              placeholder={row.name}
-              value={formValue.name}
-              onChange={handleChange}
-              fullWidth
-              sx={styles.textField}
-            />
-            <TextField 
-              id='price'
-              name='price'
-              label='Price (Cents)'
-              placeholder={row.price.toString()}
-              value={formValue.price}
-              onChange={handleChange}
-              fullWidth
-              sx={styles.textField}
-            />
-            <TextField 
-              id='units'
-              name='units'
-              label='Units (e.g., "lb", "L", "unit")'
-              placeholder={row.units}
-              value={formValue.units}
-              onChange={handleChange}
-              fullWidth
-              sx={styles.textField}
-            />
-            <TextField 
-              id='pricePerUnit'
-              name='pricePerUnit'
-              label='Individual Price (Cents / Indiv. Item)'
-              placeholder={row.pricePerUnit.toString()}
-              value={formValue.pricePerUnit}
-              onChange={handleChange}
-              fullWidth
-              sx={styles.textField}
-            />
-            <TextField 
-              id='description'
-              name='description'
-              label='Description'
-              placeholder={row.description}
-              value={formValue.description}
-              onChange={handleChange}
-              fullWidth
-              sx={styles.textField}
-            />
-            <Grid container sx={styles.availableRow}>
-              <Grid item sx={{ marginLeft: 2 }}>
-                Available
-              </Grid>
-              <Grid item>
-                <Checkbox
-                  id='availableCol'
-                  name='availableCol'
-                  checked={(formValue.available === 1)}
-                  onChange={handleCheckChange}
-                />
-              </Grid>
+            <Grid item>
+              <Checkbox
+                id='availableCol'
+                name='availableCol'
+                checked={(formValue.available === 1)}
+                onChange={handleCheckChange}
+              />
             </Grid>
           </Grid>
-        </DialogContent>
-        <DialogActions>
-          <DeleteItemDialog itemId={row.id} onClose={handleClose} />
-          <Button sx={{ color: '#609966' }} variant='outlined' onClick={handleSubmit} type='submit'>
-            <SendIcon sx={styles.icon} />Edit Staged Item
-          </Button>
-        </DialogActions>
-      </form>
+          <FileInput />
+        </Grid>
+      </DialogContent>
+      <DialogActions>
+        <DeleteItemDialog itemId={row.id} onClose={handleClose} />
+        <Button sx={{ color: '#609966' }} variant='outlined' onClick={handleSubmit} type='submit'>
+          <SendIcon sx={styles.icon} />Edit Staged Item
+        </Button>
+      </DialogActions>
     </>
   );
 

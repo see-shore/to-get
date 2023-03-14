@@ -15,3 +15,38 @@ export const isCartValid = () => {
 export const getCart = () => {
   return JSON.parse(localStorage.getItem('cart'));
 };
+
+// Produces data URL of a given file.
+// Prep for sending image in request.
+export const readDataUrl = (file) => {
+  return new Promise((res, rej) => {
+    const reader = new FileReader();
+    ReadableStream.onload = (e) => { res(e.target.result) };
+    reader.onerror = (e) => { rej(e) };
+    reader.readAsDataURL(file);
+  });
+};
+
+const MAX_WIDTH = 400;
+const MAX_HEIGHT = 400;
+
+export const resizeImage = (width, height) => {
+    var newDimensions = {
+        width: width,
+        height: height
+    }
+
+    if (width > height) {
+        if (width > MAX_WIDTH) {
+            newDimensions.height *= MAX_WIDTH / width;
+            newDimensions.width = MAX_WIDTH;
+        }
+    } else {
+        if (height > MAX_HEIGHT) {
+            newDimensions.width *= MAX_HEIGHT / height;
+            newDimensions.height = MAX_HEIGHT;
+        }
+    }
+
+    return newDimensions;
+};

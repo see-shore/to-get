@@ -4,14 +4,17 @@ import com.seeshore.toget.model.Item;
 import com.seeshore.toget.model.Order;
 import com.seeshore.toget.model.Vendor;
 import com.seeshore.toget.model.request.RequestItem;
+import com.seeshore.toget.service.IAmazonService;
 import com.seeshore.toget.service.IItemService;
 import com.seeshore.toget.service.IVendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
@@ -26,6 +29,8 @@ public class ItemController {
     private IItemService itemService;
     @Autowired
     private IVendorService vendorService;
+    @Autowired
+    private IAmazonService amazonService;
 
     // Create a new item
     @PostMapping("/item/new")
@@ -103,7 +108,6 @@ public class ItemController {
             return ResponseEntity.status(HttpStatus.OK)
                     .body("Successfully deleted item with ID: " + itemId);
         } catch (Exception e) {
-            System.out.println(e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error", e);
         }
@@ -129,7 +133,23 @@ public class ItemController {
             Item savedItem = itemService.saveItem(fetchedItem);
             return new ResponseEntity<>(savedItem, HttpStatus.OK);
         } catch (Exception e) {
-            System.out.println(e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Internal server error", e);
+        }
+    }
+
+    // Upload a new image
+    @PostMapping(path = "/image", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    public ResponseEntity<String> saveImage(@RequestPart MultipartFile file) {
+        try {
+            if (file.isEmpty()) {
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                        "Provided file is empty");
+            }
+
+            String imageUrl = amazonService.upload(file);
+            return new ResponseEntity<>(imageUrl, HttpStatus.OK);
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error", e);
         }

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getItems, updateItem } from '../api/itemsAPI';
+import { getItems, updateItem, uploadImage } from '../api/itemsAPI';
 
 const initialState = {
   items: [],
@@ -21,6 +21,14 @@ export const updateItemAsync = createAsyncThunk(
   async (itemData, { dispatch }) => {
     const item = await updateItem(itemData);
     return item;
+  }
+);
+
+export const uploadImageAsync = createAsyncThunk(
+  'items/uploadImage',
+  async (file) => {
+    const response = await uploadImage(file);
+    return response;
   }
 );
 
