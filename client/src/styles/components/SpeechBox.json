@@ -11,13 +11,15 @@
     "width": "100%"
   },
   "text": {
+    "display": "flex",
+    "alignItems": "center",
     "position": "absolute",
     "top": "0.1em",
     "width": "100%",
     "maxHeight": "90%",
+    "height": "90%",
     "padding": "0.5em 0.5em 1em 2.5em",
-    "fontWeight": "bold",
-    "fonFamily": "helvetica",
+    "fontWeight": 500,
     "fontSize": 12,
     "overflow": "auto",
     "scrollbarWidth": "none"

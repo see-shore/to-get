@@ -31,7 +31,7 @@ function App() {
       cacheLocation='localstorage'
     >
       <Provider store={store}>
-        <div className='App'>
+        <div className='background'>
           <Routes>
             <Route path='/' element={<Login />} />
             <Route path='/contact' element={<Contact />} />
