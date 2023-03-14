@@ -59,7 +59,7 @@ function Admin() {
             value={tabIndex}
             onChange={handleTabChange}
             aria-label="Admin tabs"
-            sx={{ borderRight: 1, borderColor: 'divider' }}
+            sx={{ borderRight: 1, borderColor: 'divider', minHeight: 600 }}
           >
             <Tab label='Vendors & Items' {...allyProps(0)} />
             <Tab label='Orders' {...allyProps(1)} />

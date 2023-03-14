@@ -62,6 +62,7 @@ function CartButton(props) {
   const handleSubmit = () => {
     dispatch(createOrdersAsync(orders));
   };
+
   const checkCartCache = (itemId) => {
     if (itemId in cart) {
       return cart[itemId];
@@ -134,7 +135,7 @@ function CartButton(props) {
             <p style={styles.cartCopy}>{firstName}'s Cart</p>
           </Grid>
         </DialogTitle>
-        <form>{isEmpty ? generateEmptyDialogContent() : generateNonEmptyDialogContent()}</form>
+        {isEmpty ? generateEmptyDialogContent() : generateNonEmptyDialogContent()}
       </Dialog>
     </>
   );
