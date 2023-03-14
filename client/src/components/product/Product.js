@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { IconButton, Grid, Dialog, DialogContent } from '@mui/material';
-import { Remove as RemoveIcon, Add as AddIcon } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
+import { updateCart, removeFromCart } from '../../redux/slices/itemsSlice';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { useDispatch } from 'react-redux';
+import { IconButton, Dialog, DialogContent } from '@mui/material';
 
-import { updateCart, removeFromCart } from '../../redux/slices/itemsSlice';
 import styles from '../../styles/components/Product.json';
+import dialogStyles from '../../styles/components/CartDialog.json';
 
 function Product(props) {
   const dispatch = useDispatch();
@@ -35,6 +36,42 @@ function Product(props) {
     }
   };
 
+  const RenderButtons = (style = 'card') => {
+    const details = style === 'details' ? true : false;
+    const bstyle = {
+      card: {
+        control: 'control',
+        button: 'button',
+        countText: 'countText',
+      },
+      details: {
+        control: '',
+        button: 'detailsButton',
+        countText: 'detailsCountText',
+      },
+    };
+    return (
+      <div style={{ ...styles.control, border: !details ? '3px solid #6a5442' : 'none', bottom: !details ? 12 : 16 }}>
+        <IconButton
+          disabled={!count}
+          onClick={decrement}
+          size={'large'}
+          style={{ ...styles[bstyle[style].button], borderRight: !details ? '3px dashed #6a5442bd' : 'none' }}
+        >
+          <FontAwesomeIcon icon={solid('minus')} />
+        </IconButton>
+        <p style={styles[bstyle[style].countText]}>{count}</p>
+        <IconButton
+          onClick={increment}
+          size={'large'}
+          style={{ ...styles[bstyle[style].button], borderLeft: !details ? '3px dashed #6a5442bd' : 'none' }}
+        >
+          <FontAwesomeIcon icon={solid('plus')} />
+        </IconButton>
+      </div>
+    );
+  };
+
   const formatPrice = (price) => {
     const formattedPrice = (price / 100).toFixed(2);
     return `$${formattedPrice}`;
@@ -47,6 +84,8 @@ function Product(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const descriptionText = 'sth sth sth sth sth sth';
   return (
     <>
       <div style={styles.container}>
@@ -63,51 +102,30 @@ function Product(props) {
             </div>
           </div>
         </div>
-        <div style={styles.control}>
-          <IconButton
-            onClick={decrement}
-            size={'large'}
-            style={{ ...styles.button, borderRight: '3px dashed #6a5442bd' }}
-          >
-            <FontAwesomeIcon icon={solid('minus')} />
-          </IconButton>
-          <p style={styles.countText}>{count}</p>
-          <IconButton
-            onClick={increment}
-            size={'large'}
-            style={{ ...styles.button, borderLeft: '3px dashed #6a5442bd' }}
-          >
-            <FontAwesomeIcon icon={solid('plus')} />
-          </IconButton>
-        </div>
+        {RenderButtons('card')}
       </div>
-      <Dialog open={open} onClose={handleClose} fullWidth maxWidth='xs' sx={styles.dialog}>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        fullWidth
+        maxWidth='xs'
+        sx={styles.dialog}
+        PaperProps={dialogStyles.paperStyle}
+      >
         <DialogContent sx={{ ...styles.dialogContent, display: 'flex', justifyContent: 'center' }}>
-          <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-            <Grid item style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-              <div style={styles.productPicture}></div>
-              <div>
-                <p style={styles.itemName}>{item.name}</p>
-                <div style={styles.description}>
-                  <p style={styles.descriptionText}>Description</p>
-                </div>
-                <p style={styles.dialogPrice}>{`$${(item.price / 100).toFixed(2)} / ${item.units}`}</p>
-              </div>
-            </Grid>
-            <Grid item sx={{ width: '100%', display: 'flex', justifyContent: 'right' }}>
-              <div style={styles.counter}>
-                <IconButton onClick={decrement} sx={styles.iconButton}>
-                  <RemoveIcon />
-                </IconButton>
-                <Grid item sx={styles.numberDisplay}>
-                  {count}
-                </Grid>
-                <IconButton onClick={increment} sx={styles.iconButton}>
-                  <AddIcon />
-                </IconButton>
-              </div>
-            </Grid>
-          </Grid>
+          <div style={styles.headerContainer}>
+            <div style={styles.headerLeft}>
+              <p style={styles.dialogItemName}>{item.name}</p>
+              <p style={styles.dialogUnitPrice}>{`$${(item.price / 100).toFixed(2)} / ${item.units}`}</p>
+            </div>
+            <p style={styles.dialogTotalPrice}>{!count ? '$0' : `$${((item.price * count) / 100).toFixed(2)}`}</p>
+          </div>
+          <img style={styles.detailsImage} src={require(`../../images/produce/real_${item.id}.png`)} />
+          <div style={{ ...styles.descriptionContainer, display: descriptionText.length > 0 ? 'block' : 'none' }}>
+            <p style={styles.descriptionHeader}>Description</p>
+            <p style={styles.descriptionText}>{descriptionText}</p>
+          </div>
+          {RenderButtons('details')}
         </DialogContent>
       </Dialog>
     </>

@@ -46,7 +46,10 @@
     "justifyContent": "space-between"
   },
   "dialogContent": {
-    "minHeight": 250
+    "minHeight": 250,
+    "display": "flex",
+    "flexDirection": "column",
+    "paddingBottom": "55px"
   },
   "cardCopy": {
     "fontSize": 15,
@@ -60,14 +63,15 @@
     "borderRadius": 10,
     "marginRight": 20
   },
-  "description": {
-    "width": 125,
-    "height": 60,
-    "backgroundColor": "#F1F1F1",
-    "borderRadius": 5,
-    "display": "flex",
-    "justifyContent": "center",
-    "alignItems": "center"
+  "descriptionContainer": {
+    "paddingBottom": "1em"
+  },
+  "descriptionHeader": {
+    "fontSize": "1.8rem",
+    "fontWeight": 500
+  },
+  "descriptionText": {
+    "fontSize": "1.4rem"
   },
   "itemName": {
     "fontSize": "1.5rem",
@@ -75,11 +79,53 @@
     "textAlign": "center",
     "paddingTop": 5
   },
-  "dialogPrice": {
-    "fontSize": 17,
-    "fontFamily": "helvetica",
+  "dialogItemName": {
+    "fontSize": "2.5rem",
+    "fontWeight": 600
+  },
+  "dialogUnitPrice": {
+    "fontSize": "1.7rem",
     "fontWeight": "bold",
-    "marginTop": 10
+    "color": "#ae9a89"
+  },
+  "dialogTotalPrice": {
+    "alignItems": "center",
+    "display": "flex",
+    "fontSize": "2.5rem",
+    "fontWeight": 700
+  },
+  "detailsImage": {
+    "width": "100%",
+    "height": 150,
+    "background": "grey",
+    "margin": "1em auto",
+    "objectFit": "cover",
+    "border": "2px solid black",
+    "borderRadius": "1em"
+  },
+  "headerContainer": {
+    "display": "flex",
+    "justifyContent": "space-between"
+  },
+  "headerLeft": {
+    "maxWidth": "calc(100% - 100px)",
+    "overflow": "hidden"
+  },
+  "detailsButton": {
+    "background": "#dbbfa8",
+    "borderRadius": "0.5em",
+    "padding": "0.5em 0.9em"
+  },
+  "detailsCountText": {
+    "width": "50px",
+    "textAlign": "center",
+    "fontSize": "1.8rem",
+    "fontWeight": 600,
+    "color": "#595959"
+  },
+  "detailsControl": {
+    "border": "none",
+    "borderRadius": 0
   },
   "iconButton": {
     "backgroundColor": "#C4C4C4"
