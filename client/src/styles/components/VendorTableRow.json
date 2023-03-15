@@ -20,16 +20,6 @@
   "textField": {
     "marginTop": 2
   },
-  "availableRow": {
-    "display": "flex",
-    "justifyContent": "space-between",
-    "alignItems": "center",
-    "margin": "10px auto auto auto",
-    "backgroundColor": "#609966",
-    "borderRadius": 2,
-    "opacity": 0.7,
-    "color": "#FFFFFF"
-  },
   "icon": {
     "margin": "auto 5px auto 5px"
   },
@@ -46,5 +36,42 @@
   },
   "fileInput": {
     "maxWidth": 300
+  },
+  "availableButton": {
+    "display": "flex",
+    "justifyContent": "center",
+    "alignItems": "center",
+    "backgroundColor": "#609966",
+    "color": "#FFFFFF",
+    "cursor": "pointer",
+    "borderRadius": 5,
+    "opacity": 0.8,
+    "width": "100%",
+    "height": 25,
+    "marginTop": 20
+  },
+  "unavailableButton": {
+    "display": "flex",
+    "justifyContent": "center",
+    "alignItems": "center",
+    "backgroundColor": "#eb5350",
+    "color": "#FFFFFF",
+    "cursor": "pointer",
+    "borderRadius": 5,
+    "width": "100%",
+    "height": 25,
+    "marginTop": 20
+  },
+  "buttonCopy": {
+    "fontFamily": "helvetica",
+    "fontSize": 12
+  },
+  "yesCopy": {
+    "fontWeight": "bold",
+    "color": "#609966"
+  },
+  "noCopy": {
+    "fontWeight": "bold",
+    "color": "#eb5350"
   }
 }

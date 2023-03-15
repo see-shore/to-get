@@ -9,8 +9,7 @@ import {
   Button,
   TextField,
   IconButton,
-  Grid,
-  Checkbox
+  Grid
 } from '@mui/material';
 import {
   Send as SendIcon,
@@ -25,9 +24,9 @@ import NoImageCard from './NoImageCard';
 
 function availabilityCopy(available) {
   if (available === 1) {
-    return 'YES';
+    return <p style={styles.yesCopy}>YES</p>;
   }
-  return 'NO';
+  return <p style={styles.noCopy}>NO</p>;
 }
 
 function VendorTableRow(props) {
@@ -67,6 +66,7 @@ function VendorTableRow(props) {
       id: row.id,
       price: parseInt(formValue.price),
       pricePerUnit: parseInt(formValue.pricePerUnit),
+      imageUrl: row.imageUrl,
       ...formValue
     };
 
@@ -88,11 +88,11 @@ function VendorTableRow(props) {
     });
   };
 
-  const handleCheckChange = (event) => {
+  const handleCheckChange = (available) => {
     setFormValue((prevState) => {
       return {
         ...prevState,
-        available: (event.target.checked ? 1 : 0)
+        available
       };
     });
   };
@@ -187,19 +187,15 @@ function VendorTableRow(props) {
             fullWidth
             sx={styles.textField}
           />
-          <Grid container sx={styles.availableRow}>
-            <Grid item sx={{ marginLeft: 2 }}>
-              Available
-            </Grid>
-            <Grid item>
-              <Checkbox
-                id='availableCol'
-                name='availableCol'
-                checked={(formValue.available === 1)}
-                onChange={handleCheckChange}
-              />
-            </Grid>
-          </Grid>
+          {(formValue.available === 1) ? 
+            <div style={styles.availableButton} onClick={() => handleCheckChange(0)}>
+              <p style={styles.buttonCopy}>Available</p>
+            </div>
+            :
+            <div style={styles.unavailableButton} onClick={() => handleCheckChange(1)}>
+              <p style={styles.buttonCopy}>Unavailable</p>
+            </div>
+          }
         </Grid>
       </DialogContent>
       <DialogActions sx={styles.dialogActions}>
