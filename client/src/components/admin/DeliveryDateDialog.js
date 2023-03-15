@@ -18,10 +18,13 @@ import DatePicker from "react-datepicker";
 
 import styles from '../../styles/components/DeliveryDateDialog.json';
 import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch } from 'react-redux';
+import { publishDeliveryDateAsync } from '../../redux/slices/adminSlice';
 
 function DeliveryDateDialog() {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date());
+  const dispatch = useDispatch();
 
   const handleOpen = () => {
     setOpen(true);
@@ -32,6 +35,10 @@ function DeliveryDateDialog() {
   };
 
   const handleSubmit = () => {
+    const deliveryData = {
+      deliveryDate: date
+    };
+    dispatch(publishDeliveryDateAsync(deliveryData));
     handleClose();
   };
 

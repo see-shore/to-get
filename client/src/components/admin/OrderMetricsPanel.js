@@ -3,11 +3,13 @@ import { useSelector } from 'react-redux';
 import { selectItemsMap, selectOrderSummaryMap } from '../../redux/selectors/selectors';
 
 import styles from '../../styles/components/OrderMetricsPanel.json';
+import { dateOptions } from '../../util/AppUtil';
 
 function OrderMetricsPanel() {
   const orderSummaryMap = useSelector((state) => selectOrderSummaryMap(state));
   const itemsMap = useSelector((state) => selectItemsMap(state));
   const [total, setTotal] = useState(0);
+  const deliveryDate = useSelector((state) => state.admin.deliveryDate);
 
   useEffect(() => {
     setTotal(0);
@@ -29,6 +31,7 @@ function OrderMetricsPanel() {
 
   return (
     <div style={styles.container}>
+      <p style={styles.deliveryText}>{`The current delivery is scheduled on: ${new Date(deliveryDate).toLocaleDateString(undefined, dateOptions)}`}</p>
       <div style={styles.summaryCard}>
         <div style={styles.innerCard}>
           <div style={styles.header}>

@@ -1,8 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { archiveAllPublishedData, publishToUsers } from "../api/adminAPI";
+import { 
+  archiveAllPublishedData, 
+  publishToUsers, 
+  publishDeliveryDate,
+  getMostRecentlySetDeliveryDate
+} from "../api/adminAPI";
 
 const initialState = {
-  
+  deliveryDate: null,
+  deliveryId: null
 };
 
 export const publishToUsersAsync = createAsyncThunk(
@@ -21,12 +27,32 @@ export const archiveAllPublishedDataAsync = createAsyncThunk(
   }
 );
 
+export const publishDeliveryDateAsync = createAsyncThunk(
+  'admin/publishDeliveryDate',
+  async (deliveryData, { dispatch }) => {
+    const response = await publishDeliveryDate(deliveryData);
+    return response;
+  }
+);
+
+export const getMostRecentlySetDeliveryDateAsync = createAsyncThunk(
+  'admin/getMostRecentlySetDeliveryDate',
+  async (_, { dispatch }) => {
+    const response = await getMostRecentlySetDeliveryDate();
+    return response;
+  }
+);
+
 export const adminSlice = createSlice({
   name: 'admin',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-
+    builder
+      .addCase(getMostRecentlySetDeliveryDateAsync.fulfilled, (state, action) => {
+        state.deliveryDate = action.payload.deliveryDate;
+        state.deliveryId = action.payload.uuid;
+      })
   }
 })
 

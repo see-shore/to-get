@@ -1,4 +1,7 @@
 
+
+export const dateOptions = { weekday: 'long', month: 'long', day: 'numeric' };
+
 export const cartExists = () => {
   return localStorage.hasOwnProperty('cart')
     && localStorage.hasOwnProperty('cartUpdatedAt');

@@ -8,6 +8,7 @@ import { DialogContent, DialogTitle, Grid } from '@mui/material';
 import CartProduct from '../product/CartProduct';
 import ThanksDialog from './ThanksDialog';
 import styles from '../../styles/components/CartDialog.json';
+import { dateOptions } from '../../util/AppUtil';
 
 function CartButton(props) {
   const [open, setOpen] = useState(false);
@@ -22,8 +23,8 @@ function CartButton(props) {
   const { firstName, userId } = props;
 
   const totalText = 'Total Estimate:';
-  const deliveryText = 'The delivery scheduled on';
-  const deliveryDate = 'March 10th';
+  const deliveryText = 'The delivery is scheduled on';
+  const deliveryDate = useSelector((state) => state.admin.deliveryDate);
 
   useEffect(() => {
     setTotalBalance(0);
@@ -106,7 +107,7 @@ function CartButton(props) {
         </div>
         <div style={styles.textCopy}>
           <p>{deliveryText}</p>
-          <p style={{ marginTop: 5 }}>{deliveryDate}</p>
+          <p style={{ marginTop: 5 }}>{new Date(deliveryDate).toLocaleDateString(undefined, dateOptions)}</p>
         </div>
         <div style={styles.orderButton}>
           <ThanksDialog isEmpty={isEmpty} onOrderClick={handleSubmit} onClose={handleClose} />

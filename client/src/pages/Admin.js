@@ -17,6 +17,7 @@ import OrdersPanel from '../components/admin/OrdersPanel';
 import NavBar from '../components/NavBar';
 import { getItemsAsync } from '../redux/slices/itemsSlice';
 import OrderMetricsPanel from '../components/admin/OrderMetricsPanel';
+import { getMostRecentlySetDeliveryDateAsync } from '../redux/slices/adminSlice';
 
 function allyProps(index) {
   return {
@@ -41,6 +42,7 @@ function Admin() {
     dispatch(getOrdersAsync());
     dispatch(getUsersAsync());
     dispatch(getItemsAsync());
+    dispatch(getMostRecentlySetDeliveryDateAsync());
   }, [dispatch, user, navigate]);
 
   const handleTabChange = (event, newIndex) => {

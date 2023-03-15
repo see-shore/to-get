@@ -15,6 +15,7 @@ import Divider from '../images/div-divider.png'; // CHANGE THIS
 import { getUserAsync } from '../redux/slices/usersSlice';
 import AdminButton from '../components/admin/AdminButton';
 import OnlineUsers from '../components/user/OnlineUsers';
+import { getMostRecentlySetDeliveryDateAsync } from '../redux/slices/adminSlice';
 
 function Products() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function Products() {
   useEffect(() => {
     if (user) {
       dispatch(getUserAsync(user.email));
+      dispatch(getMostRecentlySetDeliveryDateAsync());
     }
   }, [dispatch, user]);
 

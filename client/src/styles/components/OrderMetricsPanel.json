@@ -34,5 +34,12 @@
     "fontSize": 12,
     "fontFamily": "helvetica",
     "fontWeight": "bold"
+  },
+  "deliveryText": {
+    "fontSize": 12,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold",
+    "marginLeft": 50,
+    "marginBottom": 10
   }
 }
