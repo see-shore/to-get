@@ -164,7 +164,8 @@ function AddItemDialog(props) {
               fullWidth
             />
           <div style={styles.fileInput}>
-            <input type="file" name="file" onChange={handleFileInputChange} />
+            <p style={styles.instruction}>Image Upload: please only attach .jpeg images of 0.5 MB or less.</p>
+            <input type="file" name="file" onChange={handleFileInputChange} style={styles.fileInput} />
           </div>
           </DialogContent>
           <DialogActions>

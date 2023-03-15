@@ -1,6 +1,6 @@
 {
   "dialogContent": {
-    "height": 360
+    "height": 420
   },
   "iconButton": {
     "color": "#FFFFFF"
@@ -14,5 +14,14 @@
   },
   "textField": {
     "marginTop": 2
+  },
+  "instruction": {
+    "fontWeight": "bold",
+    "fontFamily": "helvetica",
+    "margin": "20px auto 5px auto",
+    "fontSize": 12
+  },
+  "fileInput": {
+    "maxWidth": 400
   }
 }
