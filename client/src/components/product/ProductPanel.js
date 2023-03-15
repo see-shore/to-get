@@ -23,7 +23,8 @@ function ProductPanel(props) {
           <Product item={item} defaultN={checkCartCache(item.id)} />
         </Grid>
       ))}
-      {items.length % 2 !== 0 && <div style={{ width: 150, height: 150, margin: '10px 10px 10px 10px' }} />}
+      {items.length % 2 !== 0 && <div style={{ 
+        minWidth: 140, maxWidth: "45vw", minHeight: 170, margin: "1em 0.5em" }} />}
       <div style={{ width: '100%', height: 50 }} />
     </Grid>
   );
