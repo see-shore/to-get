@@ -20,8 +20,7 @@ import { useDispatch } from 'react-redux';
 
 import styles from '../../styles/components/VendorTableRow.json';
 import DeleteItemDialog from './DeleteItemDialog';
-import { updateStagedItemAsync } from '../../redux/slices/staged/stagedItemsSlice';
-import FileInput from './FileInput';
+import { uploadImageAndSaveStagedItemAsync } from '../../redux/slices/staged/stagedItemsSlice';
 
 function availabilityCopy(available) {
   if (available === 1) {
@@ -34,6 +33,7 @@ function VendorTableRow(props) {
   const { row, vendor } = props;
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const [file, setFile] = useState();
   const [formValue, setFormValue] = useState({
     name: '',
     price: '',
@@ -56,18 +56,24 @@ function VendorTableRow(props) {
   };
 
   const handleClose = () => {
+    setFile(null);
     setOpen(false);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const itemData = {
+    const item = {
       id: row.id,
       price: parseInt(formValue.price),
       pricePerUnit: parseInt(formValue.pricePerUnit),
       ...formValue
     };
-    dispatch(updateStagedItemAsync(itemData));
+
+    const requestData = {
+      file, item, method: 'update'
+    };
+
+    dispatch(uploadImageAndSaveStagedItemAsync(requestData));
     handleClose();
   };
 
@@ -89,6 +95,12 @@ function VendorTableRow(props) {
       };
     });
   };
+
+  const handleFileInputChange = (event) => {
+    if (event.target.files) {
+      setFile(event.target.files[0]);
+    }
+  }
 
   const dialogMarkup = (
     <>
@@ -168,7 +180,9 @@ function VendorTableRow(props) {
               />
             </Grid>
           </Grid>
-          <FileInput />
+          <div style={styles.fileInput}>
+            <input type="file" name="file" onChange={handleFileInputChange} />
+          </div>
         </Grid>
       </DialogContent>
       <DialogActions>

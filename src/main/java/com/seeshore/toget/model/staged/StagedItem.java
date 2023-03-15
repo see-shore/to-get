@@ -32,6 +32,9 @@ public class StagedItem implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @Column(name = "added_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date addedDate;
@@ -51,6 +54,7 @@ public class StagedItem implements Serializable {
             this.units = requestItem.getUnits();
             this.pricePerUnit = requestItem.getPricePerUnit();
             this.description = requestItem.getDescription();
+            this.imageUrl = requestItem.getImageUrl();
             this.addedDate = new Date();
             this.available = 1;
             this.vendor = vendor;
@@ -86,6 +90,10 @@ public class StagedItem implements Serializable {
         return description;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -104,6 +112,10 @@ public class StagedItem implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Date getAddedDate() {

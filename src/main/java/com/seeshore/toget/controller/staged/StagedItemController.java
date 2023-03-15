@@ -117,6 +117,7 @@ public class StagedItemController {
             fetchedItem.setUnits(item.getUnits());
             fetchedItem.setPricePerUnit(item.getPricePerUnit());
             fetchedItem.setDescription(item.getDescription());
+            fetchedItem.setImageUrl(item.getImageUrl());
             fetchedItem.setAvailable(item.getAvailable());
 
             StagedItem savedItem = stagedItemService.saveStagedItem(fetchedItem);

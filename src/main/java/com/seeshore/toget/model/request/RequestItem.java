@@ -6,6 +6,7 @@ public class RequestItem {
     private String units;
     private int pricePerUnit;
     private String description;
+    private String imageUrl;
     private int available;
     private Long vendorId;
 
@@ -31,6 +32,10 @@ public class RequestItem {
 
     public int getAvailable() {
         return available;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public Long getVendorId() {

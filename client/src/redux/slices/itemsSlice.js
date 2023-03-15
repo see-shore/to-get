@@ -75,7 +75,7 @@ export const itemsSlice = createSlice({
           (item) => item.id === action.payload.id
         );
         state.items[index] = action.payload;
-      })
+      });
   }
 });
 

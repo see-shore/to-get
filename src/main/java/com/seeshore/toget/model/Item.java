@@ -37,6 +37,9 @@ public class Item implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @Column(name = "added_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date addedDate;
@@ -58,6 +61,7 @@ public class Item implements Serializable {
             this.units = requestItem.getUnits();
             this.pricePerUnit = requestItem.getPricePerUnit();
             this.description = requestItem.getDescription();
+            this.imageUrl = requestItem.getImageUrl();
             this.addedDate = new Date();
             this.vendor = vendor;
         } catch (Exception e) {
@@ -72,6 +76,7 @@ public class Item implements Serializable {
             this.units = stagedItem.getUnits();
             this.pricePerUnit = stagedItem.getPricePerUnit();
             this.description = stagedItem.getDescription();
+            this.imageUrl = stagedItem.getImageUrl();
             this.addedDate = new Date();
             this.vendor = vendor;
         } catch (Exception e) {
@@ -106,6 +111,10 @@ public class Item implements Serializable {
         return description;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -124,6 +133,10 @@ public class Item implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Date getAddedDate() {

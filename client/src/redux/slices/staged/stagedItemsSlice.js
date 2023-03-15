@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addStagedItem, deleteStagedItem, getStagedItems, updateStagedItem } from '../../api/staged/stagedItemsAPI';
+import { findIndexById } from "../../../util/ReduxUtil";
+import { uploadImage } from "../../api/itemsAPI";
 
 const initialState = {
   stagedItems: [],
@@ -39,6 +41,35 @@ export const deleteStagedItemAsync = createAsyncThunk(
   }
 );
 
+const methods = { CREATE: 'create', UPDATE: 'update' }
+
+export const uploadImageAndSaveStagedItemAsync = createAsyncThunk(
+  'stagedItems/uploadImageAndSaveStagedItem',
+  async (data, { dispatch }) => {
+    try {
+      const { item, file, method} = data;
+      
+      if (file) {
+        const imageUrl = await uploadImage(file);
+        item.imageUrl = imageUrl;
+      }
+
+      switch (method) {
+        case methods.CREATE:
+          dispatch(addStagedItemAsync(item));
+          break;
+        case methods.UPDATE:
+          dispatch(updateStagedItemAsync(item));
+          break;
+        default:
+          throw new Error("Unknown CRUD method provided.");
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
+);
+
 export const stagedItemsSlice = createSlice({
   name: 'stagedItems',
   initialState,
@@ -64,24 +95,19 @@ export const stagedItemsSlice = createSlice({
       })
       .addCase(updateStagedItemAsync.fulfilled, (state, action) => {
         state.loadingStagedItemData = false;
-        let index = state.stagedItems.findIndex(
-          (item) => item.id === action.payload.id
-        );
+        let index = findIndexById(state.stagedItems, action.payload.id);
         state.stagedItems[index] = action.payload;
       })
       .addCase(deleteStagedItemAsync.fulfilled, (state, action) => {
-        let index = state.stagedItems.findIndex(
-          (item) => item.id === action.payload
-        );
+        let index = findIndexById(state.stagedItems, action.payload);
         state.stagedItems = [
           ...state.stagedItems.slice(0, index),
           ...state.stagedItems.slice(index + 1)
         ];
-      })
+      });
   }
 });
 
-export const { } = stagedItemsSlice.actions;
+export const {} = stagedItemsSlice.actions;
 
 export default stagedItemsSlice.reducer;
-

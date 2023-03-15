@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { uploadImageAsync } from '../../redux/slices/itemsSlice';
+import { setAttachedFile } from '../../redux/slices/staged/stagedItemsSlice';
 
 function FileInput() {
   const [file, setFile] = useState();
@@ -10,20 +10,13 @@ function FileInput() {
   const handleChange = (event) => {
     if (event.target.files) {
       setFile(event.target.files[0]);
+      dispatch(setAttachedFile(event.target.files[0]));
     }
-  };
-
-  const handleUploadClick = () => {
-    if (!file) {
-      return;
-    }
-    dispatch(uploadImageAsync(file));
   };
 
   return (
     <div>
       <input type="file" name="file" onChange={handleChange} />
-      <button onClick={handleUploadClick}>Upload</button>
     </div>
   );
 };

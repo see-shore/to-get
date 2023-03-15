@@ -16,11 +16,12 @@ import {
 import { useDispatch } from 'react-redux';
 
 import styles from '../../styles/components/AddItemDialog.json';
-import { addStagedItemAsync } from '../../redux/slices/staged/stagedItemsSlice';
+import { uploadImageAndSaveStagedItemAsync } from '../../redux/slices/staged/stagedItemsSlice';
 
 function AddItemDialog(props) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const [file, setFile] = useState();
   const [formValue, setFormValue] = useState({
     name: '',
     price: '',
@@ -56,13 +57,14 @@ function AddItemDialog(props) {
   };
 
   const handleClose = () => {
+    setFile(null);
     setOpen(false);
     revertState();
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const itemData = {
+    const item = {
       name: formValue.name.trim(),
       price: parseInt(formValue.price.trim()),
       pricePerUnit: parseInt(formValue.pricePerUnit.trim()),
@@ -70,7 +72,12 @@ function AddItemDialog(props) {
       description: formValue.description.trim(),
       vendorId: vendor.id
     };
-    dispatch(addStagedItemAsync(itemData));
+
+    const requestData = {
+      file, item, method: 'create'
+    }
+
+    dispatch(uploadImageAndSaveStagedItemAsync(requestData));
     handleClose();
   };
 
@@ -83,6 +90,12 @@ function AddItemDialog(props) {
       };
     });
   };
+
+  const handleFileInputChange = (event) => {
+    if (event.target.files) {
+      setFile(event.target.files[0]);
+    }
+  }
 
   return (
     <>
@@ -150,6 +163,9 @@ function AddItemDialog(props) {
               sx={styles.textField}
               fullWidth
             />
+          <div style={styles.fileInput}>
+            <input type="file" name="file" onChange={handleFileInputChange} />
+          </div>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleSubmit} variant='outlined' sx={{ color: '#609966' }} type='submit'>
