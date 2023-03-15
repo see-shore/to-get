@@ -90,3 +90,14 @@ export const selectItemsMap = createSelector(
     return map;
   }
 );
+
+// Takes parameters state and itemId
+export const selectItemCount = createSelector(
+  [
+    state => state.items.cart,
+    (state, itemId) => itemId
+  ],
+  (cart, itemId) => {
+    return cart[itemId];
+  }
+);

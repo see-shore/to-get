@@ -11,8 +11,6 @@ import UserProfileDialog from '../components/user/UserProfileDialog';
 import ProductPanel from '../components/product/ProductPanel';
 import CartDialog from '../components/user/CartDialog';
 import { setToken } from '../util/AuthUtil';
-import { cartExists, isCartValid, getCart } from '../util/AppUtil';
-import { setCart } from '../redux/slices/itemsSlice';
 import Divider from '../images/div-divider.png'; // CHANGE THIS
 import { getUserAsync } from '../redux/slices/usersSlice';
 import AdminButton from '../components/admin/AdminButton';
@@ -26,10 +24,6 @@ function Products() {
   const { getAccessTokenSilently, user } = useAuth0();
 
   useEffect(() => {
-    if (cartExists() && isCartValid()) {
-      const cart = getCart();
-      dispatch(setCart(cart));
-    }
     if (user) {
       dispatch(getUserAsync(user.email));
     }

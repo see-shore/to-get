@@ -1,9 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getItems, updateItem, uploadImage } from '../api/itemsAPI';
+import { cartExists, isCartValid, getCart } from "../../util/AppUtil";
 
 const initialState = {
   items: [],
   cart: {},   // { itemId: quantity }
+  cartCount: 0, // Total quantity of items so far
   loadingItemsData: false,
   loadingItemData: false
 };
@@ -12,6 +14,13 @@ export const getItemsAsync = createAsyncThunk(
   'items/getItems',
   async (_, { dispatch }) => {
     const items = await getItems();
+    dispatch(initializeCart(items));
+
+    if (cartExists() && isCartValid()) {
+      const cart = getCart();
+      dispatch(setCart(cart));
+    }
+
     return items;
   }
 );
@@ -40,11 +49,26 @@ export const itemsSlice = createSlice({
       const itemId = action.payload.itemId;
       const quantity = action.payload.quantity;
       state.cart[itemId] = quantity;
+      if (action.payload.isIncrement) {
+        state.cartCount += 1;
+      } else {
+        if (state.cartCount > 0) {
+          state.cartCount -= 1;
+        } else {
+          state.cartCount = 0;
+        }
+      }
       localStorage.setItem('cart', JSON.stringify(state.cart));
       localStorage.setItem('cartUpdatedAt', new Date());
     },
     removeFromCart: (state, action) => {
-      delete state.cart[action.payload];
+      const qty = state.cart[action.payload];
+      if (state.cartCount - qty > 0) {
+        state.cartCount -= qty;
+      } else {
+        state.cartCount = 0;
+      }
+      state.cart[action.payload] = 0;
       localStorage.setItem('cart', JSON.stringify(state.cart));
       localStorage.setItem('cartUpdatedAt', new Date());
     },
@@ -54,7 +78,14 @@ export const itemsSlice = createSlice({
       localStorage.removeItem('cartUpdatedAt');
     },
     setCart: (state, action) => {
-      state.cart = action.payload;
+      Object.entries(action.payload).forEach((obj) => {
+        const [itemId, qty] = obj;
+        state.cart[itemId] = qty;
+        state.cartCount += qty;
+      });
+    },
+    initializeCart: (state, action) => {
+      action.payload.forEach((item) => state.cart[item.id] = 0);
     }
   },
   extraReducers: (builder) => {
@@ -83,7 +114,8 @@ export const {
   updateCart,
   removeFromCart,
   clearCart,
-  setCart
+  setCart,
+  initializeCart
 } = itemsSlice.actions;
 
 export default itemsSlice.reducer;

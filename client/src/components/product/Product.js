@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateCart, removeFromCart } from '../../redux/slices/itemsSlice';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,30 +8,28 @@ import { IconButton, Dialog, DialogContent } from '@mui/material';
 
 import styles from '../../styles/components/Product.json';
 import dialogStyles from '../../styles/components/CartDialog.json';
+import { selectItemCount } from '../../redux/selectors/selectors';
 
 function Product(props) {
   const dispatch = useDispatch();
-  const [count, setCount] = useState(props.defaultN);
-  const [open, setOpen] = useState(false);
   const { item } = props;
-
-  useEffect(() => {
-    setCount(props.defaultN);
-  }, [props.defaultN]);
+  const [open, setOpen] = useState(false);
+  const count = useSelector(state => selectItemCount(state, item.id));
 
   const increment = () => {
-    setCount(count + 1);
-    dispatch(updateCart({ itemId: item.id, quantity: count + 1 }));
+    dispatch(
+      updateCart({ itemId: item.id, quantity: count + 1, isIncrement: true })
+    );
   };
 
   const decrement = () => {
     if (count - 1 <= 0) {
-      setCount(0);
       dispatch(removeFromCart(item.id));
     } else {
-      setCount(count - 1);
       if (count - 1 > 0) {
-        dispatch(updateCart({ itemId: item.id, quantity: count - 1 }));
+        dispatch(
+          updateCart({ itemId: item.id, quantity: count - 1, isIncrement: true })
+        );
       }
     }
   };

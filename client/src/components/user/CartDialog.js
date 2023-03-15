@@ -13,6 +13,7 @@ function CartButton(props) {
   const [open, setOpen] = useState(false);
   const [totalBalance, setTotalBalance] = useState(0);
   const cart = useSelector((state) => state.items.cart);
+  const cartCount = useSelector((state) => state.items.cartCount);
   const itemsMap = useSelector((state) => selectItemsMap(state));
   const [isEmpty, setIsEmpty] = useState(true);
   // This is the cart translated into order objects to send to orders endpoint
@@ -28,7 +29,7 @@ function CartButton(props) {
     setTotalBalance(0);
     setOrders([]);
 
-    if (Object.keys(cart).length === 0) {
+    if (cartCount === 0) {
       setIsEmpty(true);
     } else {
       setIsEmpty(false);
@@ -48,7 +49,7 @@ function CartButton(props) {
         }
       }
     }
-  }, [cart, setTotalBalance, itemsMap, setIsEmpty, setOrders, userId]);
+  }, [cart, setTotalBalance, itemsMap, setIsEmpty, setOrders, userId, cartCount]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -60,13 +61,6 @@ function CartButton(props) {
 
   const handleSubmit = () => {
     dispatch(createOrdersAsync(orders));
-  };
-
-  const checkCartCache = (itemId) => {
-    if (itemId in cart) {
-      return cart[itemId];
-    }
-    return 0;
   };
 
   const totalItems = (itemList) => itemList.reduce((total, curr) => total + curr.quantity, 0);
@@ -91,11 +85,11 @@ function CartButton(props) {
         <div style={styles.itemContainer}>
           {Object.keys(cart).map((item, idx) => {
             if (itemsMap[item]) {
+              console.log(cart[item.id])
               return (
                 <CartProduct 
                   key={idx} 
                   item={itemsMap[item]} 
-                  defaultN={checkCartCache(item)} 
                 />
               );
             } else {

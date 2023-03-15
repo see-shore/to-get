@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IconButton } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateCart, removeFromCart } from '../../redux/slices/itemsSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -16,31 +16,32 @@ import {
   CircleImage,
   ItemCount,
 } from '../../styles/components/CartProduct.styled';
+import { selectItemCount } from '../../redux/selectors/selectors';
 
 function CartProduct(props) {
   const dispatch = useDispatch();
-  const [count, setCount] = useState(props.defaultN);
   const { item } = props;
+  const count = useSelector(state => selectItemCount(state, item.id));
 
   const increment = () => {
-    setCount(count + 1);
-    dispatch(updateCart({ itemId: item.id, quantity: count + 1 }));
+    dispatch(
+      updateCart({ itemId: item.id, quantity: count + 1, isIncrement: true })
+    );
   };
 
   const decrement = () => {
     if (count - 1 <= 0) {
-      setCount(0);
       dispatch(removeFromCart(item.id));
     } else {
-      setCount(count - 1);
       if (count - 1 > 0) {
-        dispatch(updateCart({ itemId: item.id, quantity: count - 1 }));
+        dispatch(
+          updateCart({ itemId: item.id, quantity: count - 1, isIncrement: false })
+        );
       }
     }
   };
 
   const handleDelete = () => {
-    setCount(0);
     dispatch(removeFromCart(item.id));
   };
 
