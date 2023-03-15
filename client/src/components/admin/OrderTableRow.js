@@ -40,7 +40,8 @@ function OrderTableRow(props) {
       <DialogContent sx={styles.dialogContent}>
         <p style={styles.header}>{user.firstName + " " + user.lastName + "'s Order"}</p>
         <p style={styles.bodyLine}>{`Item: ${item.name}`}</p>
-        <p style={styles.bodyLine}>{`Price: $${(item.price / 100).toFixed(2)} / ${item.units}`}</p>
+        <p style={styles.bodyLine}>{`Price / Units: $${(item.price / 100).toFixed(2)} / ${item.units}`}</p>
+        <p style={styles.bodyLine}>{`Individual Price: $${(item.pricePerUnit / 100).toFixed(2)}`}</p>
         <p style={styles.bodyLine}>{`Quantity: ${order.quantity}`}</p>
         <p style={styles.bodyLine}>{`Ordered on: ${formattedDate.toDateString()}`}</p>
       </DialogContent>

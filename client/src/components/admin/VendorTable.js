@@ -53,15 +53,15 @@ function VendorTable(props) {
       <Toolbar sx={styles.toolbar} variant='dense'>
         <Grid container sx={styles.toolbarGrid}>
           <Grid item sx={styles.vendorTitle}>
-            <h3>
+            <p style={{ fontFamily: 'helvetica', fontSize: 12, fontWeight: 'bold' }}>
               {vendor.name}
-            </h3>
-            <h3 style={{ marginLeft: 10 }}>
+            </p>
+            <p style={{ marginLeft: 10, fontFamily: 'helvetica', fontSize: 13 }}>
               {vendor.phone}
-            </h3>
-            <h3 style={{ marginLeft: 10 }}>
+            </p>
+            <p style={{ marginLeft: 10, fontFamily: 'helvetica', fontSize: 13 }}>
               {vendor.website}
-            </h3>
+            </p>
           </Grid>
           <Grid item>
             <EditVendorDialog vendor={vendor} />

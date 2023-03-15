@@ -22,7 +22,7 @@ function OrderAccordion(props) {
         id="panel1a-header"
         sx={styles.accordionSummary}
       >
-          <h3>{user.firstName + " " + user.lastName}'s Orders</h3>
+          <p style={styles.header}>{user.firstName}'s Order Breakdown</p>
       </AccordionSummary>
       <AccordionDetails>
         <OrderTable orders={orders} user={user} />

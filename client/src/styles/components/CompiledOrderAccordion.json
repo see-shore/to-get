@@ -1,0 +1,33 @@
+{
+  "accordionSummary": {
+    "backgroundColor": "#183A1D",
+    "color": "#FFFFFF",
+    "borderRadius": 1,
+    "opacity": 0.8
+  },
+  "accordion": {
+    "width": 600,
+    "marginBottom": 2
+  },
+  "orderLine": {
+    "display": "flex",
+    "justifyContent": "space-between",
+    "maxWidth": 250,
+    "marginTop": 5
+  },
+  "text": {
+    "fontFamily": "helvetica",
+    "fontSize": 12,
+    "fontWeight": "bold"
+  },
+  "line": {
+    "color": "black",
+    "maxWidth": 300,
+    "marginTop": 10,
+    "marginBottom": 10
+  },
+  "header": {
+    "fontFamily": "helvetica",
+    "fontSize": 12
+  }
+}

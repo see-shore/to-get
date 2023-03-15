@@ -3,9 +3,13 @@
     "backgroundColor": "#609966",
     "color": "#FFFFFF",
     "borderRadius": 1,
-    "opacity": 0.7
+    "opacity": 0.8
   },
   "accordion": {
     "width": 600
+  },
+  "header": {
+    "fontFamily": "helvetica",
+    "fontSize": 12
   }
 }
