@@ -16,6 +16,7 @@ import UsersPanel from '../components/admin/UsersPanel';
 import OrdersPanel from '../components/admin/OrdersPanel';
 import NavBar from '../components/NavBar';
 import { getItemsAsync } from '../redux/slices/itemsSlice';
+import OrderMetricsPanel from '../components/admin/OrderMetricsPanel';
 
 function allyProps(index) {
   return {
@@ -70,7 +71,7 @@ function Admin() {
             <VendorsAndItemsPanel />
           </PanelWrapper>
           <PanelWrapper value={tabIndex} index={1}>
-            
+            <OrderMetricsPanel />
           </PanelWrapper>
           <PanelWrapper value={tabIndex} index={2}>
             <OrdersPanel />

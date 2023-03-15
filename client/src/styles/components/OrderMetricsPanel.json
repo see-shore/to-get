@@ -1,0 +1,38 @@
+{
+  "container": {
+    "minWidth": 800
+  },
+  "summaryCard": {
+    "maxWidth": 350,
+    "borderRadius": 10,
+    "borderColor": "black",
+    "borderWidth": 1,
+    "borderStyle": "solid",
+    "marginLeft": 50 
+  },
+  "innerCard": {
+    "padding": 25
+  },
+  "header": {
+    "fontSize": 15,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold"
+  },
+  "line": {
+    "color": "black",
+    "maxWidth": 300,
+    "marginTop": 10,
+    "marginBottom": 10
+  },
+  "orderLine": {
+    "display": "flex",
+    "justifyContent": "space-between",
+    "maxWidth": 250,
+    "marginTop": 5
+  },
+  "body": {
+    "fontSize": 12,
+    "fontFamily": "helvetica",
+    "fontWeight": "bold"
+  }
+}

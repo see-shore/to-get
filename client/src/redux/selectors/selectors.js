@@ -101,3 +101,28 @@ export const selectItemCount = createSelector(
     return cart[itemId];
   }
 );
+
+export const selectOrderSummaryMap = createSelector(
+  selectItemsMap,
+  selectOrders,
+  (itemsMap, orders) => {
+    const map = {}; // { itemId: [totalCount, totalPrice] }
+
+    Object.keys(itemsMap).forEach((itemId) => {
+      map[itemId] = [0];
+    });
+
+    orders.forEach((order) => {
+      map[order.itemId][0] += order.quantity;
+    });
+
+    Object.keys(itemsMap).forEach((itemId) => {
+      const item = itemsMap[itemId];
+      const totalCount = map[itemId][0];
+      const totalPrice = totalCount * item.pricePerUnit;
+      map[itemId].push(totalPrice);
+    });
+
+    return map;
+  }
+);
