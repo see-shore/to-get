@@ -37,15 +37,17 @@ function CartButton(props) {
         if (itemsMap[itemId]) {
           const item = itemsMap[itemId];
           const quantity = cart[itemId];
-          let orderBalance = quantity * item.pricePerUnit;
-          setTotalBalance((prevBalance) => prevBalance + orderBalance);
+          if (quantity > 0) {
+            let orderBalance = quantity * item.pricePerUnit;
+            setTotalBalance((prevBalance) => prevBalance + orderBalance);
 
-          const newOrder = {
-            itemId,
-            userId,
-            quantity,
-          };
-          setOrders((prevState) => [...prevState, newOrder]);
+            const newOrder = {
+              itemId,
+              userId,
+              quantity,
+            };
+            setOrders((prevState) => [...prevState, newOrder]);
+          }
         }
       }
     }
@@ -91,8 +93,6 @@ function CartButton(props) {
                   item={itemsMap[item]} 
                 />
               );
-            } else {
-              return <div key={idx}></div>;
             }
           })}
         </div>

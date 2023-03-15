@@ -25,6 +25,9 @@ public class User implements Serializable {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference(value = "user-order")
     private List<Order> orders = new ArrayList<>();
@@ -62,5 +65,9 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

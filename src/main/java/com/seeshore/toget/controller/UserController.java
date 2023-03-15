@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Controller
 @CrossOrigin
@@ -48,6 +49,8 @@ public class UserController {
     @PostMapping("/user/new")
     public ResponseEntity<User> saveUser(@RequestBody User user) {
         try {
+            int userProfilePic = new Random().nextInt(4);
+            user.setImageUrl("../images/profile-" + userProfilePic + ".png");
             User savedUser = userService.saveUser(user);
             return new ResponseEntity<>(savedUser, HttpStatus.OK);
         } catch (Exception e) {

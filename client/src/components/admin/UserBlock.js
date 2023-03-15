@@ -70,7 +70,7 @@ function UserBlock(props) {
       <Box sx={styles.block} onClick={handleOpen}>
         <Grid container>
           <Grid item>
-            <img src={Avatar} style={styles.avatar} alt="Jane Doe Avatar"/>
+            <img src={Avatar} style={styles.avatar} alt="User Avatar"/>
           </Grid>
           <Grid item sx={styles.userText}>
             <Grid>

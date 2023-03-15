@@ -72,7 +72,7 @@
     "display": "flex",
     "flexDirection": "column",
     "gap": "0.7em",
-    "maxHeight": "25em",
+    "maxHeight": "27em",
     "overflow": "auto",
     "scrollbarWidth": "none"
   },
