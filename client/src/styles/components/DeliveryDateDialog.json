@@ -5,27 +5,27 @@
   },
   "button": {
     "color": "#FFFFFF",
-    "backgroundColor": "#ef5350",
+    "backgroundColor": "#183A1D",
     "borderRadius": 2,
+    "opacity": 0.9,
     "width": 170,
     "height": 30,
     "margin": "20x 5px 10px 50px",
     "cursor": "pointer"
   },
+  "icon": {
+    "margin": "auto 5px auto 5px"
+  },
   "dialogTitle": {
     "display": "flex",
     "justifyContent": "space-between"
   },
-  "icon": {
-    "margin": "auto 5px auto 5px"
+  "dialogContent": {
+    "minWidth": 200,
+    "minHeight": 220
   },
   "cancelButton": {
     "backgroundColor": "#ef5350",
     "color": "#ffffff"
-  },
-  "text": {
-    "fontFamily": "helvetica",
-    "fontSize": 12,
-    "fontWeight": "bold"
   }
 }

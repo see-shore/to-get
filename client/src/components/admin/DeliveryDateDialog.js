@@ -11,16 +11,17 @@ import {
 } from '@mui/material';
 import {
   Close as CloseIcon,
+  CalendarMonth as CalendarMonthIcon,
   Publish as PublishIcon
 } from '@mui/icons-material';
-import { useDispatch } from 'react-redux';
+import DatePicker from "react-datepicker";
 
-import styles from '../../styles/components/PublishButton.json';
-import { publishToUsersAsync } from '../../redux/slices/adminSlice';
+import styles from '../../styles/components/DeliveryDateDialog.json';
+import "react-datepicker/dist/react-datepicker.css";
 
-function PublishButton() {
-  const dispatch = useDispatch();
+function DeliveryDateDialog() {
   const [open, setOpen] = useState(false);
+  const [date, setDate] = useState(new Date());
 
   const handleOpen = () => {
     setOpen(true);
@@ -31,7 +32,6 @@ function PublishButton() {
   };
 
   const handleSubmit = () => {
-    dispatch(publishToUsersAsync());
     handleClose();
   };
 
@@ -40,25 +40,30 @@ function PublishButton() {
       <Box sx={styles.button} onClick={handleOpen}>
         <Grid sx={styles.buttonCopy}>
           <Button sx={{ color: "#FFFFFF" }}>
-            <PublishIcon sx={styles.icon} />Publish items to users
+            <CalendarMonthIcon sx={styles.icon} />Publish delivery date
           </Button>
         </Grid>
       </Box>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>
           <Grid sx={styles.dialogTitle}>
-            Warning
+            Publish a new delivery date
             <IconButton onClick={handleClose} size='small'>
               <CloseIcon />
             </IconButton>
           </Grid>
         </DialogTitle>
-        <DialogContent>
-          <p style={styles.text}>Publishing to users deletes all data in the published database. Did you archive all published data first?</p>
+        <DialogContent sx={styles.dialogContent}>
+          <div>
+            <p>Select a new date:</p>
+          </div>
+          <div>
+            <DatePicker selected={date} onChange={(date) => setDate(date)} />
+          </div>
         </DialogContent>
         <DialogActions>
           <Button style={{ color: '#ef5350' }} variant='outlined' onClick={handleSubmit}>
-            <PublishIcon sx={styles.icon} />Yes
+            <PublishIcon sx={styles.icon} />Publish
           </Button>
           <Button sx={styles.cancelButton} onClick={handleClose} type='submit'>
             <CloseIcon sx={styles.icon} />Cancel
@@ -69,4 +74,4 @@ function PublishButton() {
   );
 }
 
-export default PublishButton;
+export default DeliveryDateDialog;

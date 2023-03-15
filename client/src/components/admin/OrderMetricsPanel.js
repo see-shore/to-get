@@ -20,8 +20,8 @@ function OrderMetricsPanel() {
   const generateItemRow = (itemId) => {
     const item = itemsMap[itemId];
     return (
-      <div style={styles.orderLine}>
-        <p style={styles.body}>{`${item.name} ${orderSummaryMap[itemId][0]}x`}</p>
+      <div key={itemId} style={styles.orderLine}>
+        <p style={styles.body}>{`${item.name} – ${orderSummaryMap[itemId][0]}x`}</p>
         <p style={styles.body}>{`$${(orderSummaryMap[itemId][1] / 100).toFixed(2)}`}</p>
       </div>
     );

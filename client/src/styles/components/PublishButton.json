@@ -23,5 +23,10 @@
   "cancelButton": {
     "backgroundColor": "#ef5350",
     "color": "#ffffff"
+  },
+  "text": {
+    "fontFamily": "helvetica",
+    "fontSize": 12,
+    "fontWeight": "bold"
   }
 }

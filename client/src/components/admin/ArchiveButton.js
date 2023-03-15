@@ -54,7 +54,7 @@ function ArchiveButton() {
           </Grid>
         </DialogTitle>
         <DialogContent>
-          <h4>You are about to archive all published data (including orders). Are you sure you want to do this?</h4>
+          <p style={styles.text}>You are about to archive all published data (including orders). Are you sure you want to do this?</p>
         </DialogContent>
         <DialogActions>
           <Button style={{ color: '#ef5350' }} variant='outlined' onClick={handleSubmit}>
