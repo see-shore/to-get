@@ -103,6 +103,14 @@ function VendorTableRow(props) {
     }
   }
 
+  const renderImage = () => {
+    if (file) {
+      return URL.createObjectURL(file);
+    } else {
+      return row.imageUrl;
+    }
+  }
+
   const dialogMarkup = (
     <>
       <DialogTitle>
@@ -115,13 +123,10 @@ function VendorTableRow(props) {
       </DialogTitle>
       <DialogContent sx={styles.dialogContent}>
         <div>
-          {row.imageUrl ? 
-            <img src={row.imageUrl} alt="Item" style={styles.itemImage} />
+          {(file || row.imageUrl) ? 
+            <img src={renderImage()} alt="Item" style={styles.itemImage} />
             :
-            file ? 
-              <img src={URL.createObjectURL(file)} alt="Uploaded" style={styles.itemImage} />
-              :
-              <NoImageCard />
+            <NoImageCard />
           }
           <div style={styles.fileInput}>
             <p style={styles.instruction}>Please only attach .jpeg images of 0.5 MB or less.</p>
