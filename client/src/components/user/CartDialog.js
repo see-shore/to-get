@@ -84,8 +84,7 @@ function CartButton(props) {
       <DialogContent sx={styles.dialogContent}>
         <div style={styles.itemContainer}>
           {Object.keys(cart).map((item, idx) => {
-            if (itemsMap[item]) {
-              console.log(cart[item.id])
+            if (itemsMap[item] && cart[item] > 0) {
               return (
                 <CartProduct 
                   key={idx} 
