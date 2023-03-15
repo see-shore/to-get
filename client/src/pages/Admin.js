@@ -63,7 +63,7 @@ function Admin() {
             sx={{ borderRight: 1, borderColor: 'divider', minHeight: 600 }}
           >
             <Tab label='Vendors & Items' {...allyProps(0)} />
-            <Tab label='Order Metrics' {...allyProps(1)} />
+            <Tab label='Total Order' {...allyProps(1)} />
             <Tab label='Order Details' {...allyProps(2)} />
             <Tab label='Users' {...allyProps(3)} />
           </Tabs>

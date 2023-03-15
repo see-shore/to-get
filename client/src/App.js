@@ -12,6 +12,7 @@ import { store } from './redux/store/store';
 import { Provider } from 'react-redux';
 import axios from 'axios';
 import { Auth0Provider } from '@auth0/auth0-react';
+import LoginRoute from './util/LoginRoute';
 
 // CHANGE BOTH TO 'https://ec2-35-89-204-152.us-west-2.compute.amazonaws.com:8080' for prod
 export const API_BASE_URL = 'http://localhost:8080';
@@ -34,9 +35,12 @@ function App() {
         <div className='background'>
           <Routes>
             <Route path='/' element={<Login />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/login' element={<Login />} />
+            <Route exact path='/login' element={<LoginRoute />}>
+              <Route exact path='/login' element={<Login />} />
+            </Route>
             <Route path='/products' element={<Products />} />
+
+            <Route path='/contact' element={<Contact />} />
             <Route path='/confirm-order' element={<OrderConfirmation />} />
             <Route path='/payment' element={<Payment />} />
             {/* Admin Pages */}
