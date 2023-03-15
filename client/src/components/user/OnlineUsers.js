@@ -10,7 +10,6 @@ export const users = [
 
 function OnlineUsers({ type = 'thanks' }) {
   const p_page = type === 'product' ? true : false;
-  console.log('ppage', p_page);
   return (
     <UserContainer style={{ display: users.length == 0 ? 'none' : 'auto', alignItems: p_page ? 'end' : 'center' }}>
       <ProfileContainer>

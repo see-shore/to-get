@@ -85,22 +85,20 @@ function Product(props) {
     setOpen(false);
   };
 
-  const descriptionText = 'sth sth sth sth sth sth';
   return (
     <>
       <div style={styles.container}>
         <div onClick={handleOpen} style={styles.box}>
           <div style={styles.priceTag}>
-            <p style={styles.priceText}>{formatPrice(item.price)}</p>
+            <p style={styles.priceText}>{formatPrice(item.pricePerUnit)}</p>
             <p style={styles.priceUnit}>{'/unit'}</p>
           </div>
           <div style={styles.crate}>
             <div style={styles.imageContainer}>
-              <img style={styles.image} src={require(`../../images/produce/real_${item.id}.png`)} />
+              <img style={styles.image} src={item.imageUrl} alt="to.get Item" />
             </div>
             <div style={styles.textContainer}>
               <p style={styles.itemName}>{item.name}</p>
-              <p style={styles.itemType}>{'golden'}</p>
             </div>
           </div>
         </div>
@@ -120,14 +118,15 @@ function Product(props) {
               <p style={styles.dialogItemName}>{item.name}</p>
               <p style={styles.dialogUnitPrice}>{`$${(item.price / 100).toFixed(2)} / ${item.units}`}</p>
             </div>
-            <p style={styles.dialogTotalPrice}>{!count ? '$0' : `$${((item.price * count) / 100).toFixed(2)}`}</p>
+            <p style={styles.dialogTotalPrice}>{!count ? '$0' : `$${((item.pricePerUnit * count) / 100).toFixed(2)}`}</p>
           </div>
           <div style={styles.detailsImageContainer}>
-            <img style={styles.detailsImage} src={require(`../../images/produce/real_${item.id}.png`)} />
+            <img style={styles.detailsImage} src={item.imageUrl} alt="to.get Item" />
           </div>
-          <div style={{ ...styles.descriptionContainer, display: descriptionText.length > 0 ? 'block' : 'none' }}>
+          <div style={{ ...styles.descriptionContainer, 
+            display: (item.description && item.description.length > 0) ? 'block' : 'none' }}>
             <p style={styles.descriptionHeader}>Description</p>
-            <p style={styles.descriptionText}>{descriptionText}</p>
+            <p style={styles.descriptionText}>{item.description}</p>
           </div>
           {RenderButtons('details')}
         </DialogContent>

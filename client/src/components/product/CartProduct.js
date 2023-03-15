@@ -53,16 +53,16 @@ function CartProduct(props) {
     <>
       <ItemContainer>
         <ImageContainer>
-          <CircleImage src={require(`../../images/produce/real_${item.id}.png`)} />
+          <CircleImage src={item.imageUrl} />
         </ImageContainer>
         <InfoContainer>
           <div>
             <StyledName>{item.name}</StyledName>
             <UnitPrice>
-              {formatPrice(item.price)}/{'unit'}
+              {formatPrice(item.pricePerUnit)}/{'unit'}
             </UnitPrice>
           </div>
-          {formatPrice(item.price * count)}
+          {formatPrice(item.pricePerUnit * count)}
         </InfoContainer>
         <ButtonContainer>
           <IconButton onClick={handleDelete}>

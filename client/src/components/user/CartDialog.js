@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectItemsMap } from '../../redux/selectors/selectors';
 import { createOrdersAsync } from '../../redux/slices/ordersSlice';
 import { Dialog } from '../../styles/components/CartDialog.styled';
-import { IconButton, DialogContent, DialogTitle, Grid } from '@mui/material';
-import { ShoppingCart as ShoppingCartIcon } from '@mui/icons-material';
+import { DialogContent, DialogTitle, Grid } from '@mui/material';
 
 import CartProduct from '../product/CartProduct';
 import ThanksDialog from './ThanksDialog';
@@ -37,7 +36,7 @@ function CartButton(props) {
         if (itemsMap[itemId]) {
           const item = itemsMap[itemId];
           const quantity = cart[itemId];
-          let orderBalance = quantity * item.price;
+          let orderBalance = quantity * item.pricePerUnit;
           setTotalBalance((prevBalance) => prevBalance + orderBalance);
 
           const newOrder = {
@@ -91,7 +90,17 @@ function CartButton(props) {
       <DialogContent sx={styles.dialogContent}>
         <div style={styles.itemContainer}>
           {Object.keys(cart).map((item, idx) => {
-            return <CartProduct key={idx} item={itemsMap[item]} defaultN={checkCartCache(item)} />;
+            if (itemsMap[item]) {
+              return (
+                <CartProduct 
+                  key={idx} 
+                  item={itemsMap[item]} 
+                  defaultN={checkCartCache(item)} 
+                />
+              );
+            } else {
+              return <div key={idx}></div>;
+            }
           })}
         </div>
         <div style={styles.totalLine}>
@@ -116,9 +125,6 @@ function CartButton(props) {
   return (
     <>
       <button style={styles.button} onClick={handleOpen}>
-        {/* <span style={styles.icon}>
-          <ShoppingCartIcon fontSize='large' />
-        </span> */}
         {firstName}'s Cart
         <span style={styles.itemCount}>{orders.length > 0 && `( ${totalItems(orders)} )`}</span>
       </button>
