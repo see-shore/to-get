@@ -3,7 +3,10 @@
     "cursor": "pointer"
   },
   "dialogContent": {
-    "height": 500
+    "maxHeight": 800,
+    "maxWidth": 800,
+    "display": "flex",
+    "justifyContent": "center"
   },
   "dialogTitle": {
     "display": "flex",
@@ -11,7 +14,8 @@
   },
   "dialogContainer": {
     "display": "flex",
-    "justifyContent": "center"
+    "justifyContent": "center",
+    "minWidth": 150
   },
   "textField": {
     "marginTop": 2
@@ -28,5 +32,19 @@
   },
   "icon": {
     "margin": "auto 5px auto 5px"
+  },
+  "itemImage": {
+    "maxWidth": 300,
+    "maxHeight": 300,
+    "margin": "20px 20px 10px auto"
+  },
+  "instruction": {
+    "fontWeight": "bold",
+    "fontFamily": "helvetica",
+    "marginBottom": 5,
+    "fontSize": 12
+  },
+  "fileInput": {
+    "maxWidth": 300
   }
 }

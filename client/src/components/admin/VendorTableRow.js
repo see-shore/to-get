@@ -21,6 +21,7 @@ import { useDispatch } from 'react-redux';
 import styles from '../../styles/components/VendorTableRow.json';
 import DeleteItemDialog from './DeleteItemDialog';
 import { uploadImageAndSaveStagedItemAsync } from '../../redux/slices/staged/stagedItemsSlice';
+import NoImageCard from './NoImageCard';
 
 function availabilityCopy(available) {
   if (available === 1) {
@@ -113,6 +114,20 @@ function VendorTableRow(props) {
         </Grid>
       </DialogTitle>
       <DialogContent sx={styles.dialogContent}>
+        <div>
+          {row.imageUrl ? 
+            <img src={row.imageUrl} alt="Item" style={styles.itemImage} />
+            :
+            file ? 
+              <img src={URL.createObjectURL(file)} alt="Uploaded" style={styles.itemImage} />
+              :
+              <NoImageCard />
+          }
+          <div style={styles.fileInput}>
+            <p style={styles.instruction}>Please only attach .jpeg images of 0.5 MB or less.</p>
+            <input type="file" name="file" onChange={handleFileInputChange} style={styles.fileInput} />
+          </div>
+        </div>
         <Grid container sx={styles.dialogContainer}>
           <Grid item>
             {`Vendor: ${vendor.name}`}
@@ -180,12 +195,9 @@ function VendorTableRow(props) {
               />
             </Grid>
           </Grid>
-          <div style={styles.fileInput}>
-            <input type="file" name="file" onChange={handleFileInputChange} />
-          </div>
         </Grid>
       </DialogContent>
-      <DialogActions>
+      <DialogActions sx={styles.dialogActions}>
         <DeleteItemDialog itemId={row.id} onClose={handleClose} />
         <Button sx={{ color: '#609966' }} variant='outlined' onClick={handleSubmit} type='submit'>
           <SendIcon sx={styles.icon} />Edit Staged Item

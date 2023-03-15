@@ -16,12 +16,13 @@ import AddItemDialog from './AddItemDialog';
 import styles from '../../styles/components/VendorTable.json';
 import EditVendorDialog from './EditVendorDialog';
 
-function createData(id, name, price, units, pricePerUnit, description, addedDate, available) {
+function createData(id, name, price, units, pricePerUnit, 
+      description, addedDate, available, imageUrl) {
   const formattedDate = new Date(addedDate);
   const formattedPrice = (price / 100).toFixed(2);
   const formattedPricePerUnit = (pricePerUnit / 100).toFixed(2);
   return { id, name, price, units, pricePerUnit, description, formattedPrice, 
-    formattedPricePerUnit, formattedDate, available };
+    formattedPricePerUnit, formattedDate, available, imageUrl };
 }
 
 function VendorTable(props) {
@@ -39,7 +40,8 @@ function VendorTable(props) {
           item.pricePerUnit,
           item.description,
           item.addedDate, 
-          item.available
+          item.available,
+          item.imageUrl
         )
       )
     });

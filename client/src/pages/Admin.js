@@ -61,8 +61,8 @@ function Admin() {
             aria-label="Admin tabs"
             sx={{ borderRight: 1, borderColor: 'divider', minHeight: 600 }}
           >
-            <Tab label='Vendors & Items' {...allyProps(0)} />
-            <Tab label='Orders' {...allyProps(1)} />
+            <Tab label='Staged Vendors & Items' {...allyProps(0)} />
+            <Tab label='Individual Orders' {...allyProps(1)} />
             <Tab label='Users' {...allyProps(2)} />
           </Tabs>
           <PanelWrapper value={tabIndex} index={0}>
