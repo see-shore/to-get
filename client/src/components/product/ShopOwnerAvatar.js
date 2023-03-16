@@ -11,7 +11,7 @@ const styles = {
 
 function ShopOwnerAvatar() {
   return (
-    <img src={ImageURLs.SHOP_OWNER} alt={'Shop Owner'} style={styles.image} /> // CHANGE THIS
+    <img src={ImageURLs.SHOP_OWNER} alt={'Shop Owner'} style={styles.image} />
   );
 }
 
