@@ -18,11 +18,10 @@ import {
 
 import styles from '../../styles/components/AddUserDialog.json';
 import { useDispatch, useSelector } from 'react-redux';
-import { createCredentialsAsync, setError } from '../../redux/slices/usersSlice';
+import { createCredentialsAsync, setAddUserDialogOpen, setError } from '../../redux/slices/usersSlice';
 
 function AddUserDialog() {
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
   const [formValue, setFormValue] = useState({
     firstName: '',
     lastName: '',
@@ -32,9 +31,10 @@ function AddUserDialog() {
   const token = useSelector((state) => state.users.token);
   const error = useSelector((state) => state.users.error);
   const loadingUserData = useSelector((state) => state.users.loadingUserData);
+  const open = useSelector((state) => state.users.addUserDialogOpen);
 
   const handleOpen = () => {
-    setOpen(true);
+    dispatch(setAddUserDialogOpen(true));
     setFormValue({
       firstName: '',
       lastName: '',
@@ -44,7 +44,8 @@ function AddUserDialog() {
   };
 
   const handleClose = () => {
-    setOpen(false);
+    dispatch(setError(null));
+    dispatch(setAddUserDialogOpen(false));
   };
 
   const handleChange = (event) => {
@@ -71,7 +72,7 @@ function AddUserDialog() {
   };
 
   const determineButtonStatus = () => {
-    return error || loadingUserData;
+    return (error !== null) || loadingUserData;
   };
 
   return (

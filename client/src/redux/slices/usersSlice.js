@@ -9,7 +9,8 @@ const initialState = {
   loadingUserData: false,
   recentUsers: [],
   token: "",
-  error: null
+  error: null,
+  addUserDialogOpen: false
 };
 
 export const getUsersAsync = createAsyncThunk(
@@ -76,6 +77,9 @@ export const usersSlice = createSlice({
     },
     setError: (state, action) => {
       state.error = action.payload;
+    },
+    setAddUserDialogOpen: (state, action) => {
+      state.addUserDialogOpen = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -93,6 +97,7 @@ export const usersSlice = createSlice({
       .addCase(addUserAsync.fulfilled, (state, action) => {
         state.loadingUserData = false;
         state.users.push(action.payload);
+        state.addUserDialogOpen = false;
       })
       .addCase(getUserAsync.pending, (state) => {
         state.loadingUserData = true;
@@ -114,12 +119,11 @@ export const usersSlice = createSlice({
       .addCase(getRecentUsersAsync.fulfilled, (state, action) => {
         state.recentUsers = action.payload
       })
-      .addCase(createCredentialsAsync.pending, (state, action) => {
+      .addCase(createCredentialsAsync.pending, (state) => {
         state.loadingUserData = true;
         
       })
       .addCase(createCredentialsAsync.rejected, (state) => {
-        console.log("test 1");
         state.error = "Error while creating credentials. They may already exist or may be invalid.";
         state.loadingUserData = false;
       });
@@ -128,7 +132,8 @@ export const usersSlice = createSlice({
 
 export const {
   setTokenInStore,
-  setError
+  setError,
+  setAddUserDialogOpen
 } = usersSlice.actions;
 
 export default usersSlice.reducer;
