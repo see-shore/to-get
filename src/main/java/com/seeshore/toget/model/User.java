@@ -36,7 +36,6 @@ public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference(value = "user-order")
-    @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 
     public User() {

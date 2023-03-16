@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-import { Grid } from '@mui/material';
+import { Grid, CircularProgress } from '@mui/material';
 
 import { getItemsAsync } from '../redux/slices/itemsSlice';
 import styles from '../styles/pages/Products.json';
@@ -13,7 +13,7 @@ import CartDialog from '../components/user/CartDialog';
 import { setToken } from '../util/AuthUtil';
 import ImageURLs from '../images/ImageURLs.json';
 import { 
-  getUserAndOrdersAsync, 
+  getUserAsync, 
   getRecentUsersAsync, 
   setTokenInStore 
 } from '../redux/slices/usersSlice';
@@ -29,10 +29,11 @@ function Products() {
   const { getAccessTokenSilently, user } = useAuth0();
   const myOrders = useSelector((state) => state.orders.myOrders);
   const ordersPresent = (myOrders.length > 0);
+  const loadingUser = useSelector((state) => state.users.loadingUserData);
 
   useEffect(() => {
     if (user) {
-      dispatch(getUserAndOrdersAsync(user.email));
+      dispatch(getUserAsync(user.email));
       dispatch(getMostRecentlySetDeliveryDateAsync());
       dispatch(getRecentUsersAsync(user.email));
     }
@@ -49,7 +50,8 @@ function Products() {
   }, [dispatch, getAccessTokenSilently]);
 
   const height = Math.ceil(items.length / 2) * 240;
-  const WelcomeText = `Welcome to the shop, ${accountUser.firstName}. What would you like to get today?`;
+  const welcomeText = ordersPresent ? `Thanks for keeping our oceans clean, ${accountUser.firstName}!` 
+    : `Welcome to the shop, ${accountUser.firstName}. What would you like to get today?`;
 
   const isUserAdmin = () => {
     return user?.email === 'seeshoreadmin@gmail.com';
@@ -71,7 +73,7 @@ function Products() {
             <ShopOwnerAvatar />
           </div>
           <div style={styles.speechBubble}>
-            <SpeechBox text={WelcomeText} />
+            <SpeechBox text={welcomeText} />
           </div>
         </div>
         <div style={styles.onlineUsers}>
@@ -84,14 +86,19 @@ function Products() {
           <img src={ImageURLs.DIV_DIVIDER} alt='Divider' style={styles.divider} />
         </Grid>
         <Grid item sx={styles.header}>
-          <p style={styles.weekPickCopy}>This Week's Picks</p>
+          <p style={styles.weekPickCopy}>{ordersPresent ? "Your Order Summary" : "This Week's Picks"}</p>
         </Grid>
       </Grid>
       <div style={styles.panel}>
-        {ordersPresent ? 
+        {loadingUser ? 
+        <div style={styles.loadingContainer}>
+          <CircularProgress size={50} />
+        </div>
+        :
+        (ordersPresent ? 
           <MyOrdersPanel orders={myOrders} />
           :
-          <ProductPanel items={items} height={height} />}
+          <ProductPanel items={items} height={height} />)}
       </div>
         <div style={styles.cartDialog}>
           <CartDialog ordersPresent={ordersPresent} 

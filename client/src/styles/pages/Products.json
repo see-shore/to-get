@@ -87,5 +87,13 @@
     "position": "absolute",
     "top": 10,
     "left": 230
+  },
+  "loadingContainer": {
+    "height": 500,
+    "width": "100%",
+    "backgroundColor": "#F0D794",
+    "display": "flex",
+    "justifyContent": "center",
+    "alignItems": "center"
   }
 }

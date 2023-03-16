@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { createNewCredentials } from "../api/adminAPI";
 import { getUsers, addUser, getUser, updateUser, getRecentUsers } from '../api/usersAPI';
-import { getMyOrdersAsync } from "./ordersSlice";
+import { setMyOrders } from "./ordersSlice";
 
 const initialState = {
   users: [],
@@ -49,15 +49,7 @@ export const getUserAsync = createAsyncThunk(
   'users/getUser',
   async (email, { dispatch }) => {
     const user = await getUser(email);
-    return user;
-  }
-);
-
-export const getUserAndOrdersAsync = createAsyncThunk(
-  'users/getUserAndOrders',
-  async (email, { dispatch }) => {
-    const user = await getUser(email);
-    dispatch(getMyOrdersAsync(user.id));
+    dispatch(setMyOrders(user.orders));
     return user;
   }
 );
@@ -109,10 +101,10 @@ export const usersSlice = createSlice({
         state.users.push(action.payload);
         state.addUserDialogOpen = false;
       })
-      .addCase(getUserAndOrdersAsync.pending, (state) => {
+      .addCase(getUserAsync.pending, (state) => {
         state.loadingUserData = true;
       })
-      .addCase(getUserAndOrdersAsync.fulfilled, (state, action) => {
+      .addCase(getUserAsync.fulfilled, (state, action) => {
         state.loadingUserData = false;
         state.user = action.payload;
       })
