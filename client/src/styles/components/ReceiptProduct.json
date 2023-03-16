@@ -1,0 +1,13 @@
+{
+  "quantity": {
+    "fontFamily": "helvetica",
+    "fontSize": 13,
+    "fontWeight": "bold",
+    "position": "absolute",
+    "top": "2em",
+    "left": "18.5em",
+    "padding": "0.3em 0.6em",
+    "borderRadius": "0.5em",
+    "backgroundColor": "#F0D794"
+  }
+}

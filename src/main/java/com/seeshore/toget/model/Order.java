@@ -57,6 +57,10 @@ public class Order implements Serializable {
         return item;
     }
 
+    public Long getItemId() {
+        return item.getId();
+    }
+
     public User getUser() {
         return user;
     }

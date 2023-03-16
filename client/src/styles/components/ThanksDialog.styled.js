@@ -29,7 +29,7 @@ export const Button = styled.button`
 `;
 
 export const StyledDialogContent = styled(DialogContent)`
-  min-height: 250px;
+  min-height: 320px;
   padding: 20px 0 !important;
 `;
 
