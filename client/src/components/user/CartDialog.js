@@ -20,7 +20,7 @@ function CartButton(props) {
   // This is the cart translated into order objects to send to orders endpoint
   const [orders, setOrders] = useState([]);
   const dispatch = useDispatch();
-  const { firstName, userId } = props;
+  const { firstName, userId, ordersPresent } = props;
 
   const totalText = 'Total Estimate:';
   const deliveryText = 'The delivery is scheduled on';
@@ -118,10 +118,12 @@ function CartButton(props) {
 
   return (
     <>
-      <button style={styles.button} onClick={handleOpen}>
-        {firstName}'s Cart
-        <span style={styles.itemCount}>{orders.length > 0 && `( ${totalItems(orders)} )`}</span>
-      </button>
+      {!ordersPresent && 
+        <button style={styles.button} onClick={handleOpen}>
+          {firstName}'s Cart
+          <span style={styles.itemCount}>{orders.length > 0 && `( ${totalItems(orders)} )`}</span>
+        </button>
+      }
       <Dialog
         open={open}
         onClose={handleClose}

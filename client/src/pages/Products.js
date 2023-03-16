@@ -12,20 +12,27 @@ import ProductPanel from '../components/product/ProductPanel';
 import CartDialog from '../components/user/CartDialog';
 import { setToken } from '../util/AuthUtil';
 import ImageURLs from '../images/ImageURLs.json';
-import { getUserAsync, getRecentUsersAsync, setTokenInStore } from '../redux/slices/usersSlice';
+import { 
+  getUserAndOrdersAsync, 
+  getRecentUsersAsync, 
+  setTokenInStore 
+} from '../redux/slices/usersSlice';
 import AdminButton from '../components/admin/AdminButton';
 import OnlineUsers from '../components/user/OnlineUsers';
 import { getMostRecentlySetDeliveryDateAsync } from '../redux/slices/adminSlice';
+import MyOrdersPanel from '../components/user/MyOrdersPanel';
 
 function Products() {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.items.items);
   const accountUser = useSelector((state) => state.users.user);
   const { getAccessTokenSilently, user } = useAuth0();
+  const myOrders = useSelector((state) => state.orders.myOrders);
+  const ordersPresent = (myOrders.length > 0);
 
   useEffect(() => {
     if (user) {
-      dispatch(getUserAsync(user.email));
+      dispatch(getUserAndOrdersAsync(user.email));
       dispatch(getMostRecentlySetDeliveryDateAsync());
       dispatch(getRecentUsersAsync(user.email));
     }
@@ -81,11 +88,16 @@ function Products() {
         </Grid>
       </Grid>
       <div style={styles.panel}>
-        <ProductPanel items={items} height={height} />
+        {ordersPresent ? 
+          <MyOrdersPanel orders={myOrders} />
+          :
+          <ProductPanel items={items} height={height} />}
       </div>
-      <div style={styles.cartDialog}>
-        <CartDialog firstName={accountUser.firstName} userId={accountUser.id} />
-      </div>
+        <div style={styles.cartDialog}>
+          <CartDialog ordersPresent={ordersPresent} 
+            firstName={accountUser.firstName} 
+            userId={accountUser.id} />
+        </div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createOrders, deleteOrder, getOrders } from '../api/ordersAPI';
+import { createOrders, deleteOrder, getOrders, getMyOrders } from '../api/ordersAPI';
 
 const initialState = {
   orders: [],
@@ -13,6 +13,14 @@ export const getOrdersAsync = createAsyncThunk(
   'orders/getOrders',
   async (_, { dispatch }) => {
     const orders = await getOrders();
+    return orders;
+  }
+);
+
+export const getMyOrdersAsync = createAsyncThunk(
+  'orders/getMyOrders',
+  async (userId, { dispatch }) => {
+    const orders = await getMyOrders(userId);
     return orders;
   }
 );
@@ -62,6 +70,9 @@ export const ordersSlice = createSlice({
           ...state.orders.slice(0, index),
           ...state.orders.slice(index + 1)
         ];
+      })
+      .addCase(getMyOrdersAsync.fulfilled, (state, action) => {
+        state.myOrders = action.payload;
       });
   }
 });
