@@ -18,7 +18,7 @@
     "display": "flex",
     "flexDirection": "column",
     "gap": "0.7em",
-    "maxHeight": "30em",
+    "height": "30em",
     "overflow": "auto",
     "scrollbarWidth": "none",
     "padding": "1em"
@@ -26,7 +26,7 @@
   "totalLine": {
     "display": "flex",
     "justifyContent": "right",
-    "margin": "0.8em 0.5em auto auto",
+    "margin": "0.8em 0.8em auto auto",
     "fontFamily": "Inter",
     "fontSize": "1.8rem",
     "fontWeight": 700
