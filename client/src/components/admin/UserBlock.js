@@ -16,7 +16,6 @@ import {
 } from '@mui/icons-material';
 
 import styles from '../../styles/components/UserBlock.json';
-import Avatar from '../../images/woman-avatar.png';
 import { useDispatch } from 'react-redux';
 import { updateUserAsync } from '../../redux/slices/usersSlice';
 
@@ -70,7 +69,7 @@ function UserBlock(props) {
       <Box sx={styles.block} onClick={handleOpen}>
         <Grid container>
           <Grid item>
-            <img src={Avatar} style={styles.avatar} alt="User Avatar"/>
+            <img src={user.imageUrl} style={styles.avatar} alt="User Avatar"/>
           </Grid>
           <Grid item sx={styles.userText}>
             <Grid>

@@ -3,7 +3,6 @@ import { Dialog, DialogContent, DialogTitle, DialogActions, Grid, Button } from 
 import { Logout as LogoutIcon } from '@mui/icons-material';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import Avatar from '../../images/woman-avatar.png';
 import styles from '../../styles/components/UserProfileDialog.json';
 import { NODE_BASE_URL } from '../../App';
 import { useDispatch } from 'react-redux';
@@ -13,7 +12,7 @@ function UserProfileDialog(props) {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const { logout } = useAuth0();
-  const { fullName, firstName } = props;
+  const { fullName, firstName, icon } = props;
 
   const handleOpen = () => {
     setOpen(true);
@@ -33,7 +32,7 @@ function UserProfileDialog(props) {
   return (
     <>
       <div onClick={handleOpen} style={styles.user}>
-        <img src={Avatar} style={styles.avatar} alt='User Avatar' />
+        <img src={icon} style={styles.avatar} alt='User Avatar' />
         <p style={styles.userName}>{firstName}</p>
       </div>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth='xs' sx={styles.dialog}>

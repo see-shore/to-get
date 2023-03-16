@@ -2,6 +2,7 @@ package com.seeshore.toget.controller;
 
 import com.seeshore.toget.model.User;
 import com.seeshore.toget.service.IUserService;
+import com.seeshore.toget.util.UserIcon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,8 +49,8 @@ public class UserController {
     @PostMapping("/user/new")
     public ResponseEntity<User> saveUser(@RequestBody User user) {
         try {
-            int userProfilePic = new Random().nextInt(4);
-            user.setImageUrl("../images/profile-" + userProfilePic + ".png");
+            int iconNum = new Random().nextInt(5);
+            user.setImageUrl(UserIcon.getIcon(iconNum));
             user.setLastLoginDate(new Date());
             User savedUser = userService.saveUser(user);
             return new ResponseEntity<>(savedUser, HttpStatus.OK);
