@@ -101,9 +101,6 @@ public class UserController {
     public ResponseEntity<List<User>> getRecentUsers(@RequestParam String email) {
         try {
             List<User> recentUsers = userService.getRecentUsers(email);
-            if (recentUsers.isEmpty()) {
-                return new ResponseEntity<>(new ArrayList<User>(), HttpStatus.OK);
-            }
             return new ResponseEntity<>(recentUsers, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e);
