@@ -18,12 +18,19 @@
     "justifyContent": "space-between"
   },
   "dialogContent": {
-    "height": 250
+    "height": 300
   },
   "textField": {
     "marginTop": 2
   },
   "icon": {
     "margin": "auto 5px auto 5px"
+  },
+  "error": {
+    "marginTop": 10,
+    "color": "#eb5350",
+    "fontFamily": "helvetica",
+    "fontWeight": "bold",
+    "fontSize": 10
   }
 }

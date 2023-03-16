@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createNewCredentials } from "../api/adminAPI";
 import { getUsers, addUser, getUser, updateUser, getRecentUsers } from '../api/usersAPI';
 
 const initialState = {
@@ -6,7 +7,9 @@ const initialState = {
   loadingUsersData: false,
   user: {},  // Currently logged in user pulled from MySQL DB
   loadingUserData: false,
-  recentUsers: []
+  recentUsers: [],
+  token: "",
+  error: null
 };
 
 export const getUsersAsync = createAsyncThunk(
@@ -17,14 +20,25 @@ export const getUsersAsync = createAsyncThunk(
   }
 );
 
+export const createCredentialsAsync = createAsyncThunk(
+  'users/createCredentials',
+  async (data, { dispatch }) => {
+    const { user, token } = data;
+    const response = await createNewCredentials(user, token);
+    if (response?.status === 200) {
+      dispatch(addUserAsync(user));
+    }
+  }
+);
+
 export const addUserAsync = createAsyncThunk(
   'users/addUser',
-  async (userData, { dispatch }) => {
+  async (user, { dispatch }) => {
     try {
-      const response = await addUser(userData);
+      const response = await addUser(user);
       return response;
-    } catch (err) {
-      console.error(err);
+    } catch (e) {
+      console.error(e);
     }
   }
 );
@@ -56,7 +70,14 @@ export const getRecentUsersAsync = createAsyncThunk(
 export const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {},
+  reducers: {
+    setTokenInStore: (state, action) => {
+      state.token = action.payload;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getUsersAsync.pending, (state) => {
@@ -67,10 +88,10 @@ export const usersSlice = createSlice({
         state.users = action.payload;
       })
       .addCase(addUserAsync.pending, (state) => {
-        state.loadingUsersData = true;
+        state.loadingUserData = true;
       })
       .addCase(addUserAsync.fulfilled, (state, action) => {
-        state.loadingUsersData = false;
+        state.loadingUserData = false;
         state.users.push(action.payload);
       })
       .addCase(getUserAsync.pending, (state) => {
@@ -92,10 +113,22 @@ export const usersSlice = createSlice({
       })
       .addCase(getRecentUsersAsync.fulfilled, (state, action) => {
         state.recentUsers = action.payload
+      })
+      .addCase(createCredentialsAsync.pending, (state, action) => {
+        state.loadingUserData = true;
+        
+      })
+      .addCase(createCredentialsAsync.rejected, (state) => {
+        console.log("test 1");
+        state.error = "Error while creating credentials. They may already exist or may be invalid.";
+        state.loadingUserData = false;
       });
   }
 });
 
-export const { } = usersSlice.actions;
+export const {
+  setTokenInStore,
+  setError
+} = usersSlice.actions;
 
 export default usersSlice.reducer;

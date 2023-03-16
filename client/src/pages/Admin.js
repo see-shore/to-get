@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { getStagedItemsAsync } from '../redux/slices/staged/stagedItemsSlice';
 import { getStagedVendorsAsync } from '../redux/slices/staged/stagedVendorsSlice';
-import { getUsersAsync } from '../redux/slices/usersSlice';
+import { getUsersAsync, setTokenInStore } from '../redux/slices/usersSlice';
 import { getOrdersAsync } from '../redux/slices/ordersSlice';
 import PanelWrapper from '../components/admin/PanelWrapper';
 import VendorsAndItemsPanel from '../components/admin/VendorsAndItemsPanel';
@@ -18,6 +18,7 @@ import NavBar from '../components/NavBar';
 import { getItemsAsync } from '../redux/slices/itemsSlice';
 import OrderMetricsPanel from '../components/admin/OrderMetricsPanel';
 import { getMostRecentlySetDeliveryDateAsync } from '../redux/slices/adminSlice';
+import { setToken } from '../util/AuthUtil';
 
 function allyProps(index) {
   return {
@@ -30,7 +31,16 @@ function Admin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [tabIndex, setTabIndex] = useState(0);
-  const { user } = useAuth0();
+  const { getAccessTokenSilently, user } = useAuth0();
+
+  useEffect(() => {
+    const getToken = async () => {
+      const accessToken = await getAccessTokenSilently();
+      setToken(accessToken);
+      dispatch(setTokenInStore(accessToken));
+    };
+    getToken();
+  }, [dispatch, getAccessTokenSilently]);
 
   useEffect(() => {
     if (user && user.email !== "seeshoreadmin@gmail.com") {

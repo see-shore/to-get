@@ -8,7 +8,8 @@ import {
   DialogTitle,
   IconButton,
   Grid,
-  Box
+  Box,
+  CircularProgress
 } from '@mui/material';
 import {
   Close as CloseIcon,
@@ -16,8 +17,8 @@ import {
 } from '@mui/icons-material';
 
 import styles from '../../styles/components/AddUserDialog.json';
-import { useDispatch } from 'react-redux';
-import { addUserAsync } from '../../redux/slices/usersSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { createCredentialsAsync, setError } from '../../redux/slices/usersSlice';
 
 function AddUserDialog() {
   const dispatch = useDispatch();
@@ -25,15 +26,20 @@ function AddUserDialog() {
   const [formValue, setFormValue] = useState({
     firstName: '',
     lastName: '',
-    email: ''
+    email: '',
+    password: ''
   });
+  const token = useSelector((state) => state.users.token);
+  const error = useSelector((state) => state.users.error);
+  const loadingUserData = useSelector((state) => state.users.loadingUserData);
 
   const handleOpen = () => {
     setOpen(true);
     setFormValue({
       firstName: '',
       lastName: '',
-      email: ''
+      email: '',
+      password: ''
     });
   };
 
@@ -43,6 +49,7 @@ function AddUserDialog() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+    if (error) dispatch(setError(null));
     setFormValue((prevState) => {
       return {
         ...prevState,
@@ -53,13 +60,18 @@ function AddUserDialog() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const userData = {
+    const user = {
       firstName: formValue.firstName.trim(),
       lastName: formValue.lastName.trim(),
-      email: formValue.email.trim()
+      email: formValue.email.trim(),
+      password: formValue.password.trim()
     };
-    dispatch(addUserAsync(userData));
-    handleClose();
+    const data = { user, token }
+    dispatch(createCredentialsAsync(data));
+  };
+
+  const determineButtonStatus = () => {
+    return error || loadingUserData;
   };
 
   return (
@@ -111,10 +123,29 @@ function AddUserDialog() {
               onChange={handleChange}
               fullWidth
             />
+            <TextField
+              required
+              id='password'
+              type='password'
+              name='password'
+              label='Password'
+              value={formValue.password}
+              sx={styles.textField}
+              onChange={handleChange}
+              fullWidth
+            />
+            {error && <p style={styles.error}>{error}</p>}
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleSubmit} variant='outlined' sx={{ color: '#609966' }} type='submit'>
-              <AddIcon sx={styles.icon} />Create user
+            <Button onClick={handleSubmit} disabled={determineButtonStatus()} 
+                  variant='outlined' sx={{ color: '#609966' }} type='submit'>
+                {loadingUserData ? 
+                  <CircularProgress size={17} />
+                  :
+                  <>
+                  <AddIcon sx={styles.icon} />Create user
+                  </>
+                }
             </Button>
           </DialogActions>
         </form>

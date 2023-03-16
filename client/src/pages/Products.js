@@ -12,7 +12,7 @@ import ProductPanel from '../components/product/ProductPanel';
 import CartDialog from '../components/user/CartDialog';
 import { setToken } from '../util/AuthUtil';
 import Divider from '../images/div-divider.png'; // CHANGE THIS
-import { getUserAsync, getRecentUsersAsync } from '../redux/slices/usersSlice';
+import { getUserAsync, getRecentUsersAsync, setTokenInStore } from '../redux/slices/usersSlice';
 import AdminButton from '../components/admin/AdminButton';
 import OnlineUsers from '../components/user/OnlineUsers';
 import { getMostRecentlySetDeliveryDateAsync } from '../redux/slices/adminSlice';
@@ -37,6 +37,7 @@ function Products() {
     const getToken = async () => {
       const accessToken = await getAccessTokenSilently();
       setToken(accessToken);
+      dispatch(setTokenInStore(accessToken));
     };
     getToken();
   }, [dispatch, getAccessTokenSilently]);
@@ -68,7 +69,7 @@ function Products() {
           </div>
         </div>
         <div style={styles.onlineUsers}>
-          <OnlineUsers type={'product'} />
+          {/* <OnlineUsers type={'product'} /> */}
         </div>
       </div>
 
