@@ -13,7 +13,7 @@ function OnlineUsers({ type = 'thanks' }) {
         {recentUsers
           .filter((_, idx) => idx < 4)
           .map((user) => (
-            <ProfileTiles key={user.id} src={require(`../../images/profiles/${user.id}.png`)} />
+            <ProfileTiles key={user.id} src={user.imageUrl} />
           ))}
       </ProfileContainer>
       <UserText style={{ textAlign: p_page ? 'end' : 'start' }}>
