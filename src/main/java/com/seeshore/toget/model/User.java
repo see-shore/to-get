@@ -34,6 +34,9 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastLoginDate;
 
+    @Column(name = "order_total")
+    private int orderTotal;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference(value = "user-order")
     private List<Order> orders = new ArrayList<>();
@@ -59,6 +62,10 @@ public class User implements Serializable {
 
     public List<Order> getOrders() {
         return orders;
+    }
+
+    public int getOrderTotal() {
+        return orderTotal;
     }
 
     public String getImageUrl() {
@@ -87,5 +94,9 @@ public class User implements Serializable {
 
     public void setLastLoginDate(Date lastLoginDate) {
         this.lastLoginDate = lastLoginDate;
+    }
+
+    public void setOrderTotal(int orderTotal) {
+        this.orderTotal = orderTotal;
     }
 }

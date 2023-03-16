@@ -52,6 +52,7 @@ public class UserController {
             int iconNum = new Random().nextInt(5);
             user.setImageUrl(UserIcon.getIcon(iconNum));
             user.setLastLoginDate(new Date());
+            user.setOrderTotal(0);
             User savedUser = userService.saveUser(user);
             return new ResponseEntity<>(savedUser, HttpStatus.OK);
         } catch (Exception e) {

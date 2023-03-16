@@ -63,7 +63,8 @@ function CartButton(props) {
   };
 
   const handleSubmit = () => {
-    dispatch(createOrdersAsync(orders));
+    const data = { orders, orderTotal: totalBalance };
+    dispatch(createOrdersAsync(data));
   };
 
   const totalItems = (itemList) => itemList.reduce((total, curr) => total + curr.quantity, 0);

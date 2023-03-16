@@ -96,7 +96,7 @@ function Products() {
         </div>
         :
         (ordersPresent ? 
-          <MyOrdersPanel orders={myOrders} />
+          <MyOrdersPanel orders={myOrders} total={accountUser.orderTotal} />
           :
           <ProductPanel items={items} height={height} />)}
       </div>

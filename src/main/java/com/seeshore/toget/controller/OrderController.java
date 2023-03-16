@@ -45,13 +45,25 @@ public class OrderController {
 
     // Create new orders (batch)
     @PostMapping("/order/new/batch")
-    public ResponseEntity<List<Order>> saveOrders(@RequestBody List<RequestOrder> requestOrders) {
+    public ResponseEntity<List<Order>> saveOrders(@RequestBody List<RequestOrder> requestOrders,
+                                                  @RequestParam int orderTotal) {
         try {
             if (requestOrders.isEmpty()) {
                 System.out.println("No orders were provided");
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                         "No orders were provided");
             }
+
+            Long userId = requestOrders.get(0).getUserId();
+            Optional<User> user = userService.findUserById(userId);
+            if (user.isEmpty()) {
+                System.out.println("Unknown user provided");
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                        "Unknown user provided");
+            }
+            User fetchedUser = user.get();
+            fetchedUser.setOrderTotal(orderTotal);
+            userService.saveUser(fetchedUser);
 
             List<Order> orders = new ArrayList<>();
             for (RequestOrder requestOrder : requestOrders) {

@@ -10,8 +10,8 @@ export const getMyOrders = async (userId) => {
   return response.data;
 };
 
-export const createOrders = async (ordersData) => {
-  const response = await axios.post('/order/new/batch', ordersData);
+export const createOrders = async (ordersData, orderTotal) => {
+  const response = await axios.post(`/order/new/batch?orderTotal=${orderTotal}`, ordersData);
   return response.data;
 };
 

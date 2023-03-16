@@ -82,6 +82,9 @@ export const usersSlice = createSlice({
     },
     setAddUserDialogOpen: (state, action) => {
       state.addUserDialogOpen = action.payload;
+    },
+    setUserTotal: (state, action) => {
+      state.user.orderTotal = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -135,7 +138,8 @@ export const usersSlice = createSlice({
 export const {
   setTokenInStore,
   setError,
-  setAddUserDialogOpen
+  setAddUserDialogOpen,
+  setUserTotal
 } = usersSlice.actions;
 
 export default usersSlice.reducer;

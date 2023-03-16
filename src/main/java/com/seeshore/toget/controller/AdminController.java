@@ -2,6 +2,7 @@ package com.seeshore.toget.controller;
 
 import com.seeshore.toget.model.Item;
 import com.seeshore.toget.model.Order;
+import com.seeshore.toget.model.User;
 import com.seeshore.toget.model.Vendor;
 import com.seeshore.toget.model.archived.ArchivedItem;
 import com.seeshore.toget.model.archived.ArchivedOrder;
@@ -10,6 +11,7 @@ import com.seeshore.toget.model.staged.StagedItem;
 import com.seeshore.toget.model.staged.StagedVendor;
 import com.seeshore.toget.service.IItemService;
 import com.seeshore.toget.service.IOrderService;
+import com.seeshore.toget.service.IUserService;
 import com.seeshore.toget.service.IVendorService;
 import com.seeshore.toget.service.archived.IArchivedItemService;
 import com.seeshore.toget.service.archived.IArchivedOrderService;
@@ -31,6 +33,8 @@ import java.util.List;
 @Controller
 @CrossOrigin
 public class AdminController {
+    @Autowired
+    private IUserService userService;
     @Autowired
     private IVendorService vendorService;
     @Autowired
@@ -133,6 +137,12 @@ public class AdminController {
                     Item item = new Item(stagedItem, vendor);
                     Item savedItem = itemService.saveItem(item);
                 }
+            }
+
+            List<User> users = userService.findAllUsers();
+            for (User user : users) {
+                user.setOrderTotal(0);
+                User savedUser = userService.saveUser(user);
             }
 
             return ResponseEntity.status(HttpStatus.OK)

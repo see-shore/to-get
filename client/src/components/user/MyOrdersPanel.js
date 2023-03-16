@@ -7,7 +7,7 @@ import ReceiptProduct from '../product/ReceiptProduct';
 import { dateOptions } from '../../util/AppUtil';
 
 function MyOrdersPanel(props) {
-  const { orders } = props;
+  const { orders, total } = props;
   const itemsMap = useSelector((state) => selectItemsMap(state));
   const totalText = 'Total Estimate:';
   const deliveryText = 'The delivery is scheduled on';
@@ -31,7 +31,7 @@ function MyOrdersPanel(props) {
             <p style={{ marginRight: 10 }}>{totalText}</p>
           </div>
           <div>
-            <p>{`$${(2183 / 100).toFixed(2)}`}</p>
+            <p>{`$${(total / 100).toFixed(2)}`}</p>
           </div>
         </div>
         <div style={styles.textCopy}>

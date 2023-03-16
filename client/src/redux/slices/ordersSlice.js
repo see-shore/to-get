@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { createOrders, deleteOrder, getOrders, getMyOrders } from '../api/ordersAPI';
+import { setUserTotal } from "./usersSlice";
 
 const initialState = {
   orders: [],
@@ -27,9 +28,11 @@ export const getMyOrdersAsync = createAsyncThunk(
 
 export const createOrdersAsync = createAsyncThunk(
   'orders/createOrders',
-  async (ordersData, { dispatch }) => {
-    const orders = await createOrders(ordersData);
-    return orders;
+  async (data, { dispatch }) => {
+    const { orders, orderTotal } = data;
+    dispatch(setUserTotal(orderTotal));
+    const response = await createOrders(orders, orderTotal);
+    return response;
   }
 );
 
