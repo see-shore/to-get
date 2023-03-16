@@ -34,17 +34,18 @@ function App() {
       <Provider store={store}>
         <div className='background'>
           <Routes>
-            <Route path='/' element={<Login />} />
+            <Route exact path='/' element={<LoginRoute />}>
+              <Route path='/' element={<Login />} />
+            </Route>
             <Route exact path='/login' element={<LoginRoute />}>
               <Route exact path='/login' element={<Login />} />
             </Route>
             <Route path='/products' element={<Products />} />
+            <Route path='/admin' element={<Admin />} />
 
             <Route path='/contact' element={<Contact />} />
             <Route path='/confirm-order' element={<OrderConfirmation />} />
             <Route path='/payment' element={<Payment />} />
-            {/* Admin Pages */}
-            <Route path='/admin' element={<Admin />} />
             {/* 404 */}
             <Route path='*' element={<DoesNotExist />} />
           </Routes>

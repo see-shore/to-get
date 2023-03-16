@@ -82,7 +82,7 @@ function ThanksDialog(props) {
         <StyledDialogContent>
           <PlasticContainer>{generatePlasticMon(plastic)}</PlasticContainer>
           <EnvText>{generateInspoText()}</EnvText>
-          {/* <OnlineUsers users={'thanks'} /> */}
+          <OnlineUsers users={'thanks'} />
           <Button className={'styled-button'} onClick={handleClose}>
             Finish
           </Button>

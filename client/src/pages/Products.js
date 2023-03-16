@@ -46,7 +46,7 @@ function Products() {
   const WelcomeText = `Welcome to the shop, ${accountUser.firstName}. What would you like to get today?`;
 
   const isUserAdmin = () => {
-    return user.name === 'seeshoreadmin@gmail.com';
+    return user?.email === 'seeshoreadmin@gmail.com';
   };
 
   return (
@@ -69,7 +69,7 @@ function Products() {
           </div>
         </div>
         <div style={styles.onlineUsers}>
-          {/* <OnlineUsers type={'product'} /> */}
+          <OnlineUsers type={'product'} />
         </div>
       </div>
 

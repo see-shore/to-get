@@ -6,7 +6,7 @@ function LoginRoute() {
   const { isAuthenticated } = useAuth0();
 
   return isAuthenticated 
-    ? <Navigate to='/' />
+    ? <Navigate to='/products' />
     : <Outlet />
 }
 

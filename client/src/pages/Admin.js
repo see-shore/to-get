@@ -43,7 +43,7 @@ function Admin() {
   }, [dispatch, getAccessTokenSilently]);
 
   useEffect(() => {
-    if (user && user.email !== "seeshoreadmin@gmail.com") {
+    if (user?.email !== "seeshoreadmin@gmail.com") {
       navigate('/products');
       return;
     }
