@@ -1,10 +1,12 @@
 package com.seeshore.toget.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -28,8 +30,13 @@ public class User implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
 
+    @Column(name = "last_login_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastLoginDate;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference(value = "user-order")
+    @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 
     public User() {
@@ -55,6 +62,14 @@ public class User implements Serializable {
         return orders;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public Date getLastLoginDate() {
+        return lastLoginDate;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -69,5 +84,9 @@ public class User implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public void setLastLoginDate(Date lastLoginDate) {
+        this.lastLoginDate = lastLoginDate;
     }
 }

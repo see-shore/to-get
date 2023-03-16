@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getUsers, addUser, getUser, updateUser } from '../api/usersAPI';
+import { getUsers, addUser, getUser, updateUser, getRecentUsers } from '../api/usersAPI';
 
 const initialState = {
   users: [],
   loadingUsersData: false,
   user: {},  // Currently logged in user pulled from MySQL DB
-  loadingUserData: false
+  loadingUserData: false,
+  recentUsers: []
 };
 
 export const getUsersAsync = createAsyncThunk(
@@ -41,6 +42,14 @@ export const updateUserAsync = createAsyncThunk(
   async (userData, { dispatch }) => {
     const user = await updateUser(userData);
     return user;
+  }
+);
+
+export const getRecentUsersAsync = createAsyncThunk(
+  'users/getRecentUsers',
+  async (email, { dispatch }) => {
+    const recentUsers = await getRecentUsers(email);
+    return recentUsers;
   }
 );
 
@@ -81,6 +90,9 @@ export const usersSlice = createSlice({
         );
         state.users[index] = action.payload;
       })
+      .addCase(getRecentUsersAsync.fulfilled, (state, action) => {
+        state.recentUsers = action.payload
+      });
   }
 });
 

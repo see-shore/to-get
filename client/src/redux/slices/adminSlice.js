@@ -49,10 +49,14 @@ export const adminSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getMostRecentlySetDeliveryDateAsync.fulfilled, (state, action) => {
+      .addCase(publishDeliveryDateAsync.fulfilled, (state, action) => {
         state.deliveryDate = action.payload.deliveryDate;
         state.deliveryId = action.payload.uuid;
       })
+      .addCase(getMostRecentlySetDeliveryDateAsync.fulfilled, (state, action) => {
+        state.deliveryDate = action.payload.deliveryDate;
+        state.deliveryId = action.payload.uuid;
+      });
   }
 })
 

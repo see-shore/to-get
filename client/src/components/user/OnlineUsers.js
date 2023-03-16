@@ -1,28 +1,25 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { UserContainer, ProfileContainer, ProfileTiles, UserText } from '../../styles/components/OnlineUsers.styled';
-
-export const users = [
-  { id: 1, name: 'Bob', image: 1 },
-  { id: 2, name: 'Alice', image: 2 },
-  { id: 3, name: 'Eve', image: 3 },
-  { id: 4, name: 'Steve', image: 4 },
-];
 
 function OnlineUsers({ type = 'thanks' }) {
   const p_page = type === 'product' ? true : false;
+  const recentUsers = useSelector((state) => state.users.recentUsers);
+  const recentUserCount = recentUsers.length;
+  
   return (
-    <UserContainer style={{ display: users.length == 0 ? 'none' : 'auto', alignItems: p_page ? 'end' : 'center' }}>
+    <UserContainer style={{ alignItems: p_page ? 'end' : 'center' }}>
       <ProfileContainer>
-        {users
+        {recentUsers
           .filter((_, idx) => idx < 4)
           .map((user) => (
-            <ProfileTiles key={user.id} src={require(`../../images/profiles/${user.image}.png`)} />
+            <ProfileTiles key={user.id} src={require(`../../images/profiles/${user.id}.png`)} />
           ))}
       </ProfileContainer>
       <UserText style={{ textAlign: p_page ? 'end' : 'start' }}>
-        {(users.length > 2 && `${users[0].name}, ${users[1].name}, and +${users.length - 2} more are here too!`) ||
-          (users.length > 1 && `${users[0].name} and ${users[1].name} are here too!`) ||
-          (users.length == 1 && `${users[0].name} is here too!`)}
+        {(recentUserCount > 2 && `${recentUsers[0].firstName}, ${recentUsers[1].firstName}, and +${recentUserCount - 2} more are here too!`) ||
+          (recentUserCount > 1 && `${recentUsers[0].firstName} and ${recentUsers[1].firstName} are here too!`) ||
+          (recentUserCount === 1 && `${recentUsers[0].firstName} is here too!`)}
       </UserText>
     </UserContainer>
   );

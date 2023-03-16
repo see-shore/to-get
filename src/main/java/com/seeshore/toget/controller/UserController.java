@@ -9,10 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @Controller
 @CrossOrigin
@@ -38,7 +35,9 @@ public class UserController {
     public ResponseEntity<User> getUserByEmail(@RequestParam String email) {
         try {
             User user = userService.findUserByEmail(email);
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            user.setLastLoginDate(new Date());
+            User savedUser = userService.saveUser(user);
+            return new ResponseEntity<>(savedUser, HttpStatus.OK);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error", e);
@@ -51,6 +50,7 @@ public class UserController {
         try {
             int userProfilePic = new Random().nextInt(4);
             user.setImageUrl("../images/profile-" + userProfilePic + ".png");
+            user.setLastLoginDate(new Date());
             User savedUser = userService.saveUser(user);
             return new ResponseEntity<>(savedUser, HttpStatus.OK);
         } catch (Exception e) {
@@ -93,6 +93,22 @@ public class UserController {
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error", e);
+        }
+    }
+
+    // Fetch most recently logged-in users (last 30 minutes)
+    @GetMapping("/user/recent")
+    public ResponseEntity<List<User>> getRecentUsers(@RequestParam String email) {
+        try {
+            List<User> recentUsers = userService.getRecentUsers(email);
+            if (recentUsers.isEmpty()) {
+                return new ResponseEntity<>(new ArrayList<User>(), HttpStatus.OK);
+            }
+            return new ResponseEntity<>(recentUsers, HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    e.getMessage(), e);
         }
     }
 }

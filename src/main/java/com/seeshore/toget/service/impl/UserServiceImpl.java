@@ -39,4 +39,9 @@ public class UserServiceImpl implements IUserService {
     public User findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
+
+    @Override
+    public List<User> getRecentUsers(String email) {
+        return userRepository.getRecentlyLoggedInUsers(email);
+    }
 }
