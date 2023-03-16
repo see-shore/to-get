@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ShopOwner from '../../images/shop-owner.png';
+import ImageURLs from '../../images/ImageURLs.json';
 
 const styles = {
   image: {
@@ -11,7 +11,7 @@ const styles = {
 
 function ShopOwnerAvatar() {
   return (
-    <img src={ShopOwner} alt={'Shop Owner'} style={styles.image} /> // CHANGE THIS
+    <img src={ImageURLs.SHOP_OWNER} alt={'Shop Owner'} style={styles.image} /> // CHANGE THIS
   );
 }
 

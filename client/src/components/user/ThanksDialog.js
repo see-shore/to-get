@@ -14,17 +14,18 @@ import {
   PlasticContainer,
   ItemContainer,
   Image,
-  ItemName,
   ItemNum,
 } from '../../styles/components/ThanksDialog.styled';
 
+import ImageURLs from '../../images/ImageURLs.json';
+
 const plastic = [
   { id: 1, name: 'bag', amt: '8', unit: 'grams', type: 'plastic bags' },
-  { id: 2, name: 'clamshell', amt: '6', unit: 'grams', type: 'plastic container' },
+  { id: 2, name: 'clamshell', amt: '6', unit: 'grams', type: 'plastic containers' },
   { id: 3, name: 'net', amt: '4', unit: 'grams', type: 'swallowing bags' },
-  { id: 4, name: 'bag', amt: '8', unit: 'grams', type: 'plastic container' },
-  { id: 5, name: 'bag', amt: '8', unit: 'grams', type: 'plastic container' },
-  { id: 6, name: 'bag', amt: '8', unit: 'grams', type: 'plastic container' },
+  { id: 4, name: 'bag', amt: '8', unit: 'grams', type: 'plastic containers' },
+  { id: 5, name: 'bag', amt: '8', unit: 'grams', type: 'plastic containers' },
+  { id: 6, name: 'bag', amt: '8', unit: 'grams', type: 'plastic containers' },
 ];
 
 function ThanksDialog(props) {
@@ -47,12 +48,10 @@ function ThanksDialog(props) {
     plastic
       .filter((_, idx) => idx < 3)
       .map((item) => {
+        const key = "TRASH_" + item.name.toUpperCase();
         return (
           <ItemContainer key={item.id}>
-            <Image src={require(`../../images/plastic/${item.name}.png`)} />
-            <ItemName>
-              {item.amt} {item.unit}
-            </ItemName>
+            <Image src={ImageURLs[key]} />
             <ItemNum>{item.type}</ItemNum>
           </ItemContainer>
         );

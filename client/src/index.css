@@ -49,7 +49,7 @@ p {
 }
 
 .background {
-  background-image: url("./images/background.png");
+  background-image: url("https://to-get.s3.us-west-2.amazonaws.com/background.png");
   background-color: rgba(255, 255, 255, 0.75);
   background-blend-mode: lighten;
 }

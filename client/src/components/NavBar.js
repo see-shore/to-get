@@ -2,14 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import AppLogo from '../images/logo192.png';
-import TextLogo from '../images/app-logo.png';
 import { Button } from '@mui/material';
 import {
   Logout as LogoutIcon
 } from '@mui/icons-material';
 import { useAuth0 } from '@auth0/auth0-react';
 import { NODE_BASE_URL } from '../App';
+import ImageURLs from '../images/ImageURLs.json';
 
 const StyledNavBar = styled.header`
   background: #abe5c2;
@@ -54,8 +53,8 @@ function NavBar() {
   return (
     <StyledNavBar>
       <Link to='/products'>
-        <StyledLogo src={AppLogo} />
-        <img src={TextLogo} alt="Text Logo" style={{ height: 35, marginTop: 10 }} />
+        <StyledLogo src={ImageURLs.LOGO_192} />
+        <img src={ImageURLs.APP_LOGO} alt="Text Logo" style={{ height: 35, marginTop: 10 }} />
       </Link>
       <Button 
               onClick={() => handleLogout()} 

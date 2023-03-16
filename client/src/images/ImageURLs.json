@@ -1,0 +1,11 @@
+{
+  "SHOP_OWNER": "https://to-get.s3.us-west-2.amazonaws.com/shop-owner.png",
+  "SPEECH_BUBBLE": "https://to-get.s3.us-west-2.amazonaws.com/speech-bubble.png",
+  "APP_LOGO": "https://to-get.s3.us-west-2.amazonaws.com/app-logo.png",
+  "BACKGROUND": "https://to-get.s3.us-west-2.amazonaws.com/background.png",
+  "DIV_DIVIDER": "https://to-get.s3.us-west-2.amazonaws.com/div-divider.png",
+  "LOGO_192": "https://to-get.s3.us-west-2.amazonaws.com/logo192.png",
+  "TRASH_BAG": "https://to-get.s3.us-west-2.amazonaws.com/bag.png",
+  "TRASH_CLAMSHELL": "https://to-get.s3.us-west-2.amazonaws.com/clamshell.png",
+  "TRASH_NET": "https://to-get.s3.us-west-2.amazonaws.com/net.png"
+}

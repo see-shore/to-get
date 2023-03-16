@@ -11,7 +11,7 @@ import UserProfileDialog from '../components/user/UserProfileDialog';
 import ProductPanel from '../components/product/ProductPanel';
 import CartDialog from '../components/user/CartDialog';
 import { setToken } from '../util/AuthUtil';
-import Divider from '../images/div-divider.png'; // CHANGE THIS
+import ImageURLs from '../images/ImageURLs.json';
 import { getUserAsync, getRecentUsersAsync, setTokenInStore } from '../redux/slices/usersSlice';
 import AdminButton from '../components/admin/AdminButton';
 import OnlineUsers from '../components/user/OnlineUsers';
@@ -75,7 +75,7 @@ function Products() {
 
       <Grid container sx={styles.productsCard}>
         <Grid item sx={styles.divider}>
-          <img src={Divider} alt='Divider' style={styles.divider} />
+          <img src={ImageURLs.DIV_DIVIDER} alt='Divider' style={styles.divider} />
         </Grid>
         <Grid item sx={styles.header}>
           <p style={styles.weekPickCopy}>This Week's Picks</p>

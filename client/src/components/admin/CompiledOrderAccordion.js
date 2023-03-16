@@ -34,7 +34,7 @@ function CompiledOrderAccordion(props) {
       const subtotal = item.pricePerUnit * order.quantity;
       return (
         <div key={order.id} style={styles.orderLine}>
-          <p style={styles.text}>{`${item.name} (Item ID: ${item.id}) – ${order.quantity}x`}</p>
+          <p style={styles.text}>{`${item.name} (ID: ${item.id}) – ${order.quantity}x`}</p>
           <p style={styles.text}>{`$${(subtotal / 100).toFixed(2)}`}</p>
         </div>
       );
