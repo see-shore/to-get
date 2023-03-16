@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { Dialog, DialogContent, DialogTitle, DialogActions, Grid, Button } from '@mui/material';
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogActions, 
+  Button 
+} from '@mui/material';
 import { Logout as LogoutIcon } from '@mui/icons-material';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -12,7 +17,7 @@ function UserProfileDialog(props) {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const { logout } = useAuth0();
-  const { fullName, firstName, icon } = props;
+  const { user } = props;
 
   const handleOpen = () => {
     setOpen(true);
@@ -32,22 +37,23 @@ function UserProfileDialog(props) {
   return (
     <>
       <div onClick={handleOpen} style={styles.user}>
-        <img src={icon} style={styles.avatar} alt='User Avatar' />
-        <p style={styles.userName}>{firstName}</p>
+        <img src={user.imageUrl} style={styles.avatar} alt='User Avatar' />
+        <p style={styles.userName}>{user.firstName}</p>
       </div>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth='xs' sx={styles.dialog}>
-        <DialogTitle>
-          <Grid sx={styles.dialogTitle}>
-            <p style={styles.title}>{fullName}</p>
-          </Grid>
-        </DialogTitle>
         <DialogContent sx={styles.dialogContent}>
-          <p style={styles.text}>USER INFO. WHAT GOES HERE?</p>
+          <div style={styles.leftPanel}>
+            <img style={styles.image} src={user.imageUrl} alt="User Icon" />
+          </div>
+          <div style={styles.rightPanel}>
+            <p style={styles.header}>{`${user.firstName} ${user.lastName}`}</p>
+            <p style={styles.text}>{`${user.email}`}</p>
+          </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleLogout()} sx={{ color: '#FFFFFF', backgroundColor: '#ef5350' }} type='submit'>
+          <Button onClick={() => handleLogout()} sx={styles.button} type='submit'>
             <LogoutIcon sx={styles.icon} />
-            Log out
+            {`Log Out`}
           </Button>
         </DialogActions>
       </Dialog>

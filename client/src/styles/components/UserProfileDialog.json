@@ -33,17 +33,50 @@
     "justifyContent": "space-between"
   },
   "dialogContent": {
-    "minHeight": 250,
     "display": "flex",
-    "justifyContent": "center",
-    "alignItems": "center"
+    "justifyContent": "center"
   },
   "icon": {
     "margin": "auto 5px auto 5px"
   },
-  "text": {
+  "header": {
     "fontSize": 15,
     "fontFamily": "helvetica",
+    "fontWeight": "bold",
+    "marginTop": 30
+  },
+  "text": {
+    "fontSize": 13,
+    "fontFamily": "helvetica",
+    "marginTop": 5
+  },
+  "leftPanel": {
+    "width": "35%"
+  },
+  "rightPanel": {
+    "width": "65%",
+    "margin": "20px auto auto 10px" 
+  },
+  "button": { 
+    "color": "#FFFFFF", 
+    "backgroundColor": "#000000", 
+    "width": 110,
+    "borderRadius": 10,
+    "height": 35,
+    "marginRight": 1,
+    "marginBottom": 1,
+    "fontSize": 10,
+    "fontFamily": "helvetica",
     "fontWeight": "bold"
+  },
+  "image": {
+    "marginTop": 30,
+    "marginRight": 10,
+    "maxWidth": 80,
+    "borderRadius": "50%",
+    "border": "5px solid black",
+    "zIndex": 100
+  },
+  "dialog": {
   }
 }

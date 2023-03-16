@@ -21,7 +21,6 @@ function Products() {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.items.items);
   const accountUser = useSelector((state) => state.users.user);
-  const accountName = accountUser.firstName + ' ' + accountUser.lastName;
   const { getAccessTokenSilently, user } = useAuth0();
 
   useEffect(() => {
@@ -53,7 +52,7 @@ function Products() {
     <div style={styles.pageContainer}>
       <div style={styles.backgroundCard}>
         <div style={styles.profile}>
-          <UserProfileDialog fullName={accountName} firstName={accountUser.firstName} icon={accountUser.imageUrl} />
+          <UserProfileDialog user={accountUser} />
         </div>
         {isUserAdmin() && (
           <div style={styles.adminButton}>
