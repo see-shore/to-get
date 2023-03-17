@@ -42,7 +42,8 @@ export const InfoContainer = styled.div`
 `;
 
 export const StyledName = styled.p`
-  font-size: 2rem;
+  font-size: 1.7rem;
+  margin-top: 0.2em
 `;
 export const UnitPrice = styled.p`
   color: #9da0a5;

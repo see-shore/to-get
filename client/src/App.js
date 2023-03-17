@@ -14,9 +14,8 @@ import axios from 'axios';
 import { Auth0Provider } from '@auth0/auth0-react';
 import LoginRoute from './util/LoginRoute';
 
-// CHANGE BOTH TO 'https://ec2-35-89-204-152.us-west-2.compute.amazonaws.com:8080' for prod
-export const API_BASE_URL = 'http://localhost:8080';
-export const NODE_BASE_URL = 'http://localhost:3000';
+export const API_BASE_URL = "http://localhost:8080"; // "https://www.toget.ca"; Switch for PROD
+export const NODE_BASE_URL = "http://localhost:3000"; // "https://www.toget.ca"; Switch for PROD
 axios.defaults.baseURL = API_BASE_URL;
 
 function App() {
@@ -35,11 +34,9 @@ function App() {
         <div className='background'>
           <Routes>
             <Route exact path='/' element={<LoginRoute />}>
-              <Route path='/' element={<Login />} />
+              <Route exact path='/' element={<Login />} />
             </Route>
-            <Route exact path='/login' element={<LoginRoute />}>
-              <Route exact path='/login' element={<Login />} />
-            </Route>
+            <Route path='/login' element={<Login />} />
             <Route path='/products' element={<Products />} />
             <Route path='/admin' element={<Admin />} />
 

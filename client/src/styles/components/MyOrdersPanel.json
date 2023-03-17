@@ -1,6 +1,6 @@
 {
   "container": { 
-    "height": 500, 
+    "minHeight": "100%", 
     "width": "100%", 
     "backgroundColor": "#F0D794",
     "display": "flex",
@@ -18,7 +18,7 @@
     "display": "flex",
     "flexDirection": "column",
     "gap": "0.7em",
-    "height": "30em",
+    "height": "65%",
     "overflow": "auto",
     "scrollbarWidth": "none",
     "padding": "1em"
