@@ -18,12 +18,6 @@ To.get is an application created by team See Shore of the CDM to facilitate grou
 - AWS RDS MySQL database
 - Hosted on AWS EC2
 
-AWS RDS DB Instance:
-```
-URL: to-get-db-1.cq3uctxl0ape.us-west-2.rds.amazonaws.com
-Port: 3306
-```
-
 ## Server Environment Setup
 
 After cloning the repository, go to the root directory of the project and:
@@ -36,16 +30,23 @@ In the new YAML file, paste:
 spring:
   datasource:
     username: admin
-    password: <PASSWORD>
-    url: jdbc:mysql://to-get-db-1.cq3uctxl0ape.us-west-2.rds.amazonaws.com:3306/toget
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: <DB_PASSWORD>
+    url: jdbc:mysql://toget-db.cq3uctxl0ape.us-west-2.rds.amazonaws.com:3306/toget
+    driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
       dialect: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
     show-sql: true
+aws:
+  accessKey: <ACCESS_KEY>
+  secretKey: <SECRET_KEY>
+  s3:
+    region: us-west-2
+    bucketName: to-get
 ```
-Ask the project admins for credentials to the AWS RDS database and replace the password placeholder above.
+Ask the project admins for credentials to the AWS RDS database and the S3 bucket and replace the password and key placeholders above.
 
 The server runs on port 8080 and API endpoints can be tested on Postman with:
 ```
