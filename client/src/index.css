@@ -61,3 +61,7 @@ p {
   margin: auto;  
   position: relative;
 }
+
+button {
+  cursor: pointer;
+}
