@@ -88,7 +88,7 @@ Server base URL: http://localhost:8080/
 Client base URL: http://localhost:3000/
 ```
 
-- To run the server, remove the `server` and `security` sections of the `application.yml` file. Then use the IDE (IntelliJ recommended) to build the project and run it.
+- To run the server, remove the `server` and `security` sections of the `application.yml` file. You will also need to temporarily delete or comment out the `/config/PortConfig.java` configuration file. Then use the IDE (IntelliJ recommended) to build the project and run it.
 - To run the client, go to the root of the `client` directory and `npm start`. 
 
 ## building the app
