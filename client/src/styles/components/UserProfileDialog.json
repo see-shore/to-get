@@ -4,7 +4,11 @@
     "height": 40,
     "borderRadius": "50%",
     "border": "3px solid black",
-    "zIndex": 100
+    "zIndex": 100,
+    "backgroundColor": "white",
+    "display": "flex",
+    "alignItems": "center",
+    "textAlign": "center"
   },
   "user": {
     "cursor": "pointer",
@@ -55,11 +59,11 @@
   },
   "rightPanel": {
     "width": "65%",
-    "margin": "20px auto auto 10px" 
+    "margin": "20px auto auto 10px"
   },
-  "button": { 
-    "color": "#FFFFFF", 
-    "backgroundColor": "#000000", 
+  "button": {
+    "color": "#FFFFFF",
+    "backgroundColor": "#000000",
     "width": 110,
     "borderRadius": 10,
     "height": 35,
@@ -77,6 +81,5 @@
     "border": "5px solid black",
     "zIndex": 100
   },
-  "dialog": {
-  }
+  "dialog": {}
 }

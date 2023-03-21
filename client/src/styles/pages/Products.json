@@ -89,11 +89,11 @@
     "left": 230
   },
   "loadingContainer": {
-    "height": 500,
     "width": "100%",
     "backgroundColor": "#F0D794",
     "display": "flex",
     "justifyContent": "center",
-    "alignItems": "center"
+    "alignItems": "center",
+    "paddingBottom": "15vh"
   }
 }
