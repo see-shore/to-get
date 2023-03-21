@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://to-get.s3.us-west-2.amazonaws.com/logo192.png" />
+</p>
+
 # to.get
 
 to.get is an application created by team See Shore of the CDM to facilitate group buying on campus and to tackle plastic waste reduction.
