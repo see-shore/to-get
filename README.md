@@ -1,6 +1,6 @@
 # to.get
 
-To.get is an application created by team See Shore of the CDM to facilitate group buying on campus and to tackle plastic waste reduction.
+to.get is an application created by team See Shore of the CDM to facilitate group buying on campus and to tackle plastic waste reduction.
 
 ## team see shore
 
