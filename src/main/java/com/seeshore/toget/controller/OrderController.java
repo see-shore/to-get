@@ -124,6 +124,12 @@ public class OrderController {
             }
 
             Order fetchedOrder = orderRecord.get();
+            User user = fetchedOrder.getUser();
+            Item item = fetchedOrder.getItem();
+            int subTotal = item.getPricePerUnit() * fetchedOrder.getQuantity();
+            user.subtractFromTotal(subTotal);
+            userService.saveUser(user);
+
             fetchedOrder.dismissItem();
             fetchedOrder.dismissUser();
 

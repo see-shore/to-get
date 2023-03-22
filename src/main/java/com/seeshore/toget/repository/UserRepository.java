@@ -14,7 +14,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(
             value = "SELECT * FROM users u " +
-                    "WHERE u.last_login_date > DATE_SUB(convert_tz(now(),'+00:00','-07:00'), INTERVAL 30 MINUTE) " +
+                    "WHERE u.last_login_date > DATE_SUB(NOW(), INTERVAL 30 MINUTE) " +
                     "AND u.email <> :email",
             nativeQuery = true
     )

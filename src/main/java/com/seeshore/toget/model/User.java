@@ -99,4 +99,12 @@ public class User implements Serializable {
     public void setOrderTotal(int orderTotal) {
         this.orderTotal = orderTotal;
     }
+
+    public void subtractFromTotal(int num) {
+        if (this.orderTotal - num >= 0) {
+            this.orderTotal -= num;
+        } else {
+            this.orderTotal = 0;
+        }
+    }
 }
