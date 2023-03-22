@@ -1,3 +1,4 @@
+import React from 'react';
 import { LoadingContainer } from '../../styles/components/EllipsisLoader.styled';
 
 function EllipsisLoader({ color = 'black', size = 'medium' }) {
