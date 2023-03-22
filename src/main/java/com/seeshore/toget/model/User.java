@@ -100,6 +100,17 @@ public class User implements Serializable {
         this.orderTotal = orderTotal;
     }
 
+    public void deleteFromOrders(Long orderId) {
+        int idx = -1;
+        for (int i = 0; i < this.orders.size(); i++) {
+            if (this.orders.get(i).getId().equals(orderId)) {
+                idx = i;
+                break;
+            }
+        }
+        if (idx >= 0) this.orders.remove(idx);
+    }
+
     public void subtractFromTotal(int num) {
         if (this.orderTotal - num >= 0) {
             this.orderTotal -= num;
