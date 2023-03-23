@@ -48,7 +48,7 @@ function ThanksDialog(props) {
     plastic
       .filter((_, idx) => idx < 3)
       .map((item) => {
-        const key = "TRASH_" + item.name.toUpperCase();
+        const key = 'TRASH_' + item.name.toUpperCase();
         return (
           <ItemContainer key={item.id}>
             <Image src={ImageURLs[key]} />
@@ -58,7 +58,7 @@ function ThanksDialog(props) {
       });
 
   const generateInspoText = () => {
-    return 'You have saved turtles from swallowing bags corals from etc etc.';
+    return 'By getting things together, we can reduce our impact!';
   };
 
   return (
@@ -77,7 +77,7 @@ function ThanksDialog(props) {
           <StyledTitle>Thank You</StyledTitle>
           <StyledTitle>Your Order is Confirmed</StyledTitle>
         </TitleContainer>
-        <SecHeading>By getting things together we can reduce our impact.</SecHeading>
+        <SecHeading>You have saved Toget the Turtle and his friends from swallowing plastic.</SecHeading>
         <StyledDialogContent>
           <PlasticContainer>{generatePlasticMon(plastic)}</PlasticContainer>
           <EnvText>{generateInspoText()}</EnvText>
