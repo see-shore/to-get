@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-import { Grid } from '@mui/material';
+import { Grid, CircularProgress } from '@mui/material';
 
 import { getItemsAsync } from '../redux/slices/itemsSlice';
 import styles from '../styles/pages/Products.json';
@@ -18,6 +18,7 @@ import OnlineUsers from '../components/user/OnlineUsers';
 import { getMostRecentlySetDeliveryDateAsync } from '../redux/slices/adminSlice';
 import MyOrdersPanel from '../components/user/MyOrdersPanel';
 import EllipsisLoader from '../components/product/EllipsisLoader';
+import PurchaseDeadline from '../components/user/PurchaseDeadline';
 
 function Products() {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ function Products() {
       <div style={styles.backgroundCard}>
         <div style={styles.profile}>
           <UserProfileDialog user={accountUser} />
+          <div>{!loadingUser && <PurchaseDeadline />}</div>
         </div>
         {isUserAdmin() && (
           <div style={styles.adminButton}>

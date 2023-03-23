@@ -48,7 +48,10 @@
   "profile": {
     "position": "absolute",
     "top": 15,
-    "left": 10
+    "left": 10,
+    "inset": "15px 4vw auto 10px",
+    "display": "flex",
+    "justifyContent": "space-between"
   },
   "usernameCopy": {
     "fontSize": 12,
