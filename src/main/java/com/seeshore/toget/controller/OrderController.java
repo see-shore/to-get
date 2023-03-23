@@ -124,10 +124,16 @@ public class OrderController {
             }
 
             Order fetchedOrder = orderRecord.get();
+            User user = fetchedOrder.getUser();
+            Item item = fetchedOrder.getItem();
+            int subTotal = item.getPricePerUnit() * fetchedOrder.getQuantity();
+            user.deleteFromOrders(orderId);
+            user.subtractFromTotal(subTotal);
+
             fetchedOrder.dismissItem();
             fetchedOrder.dismissUser();
 
-            orderService.deleteOrder(orderId);
+            userService.saveUser(user);
             return ResponseEntity.status(HttpStatus.OK)
                     .body("Successfully deleted order with ID: " + orderId);
         } catch (Exception e) {
