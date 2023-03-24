@@ -89,12 +89,7 @@ function CartButton(props) {
         <div style={styles.itemContainer}>
           {Object.keys(cart).map((item, idx) => {
             if (itemsMap[item] && cart[item] > 0) {
-              return (
-                <CartProduct 
-                  key={idx} 
-                  item={itemsMap[item]} 
-                />
-              );
+              return <CartProduct key={idx} item={itemsMap[item]} />;
             }
           })}
         </div>
@@ -119,12 +114,12 @@ function CartButton(props) {
 
   return (
     <>
-      {!ordersPresent && 
+      {!ordersPresent && !open && (
         <button style={styles.button} onClick={handleOpen}>
           {firstName}'s Cart
           <span style={styles.itemCount}>{orders.length > 0 && `( ${totalItems(orders)} )`}</span>
         </button>
-      }
+      )}
       <Dialog
         open={open}
         onClose={handleClose}

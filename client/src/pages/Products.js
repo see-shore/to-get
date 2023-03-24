@@ -116,7 +116,9 @@ function Products() {
         )}
       </div>
       <div style={styles.cartDialog}>
-        <CartDialog ordersPresent={ordersPresent} firstName={accountUser.firstName} userId={accountUser.id} />
+        {!loadingUser && (
+          <CartDialog ordersPresent={ordersPresent} firstName={accountUser.firstName} userId={accountUser.id} />
+        )}
       </div>
     </div>
   );
