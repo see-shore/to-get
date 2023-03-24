@@ -20,23 +20,23 @@ function MyOrdersPanel(props) {
           {orders.map((order) => {
             const item = itemsMap[order.itemId];
             if (item) {
-              return (
-                <ReceiptProduct key={order.itemId} item={item} order={order} />
-              );
+              return <ReceiptProduct key={order.itemId} item={item} order={order} />;
             }
           })}
         </div>
-        <div style={styles.totalLine}>
-          <div>
-            <p style={{ marginRight: 10 }}>{totalText}</p>
+        <div style={styles.textContainer}>
+          <div style={styles.totalLine}>
+            <div>
+              <p style={{ marginRight: 10 }}>{totalText}</p>
+            </div>
+            <div>
+              <p>{`$${(total / 100).toFixed(2)}`}</p>
+            </div>
           </div>
-          <div>
-            <p>{`$${(total / 100).toFixed(2)}`}</p>
+          <div style={styles.textCopy}>
+            <p>{deliveryText}</p>
+            <p style={{ marginTop: 5 }}>{new Date(deliveryDate).toLocaleDateString(undefined, dateOptions)}</p>
           </div>
-        </div>
-        <div style={styles.textCopy}>
-          <p>{deliveryText}</p>
-          <p style={{ marginTop: 5 }}>{new Date(deliveryDate).toLocaleDateString(undefined, dateOptions)}</p>
         </div>
       </div>
     </div>

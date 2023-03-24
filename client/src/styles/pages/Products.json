@@ -62,7 +62,8 @@
   "panel": {
     "display": "flex",
     "justifyContent": "center",
-    "flexGrow": 1
+    "flexGrow": 1,
+    "overflow": "hidden"
   },
   "divider": {
     "width": "100%"

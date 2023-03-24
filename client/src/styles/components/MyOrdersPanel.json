@@ -1,27 +1,32 @@
 {
-  "container": { 
-    "minHeight": "100%", 
-    "width": "100%", 
+  "container": {
+    "minHeight": "100%",
+    "width": "100%",
     "backgroundColor": "#F0D794",
     "display": "flex",
-    "justifyContent": "center"
+    "justifyContent": "center",
+    "paddingBottom": "7em"
   },
   "innerCard": {
     "width": "80%",
     "backgroundColor": "#FFFFFF",
-    "height": "85%",
+    "height": "100%",
     "marginTop": 20,
     "borderRadius": "2em",
-    "border": "2px solid black"
+    "border": "2px solid black",
+    "position": "relative",
+    "paddingBottom": "10.5em"
   },
   "listContainer": {
     "display": "flex",
     "flexDirection": "column",
     "gap": "0.7em",
-    "height": "65%",
     "overflow": "auto",
     "scrollbarWidth": "none",
-    "padding": "1em"
+    "padding": "0 1em 1em",
+    "maxHeight": "95%",
+    "minHeight": "100px",
+    "marginTop": "1em"
   },
   "totalLine": {
     "display": "flex",
@@ -37,5 +42,9 @@
     "fontWeight": 500,
     "fontFamily": "Inter",
     "marginLeft": "0.8em"
+  },
+  "textContainer": {
+    "position": "absolute",
+    "inset": "auto 1em 2em"
   }
 }

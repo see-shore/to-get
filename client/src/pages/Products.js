@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { Grid } from '@mui/material';
@@ -22,12 +22,20 @@ import PurchaseDeadline from '../components/user/PurchaseDeadline';
 
 function Products() {
   const dispatch = useDispatch();
+  const ref = useRef(null);
+  const [introHeight, setIntroHeight] = useState(0);
   const items = useSelector((state) => state.items.items);
   const accountUser = useSelector((state) => state.users.user);
   const { getAccessTokenSilently, user } = useAuth0();
   const myOrders = useSelector((state) => state.orders.myOrders);
   const ordersPresent = myOrders.length > 0;
   const loadingUser = useSelector((state) => state.users.loadingUserData);
+
+  useEffect(() => {
+    if (ref.current) {
+      setIntroHeight(ref.current.offsetHeight);
+    }
+  }, [ref]);
 
   useEffect(() => {
     if (user) {
@@ -57,8 +65,13 @@ function Products() {
   };
 
   return (
-    <div style={styles.pageContainer}>
-      <div style={styles.backgroundCard}>
+    <div
+      style={{
+        ...styles.pageContainer,
+        maxHeight: `calc(100vh + ${introHeight}px)`,
+      }}
+    >
+      <div ref={ref} style={styles.backgroundCard}>
         <div style={styles.profile}>
           <UserProfileDialog user={accountUser} />
           <div>{!loadingUser && <PurchaseDeadline />}</div>
