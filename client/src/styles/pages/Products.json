@@ -63,7 +63,8 @@
     "display": "flex",
     "justifyContent": "center",
     "flexGrow": 1,
-    "overflow": "hidden"
+    "overflow": "auto",
+    "backgroundColor": "#F0D794"
   },
   "divider": {
     "width": "100%"

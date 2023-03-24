@@ -1,7 +1,6 @@
 {
   "container": {
-    "width": "100%",
-    "backgroundColor": "#F0D794"
+    "width": "100%"
   },
   "productsContainer": {
     "display": "flex",
