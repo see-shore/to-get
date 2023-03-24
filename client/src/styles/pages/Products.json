@@ -88,7 +88,6 @@
     "marginRight": 5
   },
   "adminButton": {
-    "position": "absolute",
     "top": 10,
     "left": 230
   },
@@ -99,5 +98,8 @@
     "justifyContent": "center",
     "alignItems": "center",
     "paddingBottom": "15vh"
+  },
+  "buttonContainer": {
+    "display": "flex"
   }
 }

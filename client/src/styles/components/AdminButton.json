@@ -2,24 +2,24 @@
   "container": {
     "display": "flex",
     "alignItems": "center",
-    "borderRadius": 10,
-    "borderColor": "#DF2E38",
-    "borderStyle": "solid",
-    "borderWidth": 1,
-    "cursor": "pointer"
+    "cursor": "pointer",
+    "border": "3px solid #DF2E38",
+    "padding": "0 0.7em 0 1.6em",
+    "backgroundColor": "#DF2E38",
+    "borderRadius": "0 4em 4em 0"
   },
   "button": {
     "backgroundColor": "#DF2E38",
     "color": "#FFFFFF",
-    "width": 40,
-    "height": 40,
-    "margin": "5px 5px 5px 5px"
+    "width": 34,
+    "height": 34,
+    "margin": 0
   },
   "copy": {
-    "fontSize": 12,
-    "fontFamily": "helvetica",
+    "fontSize": "1.5rem",
     "fontWeight": "bold",
-    "marginRight": 5
+    "color": "#FFFFFF",
+    "letterSpacing": 1
   },
   "icon": {
     "width": 30,

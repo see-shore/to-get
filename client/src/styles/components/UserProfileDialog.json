@@ -13,7 +13,9 @@
   "user": {
     "cursor": "pointer",
     "display": "flex",
-    "alignItems": "center"
+    "alignItems": "center",
+    "zIndex": 100,
+    "maxWidth": "37vw"
   },
   "userName": {
     "border": "3px solid black",

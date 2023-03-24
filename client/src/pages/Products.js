@@ -73,14 +73,16 @@ function Products() {
     >
       <div ref={ref} style={styles.backgroundCard}>
         <div style={styles.profile}>
-          <UserProfileDialog user={accountUser} />
+          <div style={styles.buttonContainer}>
+            <UserProfileDialog user={accountUser} />
+            {isUserAdmin() && (
+              <div style={styles.adminButton}>
+                <AdminButton />
+              </div>
+            )}
+          </div>
           <div>{!loadingUser && <PurchaseDeadline />}</div>
         </div>
-        {isUserAdmin() && (
-          <div style={styles.adminButton}>
-            <AdminButton />
-          </div>
-        )}
         <div style={styles.avatarContainer}>
           <div style={styles.avatar}>
             <ShopOwnerAvatar />
