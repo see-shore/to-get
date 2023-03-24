@@ -38,14 +38,15 @@ p {
 
 .styled-button {
   padding: 0.7em;
+  max-height: 50px;
+  width: 100%;
   background: black;
   border: 2px solid black;
   border-radius: 2em;
-  width: 100%;
   color: white;
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 1.7rem;
-  font-family: 'Inter', sans-serif;
 }
 
 .background {

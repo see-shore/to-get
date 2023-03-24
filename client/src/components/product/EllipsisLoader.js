@@ -3,7 +3,7 @@ import { LoadingContainer } from '../../styles/components/EllipsisLoader.styled'
 
 function EllipsisLoader({ color = 'black', size = 'medium' }) {
   const convNum = {
-    small: 0.7,
+    small: 0.5,
     medium: 1,
     large: 1.5,
   };

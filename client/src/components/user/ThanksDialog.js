@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { CircularProgress } from '@mui/material';
 import OnlineUsers from './OnlineUsers';
+import EllipsisLoader from '../product/EllipsisLoader';
 import dialogStyles from '../../styles/components/CartDialog.json';
 import {
   StyledTitle,
@@ -65,7 +65,7 @@ function ThanksDialog(props) {
     <>
       {loading ? (
         <button className={'styled-button'}>
-          <CircularProgress size={17} />
+          <EllipsisLoader size={'small'} color={'white'} />
         </button>
       ) : (
         <button className={'styled-button'} onClick={() => handleOrderSubmit()}>

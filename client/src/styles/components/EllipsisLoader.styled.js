@@ -31,11 +31,10 @@ export const LoadingContainer = styled.div`
   display: inline-block;
   position: relative;
   width: 80px;
-  height: 80px;
+  height: 13px;
   scale: ${(props) => (props.size ? props.size : 1)};
   div {
     position: absolute;
-    top: 33px;
     width: 13px;
     height: 13px;
     border-radius: 50%;
