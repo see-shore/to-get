@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import styles from '../styles/pages/Login.json';
 import ShopOwnerAvatar from '../components/product/ShopOwnerAvatar';
@@ -6,19 +6,7 @@ import SpeechBox from '../components/product/SpeechBox';
 import LoginButton from '../components/user/LoginButton';
 import { useAuth0 } from '@auth0/auth0-react';
 import { NODE_BASE_URL } from '../App';
-
-function useWindowWidth() {
-  const [width, setWidth] = useState(0);
-  useLayoutEffect(() => {
-    function updateSize() {
-      setWidth(window.innerWidth);
-    }
-    window.addEventListener('resize', updateSize);
-    updateSize();
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
-  return width;
-}
+import useWindowWidth from '../hooks/useWindowWidth';
 
 function Login() {
   const { isAuthenticated } = useAuth0();

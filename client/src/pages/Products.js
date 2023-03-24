@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-import { Grid, CircularProgress } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import { getItemsAsync } from '../redux/slices/itemsSlice';
 import styles from '../styles/pages/Products.json';

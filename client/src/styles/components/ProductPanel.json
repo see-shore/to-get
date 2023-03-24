@@ -1,9 +1,14 @@
 {
   "container": {
     "width": "100%",
-    "backgroundColor": "#F0D794",
+    "backgroundColor": "#F0D794"
+  },
+  "productsContainer": {
     "display": "flex",
-    "justifyContent": "center",
-    "gap": "1em"
+    "justifyContent": "flex-start",
+    "gap": "1em",
+    "margin": "auto",
+    "minWidth": "calc(155px*2)",
+    "maxWidth": "calc(159px*6)"
   }
 }
