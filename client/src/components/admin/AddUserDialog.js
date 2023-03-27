@@ -67,7 +67,7 @@ function AddUserDialog() {
       email: formValue.email.trim(),
       password: formValue.password.trim()
     };
-    const data = { user, token }
+    const data = { user, token };
     dispatch(createCredentialsAsync(data));
   };
 

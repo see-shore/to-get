@@ -10,6 +10,11 @@ export const addUser = async (userData) => {
   return response.data;
 };
 
+export const deleteUser = async (userId) => {
+  const response = await axios.delete(`/user?userId=${userId}`);
+  return response.data;
+};
+
 export const getUser = async (email) => {
   const response = await axios.get(`/user?email=${email}`);
   return response.data;

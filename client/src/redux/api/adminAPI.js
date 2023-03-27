@@ -24,7 +24,7 @@ export const createNewCredentials = async (userData, token) => {
   return await axios({
     method: 'post',
     url: '/dbconnections/signup',
-    baseURL: "https://" + process.env.REACT_APP_AUTH0_DOMAIN,
+    baseURL: 'https://' + process.env.REACT_APP_AUTH0_DOMAIN,
     data: {
       client_id: process.env.REACT_APP_AUTH0_CLIENT_ID,
       connection: process.env.REACT_APP_AUTH0_CONNECTION,
