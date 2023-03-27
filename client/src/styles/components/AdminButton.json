@@ -3,13 +3,11 @@
     "display": "flex",
     "alignItems": "center",
     "cursor": "pointer",
-    "border": "3px solid #DF2E38",
+    "border": "3px solid #a6272d",
     "padding": "0 0.7em 0 1.6em",
-    "backgroundColor": "#DF2E38",
     "borderRadius": "0 4em 4em 0"
   },
   "button": {
-    "backgroundColor": "#DF2E38",
     "color": "#FFFFFF",
     "width": 34,
     "height": 34,

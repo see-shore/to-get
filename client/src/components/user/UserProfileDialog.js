@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dialog, DialogContent, DialogActions, Button } from '@mui/material';
+import { Dialog, DialogContent, DialogActions } from '@mui/material';
 import { Logout as LogoutIcon } from '@mui/icons-material';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -8,6 +8,7 @@ import { NODE_BASE_URL } from '../../App';
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../../redux/slices/itemsSlice';
 import dialogStyles from '../../styles/components/CartDialog.json';
+import { Button } from '../../styles/components/UserProfileDialog.styled';
 
 function UserProfileDialog(props) {
   const [open, setOpen] = useState(false);
@@ -32,10 +33,10 @@ function UserProfileDialog(props) {
 
   return (
     <>
-      <div onClick={handleOpen} style={styles.user}>
+      <Button onClick={handleOpen} style={styles.user}>
         <img src={user.imageUrl} style={styles.avatar} alt='User Avatar' />
         <p style={styles.userName}>{user.firstName}</p>
-      </div>
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -56,7 +57,7 @@ function UserProfileDialog(props) {
           </div>
         </DialogContent>
         <DialogActions style={styles.footer}>
-          <button onClick={() => handleLogout()} style={styles.button} type='submit'>
+          <button className={'styled-button'} onClick={() => handleLogout()} style={styles.button} type='submit'>
             <LogoutIcon sx={styles.icon} />
             <p style={styles.buttonText}>{`Log Out`}</p>
           </button>

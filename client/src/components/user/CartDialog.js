@@ -115,7 +115,7 @@ function CartButton(props) {
   return (
     <>
       {!ordersPresent && !open && (
-        <button style={styles.button} onClick={handleOpen}>
+        <button className={'styled-button'} style={styles.button} onClick={handleOpen}>
           {firstName}'s Cart
           <span style={styles.itemCount}>{orders.length > 0 && `( ${totalItems(orders)} )`}</span>
         </button>

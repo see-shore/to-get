@@ -36,6 +36,10 @@ p {
   font-family: 'Inter', sans-serif;
 }
 
+button {
+  cursor: pointer;
+}
+
 .styled-button {
   padding: 0.7em;
   max-height: 50px;
@@ -47,6 +51,10 @@ p {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 1.7rem;
+}
+
+.styled-button:hover {
+  background-color: #222;
 }
 
 .background {
@@ -61,10 +69,6 @@ p {
   min-height: 100vh;
   margin: auto;  
   position: relative;
-}
-
-button {
-  cursor: pointer;
 }
 
 .hide-scroll::-webkit-scrollbar {
