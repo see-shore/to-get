@@ -19,6 +19,7 @@ import { getMostRecentlySetDeliveryDateAsync } from '../redux/slices/adminSlice'
 import MyOrdersPanel from '../components/user/MyOrdersPanel';
 import EllipsisLoader from '../components/product/EllipsisLoader';
 import PurchaseDeadline from '../components/user/PurchaseDeadline';
+import ProductButton from '../components/product/ProductButton';
 
 function Products() {
   const dispatch = useDispatch();
@@ -103,6 +104,7 @@ function Products() {
         <Grid item sx={styles.header}>
           <p style={styles.weekPickCopy}>{ordersPresent ? 'Your Order Summary' : "This Week's Picks"}</p>
         </Grid>
+        <Grid>{ordersPresent && <ProductButton />}</Grid>
       </Grid>
       <div style={styles.panel}>
         {loadingUser ? (
