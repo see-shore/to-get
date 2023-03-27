@@ -14,12 +14,10 @@ function Product(props) {
   const dispatch = useDispatch();
   const { item } = props;
   const [open, setOpen] = useState(false);
-  const count = useSelector(state => selectItemCount(state, item.id));
+  const count = useSelector((state) => selectItemCount(state, item.id));
 
   const increment = () => {
-    dispatch(
-      updateCart({ itemId: item.id, quantity: count + 1, isIncrement: true })
-    );
+    dispatch(updateCart({ itemId: item.id, quantity: count + 1, isIncrement: true }));
   };
 
   const decrement = () => {
@@ -27,9 +25,7 @@ function Product(props) {
       dispatch(removeFromCart(item.id));
     } else {
       if (count - 1 > 0) {
-        dispatch(
-          updateCart({ itemId: item.id, quantity: count - 1, isIncrement: true })
-        );
+        dispatch(updateCart({ itemId: item.id, quantity: count - 1, isIncrement: true }));
       }
     }
   };
@@ -89,11 +85,11 @@ function Product(props) {
         <div onClick={handleOpen} style={styles.box}>
           <div style={styles.priceTag}>
             <p style={styles.priceText}>{formatPrice(item.pricePerUnit)}</p>
-            <p style={styles.priceUnit}>{'/unit'}</p>
+            <p style={styles.priceUnit}>{`/ ${item.units}`}</p>
           </div>
           <div style={styles.crate}>
             <div style={styles.imageContainer}>
-              <img style={styles.image} src={item.imageUrl} alt="to.get Item" />
+              <img style={styles.image} src={item.imageUrl} alt='to.get Item' />
             </div>
             <div style={styles.textContainer}>
               <p style={styles.itemName}>{item.name}</p>
@@ -116,13 +112,19 @@ function Product(props) {
               <p style={styles.dialogItemName}>{item.name}</p>
               <p style={styles.dialogUnitPrice}>{`$${(item.price / 100).toFixed(2)} / ${item.units}`}</p>
             </div>
-            <p style={styles.dialogTotalPrice}>{!count ? '$0' : `$${((item.pricePerUnit * count) / 100).toFixed(2)}`}</p>
+            <p style={styles.dialogTotalPrice}>
+              {!count ? '$0' : `$${((item.pricePerUnit * count) / 100).toFixed(2)}`}
+            </p>
           </div>
           <div style={styles.detailsImageContainer}>
-            <img style={styles.detailsImage} src={item.imageUrl} alt="to.get Item" />
+            <img style={styles.detailsImage} src={item.imageUrl} alt='to.get Item' />
           </div>
-          <div style={{ ...styles.descriptionContainer, 
-            display: (item.description && item.description.length > 0) ? 'block' : 'none' }}>
+          <div
+            style={{
+              ...styles.descriptionContainer,
+              display: item.description && item.description.length > 0 ? 'block' : 'none',
+            }}
+          >
             <p style={styles.descriptionHeader}>Description</p>
             <p style={styles.descriptionText}>{item.description}</p>
           </div>

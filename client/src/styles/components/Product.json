@@ -77,7 +77,10 @@
     "fontSize": "1.5rem",
     "fontWeight": 600,
     "textAlign": "center",
-    "paddingTop": 5
+    "paddingTop": 5,
+    "width": "100%",
+    "overflow": "hidden",
+    "textOverflow": "ellipsis"
   },
   "dialogItemName": {
     "fontSize": "2.5rem",
@@ -147,7 +150,7 @@
     "flexGrow": 1,
     "borderRadius": "20px 0 20px 20px",
     "border": "3px solid black",
-    "paddingBottom": 50
+    "paddingBottom": 45
   },
   "priceTag": {
     "background": "#ffffffd4",
@@ -209,10 +212,12 @@
     "fontSize": "1.2rem"
   },
   "textContainer": {
-    "minHeight": 40,
+    "minHeight": 45,
+    "maxHeight": 45,
     "alignItems": "center",
     "display": "flex",
     "justifyContent": "center",
-    "flexDirection": "column"
+    "flexDirection": "column",
+    "padding": "0 0.5em"
   }
 }
