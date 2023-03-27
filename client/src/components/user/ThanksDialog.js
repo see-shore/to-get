@@ -31,8 +31,8 @@ const plastic = [
 function ThanksDialog(props) {
   const open = useSelector((state) => state.orders.thanksDialogOpen);
   const loading = useSelector((state) => state.orders.saveOrdersPending);
-  const { isEmpty } = props;
-  const buttonCopy = isEmpty ? 'Continue Shopping' : 'Confirm Order';
+  const { isEmpty, isEdit } = props;
+  const buttonCopy = isEmpty ? 'Continue Shopping' : isEdit ? 'Update Order' : 'Confirm Order';
 
   const handleClose = () => {
     props.onClose();

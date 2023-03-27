@@ -101,6 +101,7 @@
     "paddingBottom": "15vh"
   },
   "buttonContainer": {
-    "display": "flex"
+    "display": "flex",
+    "marginRight": "1em"
   }
 }

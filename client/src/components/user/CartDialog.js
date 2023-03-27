@@ -67,6 +67,10 @@ function CartButton(props) {
     dispatch(createOrdersAsync(data));
   };
 
+  const handleUpdate = () => {
+    // TODO: method to update order
+  };
+
   const totalItems = (itemList) => itemList.reduce((total, curr) => total + curr.quantity, 0);
 
   const generateEmptyDialogContent = () => {
@@ -106,7 +110,12 @@ function CartButton(props) {
           <p style={{ marginTop: 5 }}>{new Date(deliveryDate).toLocaleDateString(undefined, dateOptions)}</p>
         </div>
         <div style={styles.orderButton}>
-          <ThanksDialog isEmpty={isEmpty} onOrderClick={handleSubmit} onClose={handleClose} />
+          <ThanksDialog
+            isEmpty={isEmpty}
+            isEdit={ordersPresent}
+            onOrderClick={ordersPresent ? handleUpdate : handleSubmit}
+            onClose={handleClose}
+          />
         </div>
       </DialogContent>
     );
@@ -114,9 +123,10 @@ function CartButton(props) {
 
   return (
     <>
-      {!ordersPresent && !open && (
+      {!open && (
+        // TODO: hide button on ORDER PANEL
         <button className={'styled-button'} style={styles.button} onClick={handleOpen}>
-          {firstName}'s Cart
+          {!ordersPresent ? `${firstName}'s Cart` : `Edit Order`}
           <span style={styles.itemCount}>{orders.length > 0 && `( ${totalItems(orders)} )`}</span>
         </button>
       )}
