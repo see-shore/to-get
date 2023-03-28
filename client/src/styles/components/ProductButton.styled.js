@@ -5,6 +5,7 @@ export const Button = styled.button`
   display: flex;
   padding: 0.6em 1.3em;
   align-items: center;
+  justify-content: center;
 `;
 
 export const TextContainer = styled.div`

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ImageURLs from '../../images/ImageURLs.json';
+import EmbarrassedAvatar from '../../images/avatar_eyebrows.png';
 
 const styles = {
   image: {
@@ -9,10 +10,9 @@ const styles = {
   },
 };
 
-function ShopOwnerAvatar() {
-  return (
-    <img src={ImageURLs.SHOP_OWNER} alt={'Shop Owner'} style={styles.image} />
-  );
+function ShopOwnerAvatar({ embarrassed = false }) {
+  const imgSrc = embarrassed ? EmbarrassedAvatar : ImageURLs.SHOP_OWNER;
+  return <img src={imgSrc} alt={'Shop Owner'} style={styles.image} />;
 }
 
 export default ShopOwnerAvatar;

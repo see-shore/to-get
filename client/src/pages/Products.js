@@ -66,12 +66,7 @@ function Products() {
   };
 
   return (
-    <div
-      style={{
-        ...styles.pageContainer,
-        maxHeight: `calc(100vh + ${introHeight}px)`,
-      }}
-    >
+    <div className={'page'} style={{ maxHeight: `calc(100vh + ${introHeight}px)` }}>
       <div ref={ref} style={styles.backgroundCard}>
         <div style={styles.profile}>
           <div style={styles.buttonContainer}>

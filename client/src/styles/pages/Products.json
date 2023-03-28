@@ -1,15 +1,4 @@
 {
-  "pageContainer": {
-    "display": "flex",
-    "flexDirection": "column",
-    "minHeight": "100vh",
-    "maxWidth": "1024px",
-    "margin": "auto",
-    "position": "relative",
-    "outline": "3px solid black",
-    "outlineTop": 0,
-    "outlineBottom": 0
-  },
   "backgroundCard": {
     "backgroundColor": "#FFFFFF",
     "width": "100%",

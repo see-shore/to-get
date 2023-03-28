@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Button, StyledText, TextContainer } from '../../styles/components/ProductButton.styled';
 
-function ProductButton() {
+function ProductButton({ back = true }) {
   return (
     <Button className={'styled-button'}>
       <FontAwesomeIcon icon={regular('lemon')} />
       <TextContainer>
-        back to <StyledText>PRODUCTS</StyledText>
+        {back ? 'back' : 'return'} to <StyledText>PRODUCTS</StyledText>
       </TextContainer>
     </Button>
   );
