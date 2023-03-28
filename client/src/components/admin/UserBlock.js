@@ -18,6 +18,7 @@ import {
 import styles from '../../styles/components/UserBlock.json';
 import { useDispatch } from 'react-redux';
 import { updateUserAsync } from '../../redux/slices/usersSlice';
+import DeleteUserDialog from './DeleteUserDialog';
 
 function UserBlock(props) {
   const { user } = props;
@@ -124,6 +125,7 @@ function UserBlock(props) {
             />
           </DialogContent>
           <DialogActions>
+            <DeleteUserDialog userId={user.id} onClose={handleClose} />
             <Button onClick={handleSubmit} variant='outlined' sx={{ color: '#609966' }} type='submit'>
               <SendIcon sx={styles.icon} />Edit user
             </Button>

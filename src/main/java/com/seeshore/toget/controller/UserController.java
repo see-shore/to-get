@@ -1,15 +1,21 @@
 package com.seeshore.toget.controller;
 
 import com.seeshore.toget.model.User;
+import com.seeshore.toget.model.response.Auth0User;
 import com.seeshore.toget.service.IUserService;
+import com.seeshore.toget.util.FileUtil;
 import com.seeshore.toget.util.UserIcon;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @Controller
@@ -18,6 +24,9 @@ public class UserController {
 
     @Autowired
     private IUserService userService;
+
+    @Value("${auth0.domain}")
+    private String auth0Domain;
 
     // Fetch all users
     @GetMapping("/user/all")
@@ -63,12 +72,32 @@ public class UserController {
 
     // Delete a user
     @DeleteMapping("/user")
-    public ResponseEntity<String> deleteUser(@RequestParam Long userId) {
+    public ResponseEntity<Long> deleteUser(@RequestParam Long userId) {
         try {
+            User user = userService.findUserById(userId).get();
+            ClassLoader classLoader = getClass().getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("management.txt");
+            String token = FileUtil.readFromInputStream(inputStream);
+            token = token.replaceAll("\\s+", "");
+
+            HttpHeaders headers = new HttpHeaders();
+            RestTemplate restTemplate = new RestTemplate();
+            String uri = "https://" + auth0Domain + "/api/v2/users-by-email?email=" + user.getEmail();
+            headers.add("authorization", "Bearer " + token);
+            HttpEntity<String> entity = new HttpEntity<String>(headers);
+            ResponseEntity<Auth0User[]> response = restTemplate.exchange(uri, HttpMethod.GET, entity, Auth0User[].class);
+            Auth0User[] users = response.getBody();
+            if (users != null && users.length == 0) {
+                System.out.println("Provided user ID in Auth0 is unknown");
+            }
+            String auth0Id = users[0].getAuth0UserId();
+            uri = "https://" + auth0Domain + "/api/v2/users/auth0|" + auth0Id;
+            ResponseEntity<?> deleteResponse = restTemplate.exchange(uri, HttpMethod.DELETE, entity, String.class);
             userService.deleteUserById(userId);
             return ResponseEntity.status(HttpStatus.OK)
-                    .body("Successfully deleted user with ID: " + userId);
+                    .body(userId);
         } catch (Exception e) {
+            System.out.println(e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Internal server error", e);
         }

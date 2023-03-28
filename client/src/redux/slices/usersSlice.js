@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { createNewCredentials } from "../api/adminAPI";
-import { getUsers, addUser, getUser, updateUser, getRecentUsers } from '../api/usersAPI';
+import { getUsers, addUser, deleteUser, getUser, updateUser, getRecentUsers } from '../api/usersAPI';
 import { setMyOrders } from "./ordersSlice";
+import { findIndexById } from "../../util/ReduxUtil";
 
 const initialState = {
   users: [],
@@ -42,6 +43,14 @@ export const addUserAsync = createAsyncThunk(
     } catch (e) {
       console.error(e);
     }
+  }
+);
+
+export const deleteUserAsync = createAsyncThunk(
+  'users/deleteUser',
+  async (userId, { dispatch }) => {
+    const response = await deleteUser(userId);
+    return response;
   }
 );
 
@@ -104,6 +113,17 @@ export const usersSlice = createSlice({
         state.users.push(action.payload);
         state.addUserDialogOpen = false;
       })
+      .addCase(deleteUserAsync.pending, (state) => {
+        state.loadingUserData = true;
+      })
+      .addCase(deleteUserAsync.fulfilled, (state, action) => {
+        state.loadingUserData = false;
+        let index = findIndexById(state.users, action.payload);
+        state.users = [
+          ...state.users.slice(0, index),
+          ...state.users.slice(index + 1)
+        ];
+      })
       .addCase(getUserAsync.pending, (state) => {
         state.loadingUserData = true;
       })
@@ -116,9 +136,7 @@ export const usersSlice = createSlice({
       })
       .addCase(updateUserAsync.fulfilled, (state, action) => {
         state.loadingUserData = false;
-        let index = state.users.findIndex(
-          (user) => user.id === action.payload.id
-        );
+        let index = findIndexById(state.users, action.payload.id);
         state.users[index] = action.payload;
       })
       .addCase(getRecentUsersAsync.fulfilled, (state, action) => {
@@ -129,7 +147,8 @@ export const usersSlice = createSlice({
         
       })
       .addCase(createCredentialsAsync.rejected, (state) => {
-        state.error = "Error while creating credentials. They may already exist or may be invalid.";
+        state.error = "Error while creating credentials. Please ensure password has a capital, number, special character."
+          + "Also check that the user does not already exist.";
         state.loadingUserData = false;
       });
   }
