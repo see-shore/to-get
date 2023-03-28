@@ -6,7 +6,7 @@ import styles from '../../styles/components/LoginButton.json';
 function LoginButton() {
   const { loginWithRedirect } = useAuth0();
   return (
-    <button style={styles.button} onClick={() => loginWithRedirect()}>
+    <button className={'styled-button'} style={styles.button} onClick={() => loginWithRedirect()}>
       <p style={styles.loginCopy}>Login</p>
     </button>
   );

@@ -6,7 +6,7 @@ import {
   InfoContainer,
   StyledName,
   UnitPrice,
-  CircleImage
+  CircleImage,
 } from '../../styles/components/CartProduct.styled';
 import styles from '../../styles/components/ReceiptProduct.json';
 
@@ -28,7 +28,7 @@ function ReceiptProduct(props) {
           <div>
             <StyledName>{item.name}</StyledName>
             <UnitPrice>
-              {formatPrice(item.pricePerUnit)}/{'unit'}
+              {formatPrice(item.pricePerUnit)} / {item.units}
             </UnitPrice>
           </div>
           {formatPrice(item.pricePerUnit * order.quantity)}

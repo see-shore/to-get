@@ -1,15 +1,10 @@
 {
   "button": {
-    "width": "100%",
-    "backgroundColor": "#000000",
-    "color": "#FFFFFF",
-    "border": "none",
-    "borderRadius": "3em",
     "display": "flex",
     "justifyContent": "center",
     "alignItems": "center",
-    "cursor": "pointer",
-    "padding": "1em"
+    "padding": "0.6em",
+    "width": "90%"
   },
   "loginCopy": {
     "fontWeight": 600,

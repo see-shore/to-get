@@ -21,12 +21,10 @@ import { selectItemCount } from '../../redux/selectors/selectors';
 function CartProduct(props) {
   const dispatch = useDispatch();
   const { item } = props;
-  const count = useSelector(state => selectItemCount(state, item.id));
+  const count = useSelector((state) => selectItemCount(state, item.id));
 
   const increment = () => {
-    dispatch(
-      updateCart({ itemId: item.id, quantity: count + 1, isIncrement: true })
-    );
+    dispatch(updateCart({ itemId: item.id, quantity: count + 1, isIncrement: true }));
   };
 
   const decrement = () => {
@@ -34,9 +32,7 @@ function CartProduct(props) {
       dispatch(removeFromCart(item.id));
     } else {
       if (count - 1 > 0) {
-        dispatch(
-          updateCart({ itemId: item.id, quantity: count - 1, isIncrement: false })
-        );
+        dispatch(updateCart({ itemId: item.id, quantity: count - 1, isIncrement: false }));
       }
     }
   };
@@ -60,7 +56,7 @@ function CartProduct(props) {
           <div>
             <StyledName>{item.name}</StyledName>
             <UnitPrice>
-              {formatPrice(item.pricePerUnit)}/{'unit'}
+              {formatPrice(item.pricePerUnit)} / {item.units}
             </UnitPrice>
           </div>
           {formatPrice(item.pricePerUnit * count)}

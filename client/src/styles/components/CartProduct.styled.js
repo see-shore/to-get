@@ -13,6 +13,8 @@ export const ItemContainer = styled.div`
 export const ImageContainer = styled.div`
   height: 40px;
   width: 40px;
+  min-height: 40px;
+  min-width: 40px;
   border-radius: 50%;
   margin: auto;
   overflow: hidden;
@@ -35,7 +37,7 @@ export const InfoContainer = styled.div`
   justify-content: space-between;
   font-weight: bold;
   font-size: 1.6rem;
-  margin-left: 0.5em;
+  margin: 0 0.5em;
   & div {
     margin-bottom: 0.5em;
   }

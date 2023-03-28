@@ -18,17 +18,20 @@ function ProductPanel(props) {
     return 0;
   };
 
-  const calcDimFactor = () => {
-    if (width > 1024) {
-      return 6;
-    } else {
-      return Math.floor(width / 159);
-    }
+  const calcWidthDim = () => {
+    const factor = Math.floor(width / 159);
+    const multiple = {
+      2: 155,
+      3: 157,
+      4: 158,
+      5: 158,
+    };
+    return factor * (multiple[factor] || 159);
   };
 
   return (
     <div style={styles.container}>
-      <Grid container sx={{ ...styles.productsContainer, height: 'auto', width: `calc(159px*${calcDimFactor()})` }}>
+      <Grid container sx={{ ...styles.productsContainer, height: 'auto', width: calcWidthDim() }}>
         {items.map((item) => (
           <Grid item key={item.id}>
             <Product item={item} defaultN={checkCartCache(item.id)} />
