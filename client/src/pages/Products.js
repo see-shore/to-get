@@ -29,8 +29,14 @@ function Products() {
   const accountUser = useSelector((state) => state.users.user);
   const { getAccessTokenSilently, user } = useAuth0();
   const myOrders = useSelector((state) => state.orders.myOrders);
-  const ordersPresent = myOrders.length > 0;
+  const [ordersPresent, setOrdersPresent] = useState(myOrders.length > 0);
+  const [showOrders, setShowOrders] = useState(ordersPresent);
   const loadingUser = useSelector((state) => state.users.loadingUserData);
+
+  useEffect(() => {
+    setOrdersPresent(prevState => myOrders.length > 0);
+    setShowOrders(prevState => myOrders.length > 0);
+  }, [myOrders, setOrdersPresent, setShowOrders]);
 
   useEffect(() => {
     if (ref.current) {
@@ -97,16 +103,16 @@ function Products() {
           <img src={ImageURLs.DIV_DIVIDER} alt='Divider' style={styles.divider} />
         </Grid>
         <Grid item sx={styles.header}>
-          <p style={styles.weekPickCopy}>{ordersPresent ? 'Your Order Summary' : "This Week's Picks"}</p>
+          <p style={styles.weekPickCopy}>{showOrders ? 'Your Order Summary' : "This Week's Picks"}</p>
         </Grid>
-        <Grid>{ordersPresent && <ProductButton />}</Grid>
+        <Grid>{ordersPresent && <ProductButton onClick={setShowOrders} />}</Grid>
       </Grid>
       <div style={styles.panel}>
         {loadingUser ? (
           <div style={styles.loadingContainer}>
             <EllipsisLoader />
           </div>
-        ) : ordersPresent ? (
+        ) : showOrders ? (
           <MyOrdersPanel orders={myOrders} total={accountUser.orderTotal} />
         ) : (
           <ProductPanel items={items} height={height} />
@@ -114,7 +120,7 @@ function Products() {
       </div>
       <div style={styles.cartDialog}>
         {!loadingUser && (
-          <CartDialog ordersPresent={ordersPresent} firstName={accountUser.firstName} userId={accountUser.id} />
+          <CartDialog ordersPresent={showOrders} firstName={accountUser.firstName} userId={accountUser.id} />
         )}
       </div>
     </div>

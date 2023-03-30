@@ -3,9 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Button, StyledText, TextContainer } from '../../styles/components/ProductButton.styled';
 
-function ProductButton({ back = true }) {
+function ProductButton(props) {
+  const back = true;
+  const handleClick = () => {
+    props.onClick(prevState => !prevState);
+  };
+
   return (
-    <Button className={'styled-button'}>
+    <Button className={'styled-button'} onClick={handleClick}>
       <FontAwesomeIcon icon={regular('lemon')} />
       <TextContainer>
         {back ? 'back' : 'return'} to <StyledText>PRODUCTS</StyledText>

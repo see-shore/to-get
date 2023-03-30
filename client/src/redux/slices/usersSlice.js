@@ -94,6 +94,9 @@ export const usersSlice = createSlice({
     },
     setUserTotal: (state, action) => {
       state.user.orderTotal = action.payload;
+    },
+    setLoadingUserData: (state, action) => {
+      state.loadingUserData = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -158,7 +161,8 @@ export const {
   setTokenInStore,
   setError,
   setAddUserDialogOpen,
-  setUserTotal
+  setUserTotal,
+  setLoadingUserData
 } = usersSlice.actions;
 
 export default usersSlice.reducer;
