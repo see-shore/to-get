@@ -69,6 +69,7 @@ function CartButton(props) {
 
   const handleUpdate = () => {
     // TODO: method to update order
+    setOpen(false);
   };
 
   const totalItems = (itemList) => itemList.reduce((total, curr) => total + curr.quantity, 0);
@@ -124,7 +125,6 @@ function CartButton(props) {
   return (
     <>
       {!open && (
-        // TODO: hide button on ORDER PANEL
         <button className={'styled-button'} style={styles.button} onClick={handleOpen}>
           {!ordersPresent ? `${firstName}'s Cart` : `Edit Order`}
           <span style={styles.itemCount}>{orders.length > 0 && `( ${totalItems(orders)} )`}</span>

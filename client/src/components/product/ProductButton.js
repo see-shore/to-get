@@ -8,7 +8,6 @@ function ProductButton(props) {
   const handleClick = () => {
     props.onClick((prevState) => !prevState);
   };
-  console.log('type', product);
   return (
     <Button className={'styled-button'} onClick={handleClick}>
       <FontAwesomeIcon icon={regular('lemon')} />

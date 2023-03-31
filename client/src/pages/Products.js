@@ -120,7 +120,7 @@ function Products() {
       </div>
       <div style={styles.cartDialog}>
         {!loadingUser && !showOrders && (
-          <CartDialog ordersPresent={showOrders} firstName={accountUser.firstName} userId={accountUser.id} />
+          <CartDialog ordersPresent={ordersPresent} firstName={accountUser.firstName} userId={accountUser.id} />
         )}
       </div>
     </div>
