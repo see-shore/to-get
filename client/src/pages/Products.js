@@ -34,8 +34,8 @@ function Products() {
   const loadingUser = useSelector((state) => state.users.loadingUserData);
 
   useEffect(() => {
-    setOrdersPresent(prevState => myOrders.length > 0);
-    setShowOrders(prevState => myOrders.length > 0);
+    setOrdersPresent((prevState) => myOrders.length > 0);
+    setShowOrders((prevState) => myOrders.length > 0);
   }, [myOrders, setOrdersPresent, setShowOrders]);
 
   useEffect(() => {
@@ -105,7 +105,7 @@ function Products() {
         <Grid item sx={styles.header}>
           <p style={styles.weekPickCopy}>{showOrders ? 'Your Order Summary' : "This Week's Picks"}</p>
         </Grid>
-        <Grid>{ordersPresent && <ProductButton onClick={setShowOrders} />}</Grid>
+        <Grid>{ordersPresent && <ProductButton product={showOrders} onClick={setShowOrders} />}</Grid>
       </Grid>
       <div style={styles.panel}>
         {loadingUser ? (
@@ -119,7 +119,7 @@ function Products() {
         )}
       </div>
       <div style={styles.cartDialog}>
-        {!loadingUser && (
+        {!loadingUser && !showOrders && (
           <CartDialog ordersPresent={showOrders} firstName={accountUser.firstName} userId={accountUser.id} />
         )}
       </div>

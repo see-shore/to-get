@@ -18,4 +18,5 @@ export const StyledText = styled.p`
   letter-spacing: 0.7px;
   font-weight: 800;
   margin-left: 1px;
+  text-transform: uppercase;
 `;

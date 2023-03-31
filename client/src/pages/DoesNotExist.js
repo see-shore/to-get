@@ -14,7 +14,7 @@ function DoesNotExist() {
         <ShopOwnerAvatar embarrassed={true} />
       </AvatarContainer>
       <StyledLink to={'/products'}>
-        <ProductButton back={false} />
+        <ProductButton back={false} product={true} />
       </StyledLink>
     </PageContainer>
   );
