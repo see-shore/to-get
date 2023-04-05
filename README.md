@@ -6,6 +6,8 @@
 
 to.get is an application created by team See Shore of the CDM to facilitate group buying on campus and to tackle plastic waste reduction.
 
+for additional resources, such as the full report and video of the process, click here: https://bit.ly/togetcdm
+
 ## team see shore
 
 [Project Page @ CDM](https://thecdm.ca/projects/industry-projects/seeshore-sfu-fcat)
