@@ -16,6 +16,10 @@ to.get is an application created by team See Shore of the CDM to facilitate grou
 **UI/UX Designer**: Oscar Chu (CDM)
 
 ## technical overview
+<p align="center">
+  <img alt="arch-to-get" src="https://user-images.githubusercontent.com/63022198/231319909-0de46082-3d8d-4926-bdb1-3363a10afe3e.png">
+</p>
+
 - Spring Boot server
 - React.js & Redux.js client
 - MUI components
