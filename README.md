@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://to-get.s3.us-west-2.amazonaws.com/logo192.png" />
+  <img width="120" src="https://github.com/see-shore/to-get/assets/63022198/a7a9096e-8a83-4503-bdce-46ad0492f367" />
 </p>
 
 # to.get
